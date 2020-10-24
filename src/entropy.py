@@ -18,11 +18,12 @@ def bytes_to_int(digest):
 
 def checksum(digest):
 	# return a checksum of our entropy
-	return digest >> (digest.bit_length() - 8)
+	length = digest.bit_length()
+	return digest >> (length - (length // 32))
 
-def concat_checksum(digest, checksum):
-	# concatenate the checksum to the end of the digest
-	return digest.to_bytes(32, byteorder) + checksum.to_bytes(1, byteorder)
+def concat_checksum(entropy, checksum):
+	# concatenate the checksum to the end of the entropy
+	return entropy + checksum.to_bytes(1, byteorder)
 
 def split_digest(digest):
 	# split digest up into 24 11-bit numbers
