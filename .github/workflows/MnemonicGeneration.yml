@@ -1,0 +1,23 @@
+name: Mnemonic Generation
+
+on:
+  push:
+    branches:
+      master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Python ${{ matrix.python-version }}
+      use: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Generate Mnemonics
+      run: |
+        cd tests
+        python mnemonic.test.py
