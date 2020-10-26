@@ -6,13 +6,13 @@ import unicodedata
 
 #entropy = generate()
 
-entropy = b'\x00' * 16
+entropy = b'\xff' * 32
 
 digest = sha_hash(entropy)
 
-digest = bytes_to_int(digest)
+print(digest)
 
-check = checksum(digest)
+check = checksum(entropy, digest)
 
 concat = concat_checksum(entropy, check);
 
@@ -22,9 +22,8 @@ words = gather_words()
 
 x = [words[s] for s in splits]
 
-
 seed = ' '.join(x)
-salt = "mnemonicTREZOR"
+salt = "mnemonic"
 
 hsh = pbkdf2_hmac('sha512', seed.encode('utf-8'), salt.encode('utf-8'), 2048, 64)
 
