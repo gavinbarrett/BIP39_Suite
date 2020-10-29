@@ -1,12 +1,16 @@
+from sys import exit
+from seeds import *
 from entropy import *
-from seeds import gather_words
 from hashlib import pbkdf2_hmac
 
 def bip39(entropy, size):
 	# generate entropy
 	if not entropy:
-		entropy = generate(size)
-	
+		try:
+			entropy = generate(size)
+		except ValueError as error:
+			print(f'ERROR: {error}')
+			exit(0)
 	ent_size = size
 
 	#entropy = b'\x7f' * 16
@@ -24,7 +28,7 @@ def bip39(entropy, size):
 
 	# append checksum to the entropy
 	concat = concat_checksum(entropy, check);
-
+	print(f'concat: {concat}')
 	# split buffer into groups of 11
 	splits = split_digest(bytes_to_int(concat), ent_size)
 
@@ -34,9 +38,9 @@ def bip39(entropy, size):
 		print(bin(s))
 
 	x = [words[s] for s in splits]
-	print(x)
 
 	seed = ' '.join(x)
+	print(seed)
 	#salt = "mnemonicTREZOR"
 	return seed
 	#hsh = pbkdf2_hmac('sha512', seed.encode('utf-8'), salt.encode('utf-8'), 2048, 64)
@@ -45,4 +49,4 @@ def bip39(entropy, size):
 
 
 if __name__ == "__main__":
-	bip39((b'\xff' * 32), 32)
+	bip39((b'\xff' * 16), 16)

@@ -3,9 +3,11 @@ from hashlib import sha256
 from sys import byteorder
 from binascii import b2a_hex, hexlify, unhexlify
 
-def generate(size):
-	# return bits of entropy - 16, 20, 24, 28, 32
-	return urandom(size)
+def generate(n_bytes):
+	# return n-bytes of entropy - either 16, 20, 24, 28, 32
+	if n_bytes not in [16, 20, 24, 28, 32]:
+		raise ValueError("Please select either 16, 20, 24, 28, or 32 bytes of entropy.")
+	return urandom(n_bytes)
 
 def sha_hash(entropy):
 	# return the SHA-256 hash of the entropy
@@ -27,14 +29,23 @@ def pad_hex(x):
 		return b'0' + x
 	return x
 
+def unhex(x):
+	if len(x) % 2:
+		return unhexlify(b'0' + x)
+	return x
+	
+
 def checksum(digest, length):
 	# turn hex into readable stream
 	hex_hash = hexlify(digest)
+	print(hex_hash[:length//4])
 	return unhexlify(pad_hex(hex_hash[:length//4]))
 
 def concat_checksum(entropy, checksum):
 	# concatenate the checksum to the end of the entropy
-	return checksum + entropy[::-1]
+	print(f'entropy: {entropy}')
+	print(f'checksum: {checksum}')
+	return checksum + entropy
 
 def split_digest(digest, ent_length):
 	# split digest up into 24 11-bit numbers
