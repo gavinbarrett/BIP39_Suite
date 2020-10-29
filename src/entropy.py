@@ -23,29 +23,22 @@ def get_length(ent_size):
 	# compute the length of the checksum
 	return (ent_size * 8) // 32
 
-def pad_hex(x):
-	# pad any hex nibbles
-	if len(x) % 2:
-		return b'0' + x
-	return x
-
-def unhex(x):
-	if len(x) % 2:
-		return unhexlify(b'0' + x)
-	return x
-	
-
 def checksum(digest, length):
 	# turn hex into readable stream
 	hex_hash = hexlify(digest)
-	print(hex_hash[:length//4])
-	return unhexlify(pad_hex(hex_hash[:length//4]))
+	return int(hex_hash[:length//4], 16)
+
+def offset(checksum):
+	if checksum.bit_length() % 2:
+		return checksum.bit_length() + 1
+	return checksum.bit_length()
 
 def concat_checksum(entropy, checksum):
 	# concatenate the checksum to the end of the entropy
+	intropy = int(hexlify(entropy), 16)
 	print(f'entropy: {entropy}')
 	print(f'checksum: {checksum}')
-	return checksum + entropy
+	return (intropy << offset(checksum)) | checksum
 
 def split_digest(digest, ent_length):
 	# split digest up into 24 11-bit numbers

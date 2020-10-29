@@ -25,12 +25,12 @@ def bip39(entropy, size):
 
 	# extract the checksum from the digest
 	check = checksum(digest, length)
-
+	print(f"check: {hex(check)}")
 	# append checksum to the entropy
 	concat = concat_checksum(entropy, check);
-	print(f'concat: {concat}')
+	print(f'concat: {hex(concat)}')
 	# split buffer into groups of 11
-	splits = split_digest(bytes_to_int(concat), ent_size)
+	splits = split_digest(concat, ent_size)
 
 	# extract words from mnemonic word file
 	words = gather_words()
