@@ -23,85 +23,70 @@ class MnemonicTest(unittest.TestCase):
 		# check mnemonic generation
 		self.assertEqual(mnemonics, data[0][1])
 		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[0][2])
+		self.assertEqual(hex(int(hexlify(hsh(mnemonics)), 16))[2:], data[0][2])
 
 	def test_2_16bit_80(self):
 		ent = unhexlify(data[1][0])
 		mnemonics = bip39(ent, 16)
 		self.assertEqual(mnemonics, data[1][1])
 		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[1][2])
+		self.assertEqual(hex(int(hexlify(hsh(mnemonics)), 16))[2:], data[1][2])
 
 	def test_3_16bit_7f(self):
 		ent = unhexlify(data[2][0])
 		mnemonics = bip39(ent, 16)
 		self.assertEqual(mnemonics, data[2][1])
 		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[2][2])
+		self.assertEqual(hex(int(hexlify(hsh(mnemonics)), 16))[2:], data[2][2])
 	
 	def test_4_16bit_ff(self):
 		ent = unhexlify(data[3][0])
 		mnemonics = bip39(ent, 16)
 		self.assertEqual(mnemonics, data[3][1])
 		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[3][2])
+		self.assertEqual(hex(int(hexlify(hsh(mnemonics)), 16))[2:], data[3][2])
 
 
 	def test_5_24bit_00(self):
 		ent = unhexlify(data[4][0])
 		mnemonics = bip39(ent, 24)
 		self.assertEqual(mnemonics, data[4][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[4][2])
 	
 	def test_6_24bit_80(self):
 		ent = unhexlify(data[5][0])
 		mnemonics = bip39(ent, 24)
 		self.assertEqual(mnemonics, data[5][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[5][2])
 	
 	def test_7_24bit_7f(self):
 		ent = unhexlify(data[6][0])
 		mnemonics = bip39(ent, 24)
 		self.assertEqual(mnemonics, data[6][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[6][2])
 	
 	def test_8_24bit_ff(self):
 		ent = unhexlify(data[7][0])
 		mnemonics = bip39(ent, 24)
 		self.assertEqual(mnemonics, data[7][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[7][2])
+
 
 	def test_9_32bit_00(self):
 		ent = unhexlify(data[8][0])
 		mnemonics = bip39(ent, 32)
 		self.assertEqual(mnemonics, data[8][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[8][2])
 	
 	def test_10_32bit_7f(self):
 		ent = unhexlify(data[9][0])
 		mnemonics = bip39(ent, 32)
 		self.assertEqual(mnemonics, data[9][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[9][2])
 
 	def test_11_32bit_80(self):
 		ent = unhexlify(data[10][0])
 		mnemonics = bip39(ent, 32)
 		self.assertEqual(mnemonics, data[10][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[10][2])
 
 	def test_12_32bit_ff(self):
 		ent = unhexlify(data[11][0])
 		mnemonics = bip39(ent, 32)
 		self.assertEqual(mnemonics, data[11][1])
-		# check seed generation
-		self.assertEqual(f'{int(hexlify(hsh(mnemonics)), 16):0128x}', data[11][2])
 
 
 	def test_13_misc(self):
