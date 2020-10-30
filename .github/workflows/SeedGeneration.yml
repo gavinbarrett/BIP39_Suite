@@ -20,4 +20,4 @@ jobs:
     - name: Generate Seed
       run: |
         cd tests
-        python seeds.test.py
+        python seed.test.py
