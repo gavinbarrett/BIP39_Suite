@@ -52,8 +52,3 @@ def bip39(entropy, size):
 	#print(seedphrase, end='\n\n')
 
 	return seedphrase
-
-if __name__ == "__main__":
-	
-	entropy = unhexlify('f30f8c1da665478f49b001d94c5fc452')
-	bip39(entropy, 16)
