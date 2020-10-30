@@ -1,6 +1,7 @@
 from sys import exit
 from seeds import *
 from entropy import *
+from binascii import hexlify
 from hashlib import pbkdf2_hmac
 
 def bip39(entropy, size):
@@ -21,31 +22,32 @@ def bip39(entropy, size):
 	# generate the SHA-256 digest of the entropy
 	digest = sha_hash(entropy)
 
-	print(f'digest: {digest}')
-
 	# extract the checksum from the digest
-	check = checksum(digest, length)
-	print(f"check: {hex(check)}")
+	check = checksum(digest, length, ent_size * 8)
+	
+	print(f"9. Checksum: {bin(check)}")
+	
 	# append checksum to the entropy
 	concat = concat_checksum(entropy, check);
-	print(f'concat: {hex(concat)}')
+	
+	print(f'10. Concat: {bin(concat)}')
+	
 	# split buffer into groups of 11
 	splits = split_digest(concat, ent_size)
-
+	print(splits)
 	# extract words from mnemonic word file
 	words = gather_words()
-	for s in splits:
-		print(bin(s))
+	#for s in splits:
+	#	print(bin(s))
 
 	x = [words[s] for s in splits]
 
 	seed = ' '.join(x)
-	print(seed)
+	print(seed, end='\n\n')
 	#salt = "mnemonicTREZOR"
-	return seed
 	#hsh = pbkdf2_hmac('sha512', seed.encode('utf-8'), salt.encode('utf-8'), 2048, 64)
-
 	#print(hexlify(hsh))
+	return seed
 
 
 if __name__ == "__main__":
