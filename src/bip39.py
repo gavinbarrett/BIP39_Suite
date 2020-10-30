@@ -12,35 +12,29 @@ def bip39(entropy, size):
 		except ValueError as error:
 			print(f'ERROR: {error}')
 			exit(0)
-	ent_size = size
-
-	#entropy = b'\x7f' * 16
 
 	# generate the checksum length
-	length = get_length(ent_size)
+	length = get_length(size)
 
 	# generate the SHA-256 digest of the entropy
 	digest = sha_hash(entropy)
 
+	binent = pad(bin(int.from_bytes(entropy, byteorder))[2:], size * 8)
+
 	# extract the checksum from the digest
-	check = checksum(digest, length, ent_size * 8)
-	
-	print(f"9. Checksum: {bin(check)}")
+	check = checksum(digest, length, size * 8)
 	
 	# append checksum to the entropy
-	concat = concat_checksum(entropy, check);
-	
-	print(f'10. Concat: {bin(concat)}')
-	
+	concat = concat_checksum(binent, check);
+
 	# split buffer into groups of 11
-	splits = split_digest(concat, ent_size)
+	splits = split_entropy(concat, size)
+
 	print(splits)
 	# extract words from mnemonic word file
 	words = gather_words()
-	#for s in splits:
-	#	print(bin(s))
 
-	x = [words[s] for s in splits]
+	x = [words[int(s, 2)] for s in splits]
 
 	seed = ' '.join(x)
 	print(seed, end='\n\n')
