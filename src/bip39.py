@@ -17,11 +17,11 @@ def generate_entropy(size, entropy):
 
 def entropy_string(size, entropy):
 	# return entropy bytes as a padded binary string
-	return pad_entropy(bin(int.from_bytes(entropy, 'big'))[2:], size * 8)
+	return pad_string(bin(int.from_bytes(entropy, 'big'))[2:], size * 8)
 
 def bip39(size, entropy=None):
 	# generate entropy
-	entropy = generate_entropy(entropy)
+	entropy = generate_entropy(size, entropy)
 	# extract words from mnemonic word file
 	words = gather_words()
 	# generate the checksum length

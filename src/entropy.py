@@ -18,7 +18,7 @@ def get_length(ent_size):
 	# compute the length of the checksum
 	return (ent_size * 8) // 32
 
-def pad_entropy(binary, length):
+def pad_string(binary, length):
 	# ensure hash string is 256 chars
 	return binary.zfill(length)
 
@@ -26,7 +26,7 @@ def checksum(digest, length, num_bits):
 	# turn hex into readable stream
 	intsum = int(hexlify(digest), 16)
 	# pad hash to multiple of 32
-	padded = pad(bin(intsum)[2:], 256)
+	padded = pad_string(bin(intsum)[2:], 256)
 	# grab length number of bits
 	return padded[:length]
 
