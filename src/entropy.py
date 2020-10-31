@@ -1,7 +1,6 @@
 from os import urandom
 from hashlib import sha256
-from sys import byteorder
-from binascii import b2a_hex, hexlify, unhexlify
+from binascii import hexlify
 
 def generate(n_bytes):
 	# return n-bytes of entropy - either 16, 20, 24, 28, 32
