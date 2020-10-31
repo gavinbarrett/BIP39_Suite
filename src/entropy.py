@@ -18,7 +18,7 @@ def get_length(ent_size):
 	# compute the length of the checksum
 	return (ent_size * 8) // 32
 
-def pad(binary, length):
+def pad_entropy(binary, length):
 	# ensure hash string is 256 chars
 	return binary.zfill(length)
 
@@ -30,10 +30,6 @@ def checksum(digest, length, num_bits):
 	# grab length number of bits
 	return padded[:length]
 
-def concat_checksum(entropy, checksum):
-	# concatenate the checksum to the end of the entropy
-	return entropy + checksum
-
-def split_entropy(entropy, ent_length):
+def split_entropy(ent_length, entropy):
 	# split entropy up into 11-bit numbers
 	return [entropy[i:i+11] for i in range(0, len(entropy), 11)]
