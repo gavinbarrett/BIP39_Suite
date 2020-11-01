@@ -39,3 +39,7 @@ def bip39(size, entropy=None):
 	# interpret entropy strings as integers
 	seeds = [words[int(s, 2)] for s in splits]
 	return ' '.join(seeds)
+
+def generate_rootseed(mnemonics, salt):
+	# return the seed generated from the mnemonic phrase
+	return pbkdf2_hmac('sha512', mnemonics.encode('utf-8'), salt.encode('utf-8'), 2048, 64)
