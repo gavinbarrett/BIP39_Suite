@@ -19,5 +19,4 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Generate Mnemonics
       run: |
-        cd tests
-        python mnemonic.test.py
+        python tests/mnemonic.test.py

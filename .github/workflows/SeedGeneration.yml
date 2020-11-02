@@ -19,5 +19,4 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Generate Seed
       run: |
-        cd tests
-        python seed.test.py
+        python tests/seed.test.py
