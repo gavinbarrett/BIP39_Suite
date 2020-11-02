@@ -1,5 +1,5 @@
-from seeds import *
-from entropy import *
+from src.seeds import *
+from src.entropy import *
 from sys import exit
 from hashlib import pbkdf2_hmac
 
@@ -42,4 +42,8 @@ def bip39(size, entropy=None):
 
 def generate_rootseed(mnemonics, salt):
 	# return the seed generated from the mnemonic phrase
-	return pbkdf2_hmac('sha512', mnemonics.encode('utf-8'), salt.encode('utf-8'), 2048, 64)
+	return pbkdf2_hmac('sha512', mnemonics.encode('utf-8'), ('mnemonics' + salt).encode('utf-8'), 2048, 64)
+
+if __name__ == "__main__":
+	x = bip39(32)
+	print(x)

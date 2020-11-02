@@ -1,0 +1,20 @@
+.appcontainer {
+	width: 96vw;
+	height: 100vh;
+	background: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+#title {
+	width: 80vw;
+	height: 5vh;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	font-size: 2vw;
+	font-family: 'Quicksand', sans-serif;
+}

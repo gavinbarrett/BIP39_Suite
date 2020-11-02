@@ -1,0 +1,16 @@
+.button {
+	width: 4vw;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button:hover {
+	background: #FFA62B;
+}
+
+.buttonicon {
+	width: 2vw;
+	height: 3vw;
+}
