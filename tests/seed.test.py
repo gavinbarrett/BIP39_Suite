@@ -2,7 +2,7 @@ from sys import path
 import unittest
 path.append('..')
 from json import loads
-from bip39 import bip39
+from src.bip39 import bip39
 from hashlib import pbkdf2_hmac
 from binascii import hexlify, unhexlify
 
