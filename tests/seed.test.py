@@ -1,8 +1,8 @@
 from sys import path
 import unittest
-path.append('..')
+path.append('../src/')
 from json import loads
-from src.bip39 import bip39
+from bip39 import bip39
 from hashlib import pbkdf2_hmac
 from binascii import hexlify, unhexlify
 
