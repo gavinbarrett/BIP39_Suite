@@ -1,6 +1,6 @@
 from sys import path
 import unittest
-path.append('../src/')
+path.append('..')
 from json import loads
 from bip39 import bip39
 from hashlib import pbkdf2_hmac
