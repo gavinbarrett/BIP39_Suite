@@ -7,7 +7,8 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx webpack",
+	"test": "cd tests; python mnemonic.test.py && python seed.test.py"
   },
   "repository": {
     "type": "git",
