@@ -18,6 +18,11 @@
     "Bitcoin",
     "BIP39"
   ],
+  "babel": {
+	"presets": [
+		"@babel/preset-react"
+	]
+  },
   "author": "Gavin Barrett",
   "license": "ISC",
   "bugs": {
