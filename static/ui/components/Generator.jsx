@@ -24,11 +24,24 @@ const ByteSelector = ({selected, updateSelected}) => {
 	</div>);
 }
 
+const SeedContainer = ({phrase, seed}) => {
+	return (<div className="seedcontainer">
+		<div className="seedtext">Phrase:
+		{phrase}
+		</div>
+		<div className="seedtext">Seed: 
+		{seed}
+		</div>
+	</div>);
+}
+
 const Generator = () => {
 
 	const [pass, updatePass] = useState('');
 	const [retyped, updateRetyped] = useState('');
 	const [selected, updateSelected] = useState(32);
+	const [phrase, updatePhrase] = useState(null);
+	const [seed, updateSeed] = useState(null);
 
 	const update_pass = async (event) => {
 		updatePass(event.target.value);
@@ -40,11 +53,16 @@ const Generator = () => {
 
 	const submit_params = async () => {
 		if (pass != retyped) return;
-
 		// gather desired passphrase and word count
 		const resp = await fetch('/generate', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({"bytes": selected, "passphrase": pass})});
 		const data = await resp.json();
 		console.log(data);
+		if (data["phrase"] === "failed") {
+			console.log('failed');
+			return;
+		}
+		updatePhrase(data["phrase"]);
+		updateSeed(data["seed"]);
 	}
 
 	return (<div className="generator">
@@ -54,6 +72,7 @@ const Generator = () => {
 		<div className="passlabel">Retype Passphrase</div>
 		<input className="pass" id="passphraseretyped" type="text" onChange={update_retyped}/>
 		<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
+		{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed}/> : ''}
 	</div>);
 }
 

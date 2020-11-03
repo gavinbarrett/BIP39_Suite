@@ -43,7 +43,3 @@ def bip39(size, entropy=None):
 def generate_rootseed(mnemonics, salt):
 	# return the seed generated from the mnemonic phrase
 	return pbkdf2_hmac('sha512', mnemonics.encode('utf-8'), ('mnemonics' + salt).encode('utf-8'), 2048, 64)
-
-if __name__ == "__main__":
-	x = bip39(32)
-	print(x)

@@ -15,10 +15,10 @@ def generate():
 		print(mnemonics)
 		seed = generate_rootseed(mnemonics, data["passphrase"])
 		print(seed)
-		return dumps({"mnemonics": mnemonics, "seed": hexlify(seed).decode()})
+		return dumps({"phrase": mnemonics, "seed": hexlify(seed).decode()})
 	except Exception as error:
 		print(f'Could not generate: ERROR {error}')
-		return dumps({"mnemonics": "failed"})
+		return dumps({"phrase": "failed"})
 
 @app.route('/recover', methods=["POST"])
 def recover():

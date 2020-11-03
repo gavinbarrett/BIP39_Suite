@@ -84,3 +84,17 @@
 	font-family: 'Quicksand', sans-serif;
 	cursor: pointer;
 }
+
+.seedcontainer {
+	width: 70vw;
+	height: 20vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: space-evenly;
+	border: solid gray 1px;
+	border-radius: 8px;
+	color: #000000;
+	margin-top: 2%;
+	overflow-x: scroll;
+}
