@@ -4,8 +4,8 @@ import { Button } from './Button';
 import './sass/SideBar.scss';
 
 const SideBar = () => {
-	const generate = './static/ui/components/icons/open-iconic-master/svg/beaker.svg';
-	const recover = './static/ui/components/icons/open-iconic-master/svg/loop-circular.svg';
+	const generate = './static/ui/components/icons/beaker.svg';
+	const recover = './static/ui/components/icons/loop-circular.svg';
 	
 	return (<div id="sidebar">
 	<Link to={"/"}>
