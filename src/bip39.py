@@ -1,5 +1,7 @@
-from src.seeds import *
-from src.entropy import *
+#from src.seeds import *
+#from src.entropy import *
+from seeds import *
+from entropy import *
 from sys import exit
 from hashlib import pbkdf2_hmac
 

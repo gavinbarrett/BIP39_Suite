@@ -2,6 +2,9 @@ from hashlib import pbkdf2_hmac
 from binascii import hexlify, unhexlify
 from bip39 import bip39, generate_rootseed
 
+public_version = 0x0488B21E
+private_version = 0x0488ADE4
+
 class secp256k1():
 	# This class represents the secp256k1 elliptic curve: y^2 = x^3 + b (mod p)
 	# Parameters sourced from https://en.bitcoin.it/wiki/Secp256k1
@@ -39,6 +42,6 @@ def serialize_extended_key():
 
 
 if __name__ == "__main__":
-	seed = generate_rootseed('bike genius install embrace jewel salute ice tenant patch aspect police toddler', '')
+	seed = generate_rootseed('code glare comic flip burden toward apology fiction grain feel supply blossom', '')
 	print(seed)
 
