@@ -43,5 +43,6 @@ def serialize_extended_key():
 
 if __name__ == "__main__":
 	seed = generate_rootseed('code glare comic flip burden toward apology fiction grain feel supply blossom', '')
-	print(seed)
-
+	print(seed, end='\n\n')
+	key = generate_rootkey(seed)
+	print(key)
