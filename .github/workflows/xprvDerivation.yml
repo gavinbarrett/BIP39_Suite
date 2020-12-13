@@ -21,4 +21,4 @@ jobs:
       run: |
         cd tests
         pip install base58
-		python xpriv.test.py
+        python xpriv.test.py
