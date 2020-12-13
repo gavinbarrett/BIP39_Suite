@@ -4,3 +4,4 @@ This is a Python3 implementation of the BIP39 and BIP32 protocols for handling B
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Build/badge.svg)
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Mnemonic%20Generation/badge.svg)
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Seed%20Generation/badge.svg)
+![](https://github.com/gavinbarrett/BIP39_Suite/workflows/xprv%20Derivation/badge.svg)
