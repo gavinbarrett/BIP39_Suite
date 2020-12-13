@@ -20,4 +20,5 @@ jobs:
     - name: Derive Extended Private Key
       run: |
         cd tests
-        python xpriv.test.py
+        pip install base58
+		python xpriv.test.py
