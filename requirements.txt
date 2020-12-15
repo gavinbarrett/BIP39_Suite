@@ -1,3 +1,4 @@
+base58==2.0.1
 cffi==1.14.3
 click==7.1.2
 Flask==1.1.2
@@ -6,4 +7,5 @@ Jinja2==2.11.2
 MarkupSafe==1.1.1
 pycparser==2.20
 pycrypto==2.6.1
+tinyec==0.3.1
 Werkzeug==1.0.1
