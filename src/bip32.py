@@ -39,4 +39,4 @@ def generate_extended_privkey(rootseed):
 
 
 if __name__ == "__main__":
-	print(generate_extended_privkey(unhexlify('a83930217f6671af4a1a1bcef98f41c52d0ea70bed8d92b7fbdb8d531efa6d312fe2e2a15acf743387072bdace60cba2846449527f1f8f793fc6abd7d854ae8d')))
+	print(generate_extended_privkey(unhexlify('fffcf9f6f3f0edeae7e4e1dedbd8d5d2cfccc9c6c3c0bdbab7b4b1aeaba8a5a29f9c999693908d8a8784817e7b7875726f6c696663605d5a5754514e4b484542')))
