@@ -19,6 +19,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Derive Extended Private Key
       run: |
+        pip install -r requirements.txt
         cd tests
-        pip install base58
         python xpriv.test.py
