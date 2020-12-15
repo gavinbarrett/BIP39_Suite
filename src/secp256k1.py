@@ -1,5 +1,5 @@
 from binascii import unhexlify
-from tinyec.ec import SubGroup, Curve
+#from tinyec.ec import SubGroup, Curve
 from Crypto.Util.number import inverse
 
 class Point():
