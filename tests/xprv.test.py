@@ -3,7 +3,7 @@ import unittest
 path.append('../src/')
 from json import loads
 from binascii import unhexlify
-from bip32 import generate_extended_privkey
+from bip32 import generate_extended_prvkey
 
 f = open('vectors.json', 'r')
 data = loads(f.read())['english']
