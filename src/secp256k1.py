@@ -1,5 +1,4 @@
 from binascii import unhexlify
-#from tinyec.ec import SubGroup, Curve
 from Crypto.Util.number import inverse
 
 class Point():
@@ -10,23 +9,42 @@ class Point():
 		self.p = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F
 
 	def __add__(self, other):
-		x1, y1 = self.x, selfy
+		x1, y1 = self.x, self.y
 		x2, y2 = other.x, other.y
 		if x1 == x2:
 			return self.double()
-			# FIXME: return
-		delta = ((y2 - y1) * inverse(x2 - x1, self.p)) % self.p
-		x_r = (pow(delta, 2, self.p) - x1 - x2) % self.p
-		y_r = (delta * (x1 - x_r) - y1) % self.p
-		return (x_r, y_r)
+		lam = ((y2 - y1) * inverse(x2 - x1, self.p)) % self.p
+		x_r = (pow(lam, 2, self.p) - x1 - x2) % self.p
+		y_r = (lam * (x1 - x_r) - y1) % self.p
+		return Point(x_r, y_r)
 
 	def double(self):
 		''' Double a point P on the secp256k1 curve '''
 		x, y = self.x, self.y
-		delta = (3 * pow(x, 2, self.p) * inverse(2 * y, self.p)) % self.p
-		x_r = (pow(delta, 2, self.p) - x - self.x) % self.p
-		y_r = (delta * (x - x_r) - y) % self.p
-		return (x_r, y_r)
+		lam = (3 * pow(x, 2, self.p) * inverse(2 * y, self.p)) % self.p
+		x_r = (pow(lam, 2, self.p) - x - self.x) % self.p
+		y_r = (lam * (x - x_r) - y) % self.p
+		return Point(x_r, y_r)
+
+	def __mul__(self, xprv):
+		P = self
+		K = Point(0,0)
+		while xprv:
+			if xprv & 1:
+				K = K + P
+			P = P.double()
+			xprv >>= 1
+		return K
+	
+	def __rmul__(self, xprv):
+		P = self
+		K = Point(0,0)
+		while xprv:
+			if xprv & 1:
+				K = K + P
+			P = P.double()
+			xprv >>= 1
+		return K
 
 
 class secp256k1():
@@ -78,14 +96,12 @@ class secp256k1():
 
 def test_mult():
 	
-	s = secp256k1()
+	p = Point(0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798, 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8)
 	xprv = 'e8f32e723decf4051aefac8e2c93c9c5b214313817cdb01a1494b917c8436b35'
-	#xprv = '02'
-	pubkey = int(xprv, 16) * s
-	print('\n')
-	print(hex(pubkey[0]))
-	x = hex(pubkey[0])[2:]
-	if pubkey[1] & 1:
+	pubkey = int(xprv, 16) * p
+	print(hex(pubkey.x))
+	x = hex(pubkey.x)[2:]
+	if pubkey.y & 1:
 		return '03' + x
 	return '02' + x
 '''
