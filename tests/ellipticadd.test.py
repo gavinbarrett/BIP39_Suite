@@ -2,7 +2,7 @@ import unittest
 from sys import path
 path.append('../src/')
 from json import loads
-from secp256k1 import secp256k1
+from secp256k1 import secp256k1, CurvePoint
 
 f = open('./test_vectors/ellipticvectors.json', 'r')
 vects = loads(f.read())
@@ -10,7 +10,7 @@ f.close()
 
 s = secp256k1()
 
-g = (0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798, 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8)
+g = CurvePoint(0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798, 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8)
 
 class TestEllipticPointAddition(unittest.TestCase):
 
@@ -24,9 +24,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[1]["x"], 16)
 		nY = int(vects[1]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 	
 	def test_case_2(self):
 		k = int(vects[1]["k"])
@@ -38,9 +38,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[2]["x"], 16)
 		nY = int(vects[2]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 
 	def test_case_3(self):
@@ -53,9 +53,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[3]["x"], 16)
 		nY = int(vects[3]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_4(self):
 		k = int(vects[3]["k"])
@@ -67,9 +67,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[4]["x"], 16)
 		nY = int(vects[4]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_5(self):
 		k = int(vects[4]["k"])
@@ -81,9 +81,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[5]["x"], 16)
 		nY = int(vects[5]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_6(self):
 		k = int(vects[5]["k"])
@@ -95,9 +95,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[6]["x"], 16)
 		nY = int(vects[6]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_7(self):
 		k = int(vects[6]["k"])
@@ -109,9 +109,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[7]["x"], 16)
 		nY = int(vects[7]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 	
 	def test_case_8(self):
 		k = int(vects[7]["k"])
@@ -123,9 +123,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[8]["x"], 16)
 		nY = int(vects[8]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 	
 	def test_case_9(self):
 		k = int(vects[8]["k"])
@@ -137,9 +137,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[9]["x"], 16)
 		nY = int(vects[9]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 	
 	def test_case_10(self):
 		k = int(vects[9]["k"])
@@ -151,9 +151,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[10]["x"], 16)
 		nY = int(vects[10]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 	
 	def test_case_11(self):
 		k = int(vects[10]["k"])
@@ -165,9 +165,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[11]["x"], 16)
 		nY = int(vects[11]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_12(self):
 		k = int(vects[11]["k"])
@@ -179,9 +179,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[12]["x"], 16)
 		nY = int(vects[12]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 	
 	def test_case_13(self):
 		k = int(vects[12]["k"])
@@ -193,9 +193,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[13]["x"], 16)
 		nY = int(vects[13]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 
 	def test_case_14(self):
@@ -208,9 +208,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[14]["x"], 16)
 		nY = int(vects[14]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_15(self):
 		k = int(vects[14]["k"])
@@ -222,9 +222,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[15]["x"], 16)
 		nY = int(vects[15]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_16(self):
 		k = int(vects[15]["k"])
@@ -236,9 +236,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[16]["x"], 16)
 		nY = int(vects[16]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_17(self):
 		k = int(vects[16]["k"])
@@ -250,9 +250,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[17]["x"], 16)
 		nY = int(vects[17]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 	def test_case_18(self):
 		k = int(vects[17]["k"])
@@ -264,9 +264,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[18]["x"], 16)
 		nY = int(vects[18]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 	
 	def test_case_19(self):
 		k = int(vects[18]["k"])
@@ -278,9 +278,9 @@ class TestEllipticPointAddition(unittest.TestCase):
 		nX = int(vects[19]["x"], 16)
 		nY = int(vects[19]["y"], 16)
 		# add point g to the starting point
-		r = s.point_add((x, y), g)
-		self.assertEqual(hex(r[0]), hex(nX))
-		self.assertEqual(hex(r[1]), hex(nY))
+		r = CurvePoint(x, y) + g
+		self.assertEqual(hex(r.x), hex(nX))
+		self.assertEqual(hex(r.y), hex(nY))
 
 if __name__ == "__main__":
 	unittest.main()
