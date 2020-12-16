@@ -7,5 +7,4 @@ Jinja2==2.11.2
 MarkupSafe==1.1.1
 pycparser==2.20
 pycrypto==2.6.1
-tinyec==0.3.1
 Werkzeug==1.0.1
