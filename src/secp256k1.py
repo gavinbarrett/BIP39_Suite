@@ -53,7 +53,8 @@ class CurvePoint:
 	
 	def __repr__(self):
 		# return the point coordinates
-		return (self.x, self.y)
+		return f"({hex(self.x)}, {hex(self.y)})"
+
 
 class secp256k1():
 
@@ -66,10 +67,13 @@ class secp256k1():
 		self.n = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
 		self.point = CurvePoint(self.x, self.y)
 	
-	def generate_pubkey(self, prv):
-		pubkey = prv * self.point
-		print(f'Pubkey: ({hex(pubkey.x)},{hex(pubkey.y)})')
+	def on_curve(self, point):
+		# determine whether the point is on secp256k1
+		return point.y**2 == point.x**3 + 7
 
+	def generate_pubkey(self, privkey):
+		# compute the public key from the private key through EC multiplication: K = nk
+		return privkey * self.point
 
 if __name__ == "__main__":
 	#expected_pubkey = '0339a36013301597daef41fbe593a02cc513d0b55527ec2df1050e2e8ff49c85c2'
