@@ -14,7 +14,7 @@ f.close()
 class MasterNodeTest(unittest.TestCase):
 
 	def test_node_1(self):
-		print(generate_rootseed(data[0][1].encode()))
+		print(generate_rootkey(data[0][1].encode()))
 
 if __name__ == "__main__":
 	unittest.main()
