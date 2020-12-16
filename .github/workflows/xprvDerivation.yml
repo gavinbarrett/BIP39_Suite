@@ -21,4 +21,4 @@ jobs:
       run: |
         pip install -r requirements.txt
         cd tests
-        python xpriv.test.py
+        python xprv.test.py
