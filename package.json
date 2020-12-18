@@ -2,12 +2,12 @@
   "name": "bip39",
   "version": "1.0.0",
   "description": "Bitcoin seed generator",
-  "main": "index.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "build": "npx webpack",
+    "server": "nodemon server.py",
+	"build": "npx webpack",
 	"test": "cd tests; python mnemonic.test.py && python seed.test.py"
   },
   "repository": {
