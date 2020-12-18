@@ -11,7 +11,9 @@ This is a Python3 implementation of the BIP39 and BIP32 protocols for handling B
 
 ## Testing
 
-You can test the BIP32/39 modules by running:
-    ./tests/run_tests.sh
+You can test all of the BIP32/39 modules by running:
+``./tests/run_tests.sh``
+or run an individual test in the ``test`` directory
+Running the last five test scripts in this file test requires having Python 3.8+ installed.
 
-This will test 1) the generation of bits of entropy and a corresponding mnemonic recovery phrase for crypto wallets, 2) the derivation of a corresponding root seed used for deriving the BIP32 main node of the crypto wallet, 3) the correctness of secp256k1 elliptic curve arithmetic module, and 4) the derivation of a [base58check-encoded](https://en.bitcoin.it/wiki/Base58Check_encoding) master key pair.
+This will test 1) the generation of bits of entropy and a corresponding mnemonic recovery phrase for crypto wallets as well as a derived root seed used for deriving the BIP32 main node of the crypto wallet, 2) the correctness of secp256k1 elliptic curve arithmetic module, and 3) the derivation of a [base58check-encoded](https://en.bitcoin.it/wiki/Base58Check_encoding) master key pairs.
