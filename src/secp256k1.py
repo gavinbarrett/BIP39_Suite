@@ -48,9 +48,8 @@ class CurvePoint:
 		while xprv:
 			if xprv & 1:
 				K = K + P
+			P = P.double()
 			xprv >>= 1
-			if xprv:
-				P = P.double()
 		return K
 	
 	def __rmul__(self, xprv):
@@ -59,9 +58,8 @@ class CurvePoint:
 		while xprv:
 			if xprv & 1:
 				K = K + P
+			P = P.double()
 			xprv >>= 1
-			if xprv:
-				P = P.double()
 		return K
 	
 	def __repr__(self):
