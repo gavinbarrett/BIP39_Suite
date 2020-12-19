@@ -86,15 +86,38 @@
 }
 
 .seedcontainer {
-	width: 70vw;
-	height: 20vh;
+	width: 80vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: space-evenly;
+	align-items: center;
 	border: solid gray 1px;
 	border-radius: 8px;
 	color: #000000;
 	margin-top: 2%;
-	overflow-x: scroll;
+}
+
+.seedtext {
+	width: 70vw;
+	height: 10vh;
+	display: flex;
+	color: white;
+	background: black;
+	word-break: break-all;
+	padding: 1%;
+	font-size: 1.25vw;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.generatorbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.parameters {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }

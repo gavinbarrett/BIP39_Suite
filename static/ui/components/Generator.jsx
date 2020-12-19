@@ -24,13 +24,16 @@ const ByteSelector = ({selected, updateSelected}) => {
 	</div>);
 }
 
-const SeedContainer = ({phrase, seed}) => {
+const SeedContainer = ({phrase, seed, node}) => {
 	return (<div className="seedcontainer">
-		<div className="seedtext">Phrase:
+		<div className="seedtext">
 		{phrase}
 		</div>
-		<div className="seedtext">Seed: 
+		<div className="seedtext">
 		{seed}
+		</div>
+		<div className="seedtext">
+		{node}
 		</div>
 	</div>);
 }
@@ -42,6 +45,7 @@ const Generator = () => {
 	const [selected, updateSelected] = useState(32);
 	const [phrase, updatePhrase] = useState(null);
 	const [seed, updateSeed] = useState(null);
+	const [node, updateNode] = useState(null);
 
 	const update_pass = async (event) => {
 		updatePass(event.target.value);
@@ -63,16 +67,22 @@ const Generator = () => {
 		}
 		updatePhrase(data["phrase"]);
 		updateSeed(data["seed"]);
+		updateNode(data["node"]);
 	}
 
 	return (<div className="generator">
 		<ByteSelector selected={selected} updateSelected={updateSelected}/>
-		<div className="passlabel">Passphrase</div>
-		<input className="pass" id="passphrase" type="text" onChange={update_pass}/>
-		<div className="passlabel">Retype Passphrase</div>
-		<input className="pass" id="passphraseretyped" type="text" onChange={update_retyped}/>
-		<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
-		{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed}/> : ''}
+		<div className="generatorbox">
+			<div className='parameters'>
+				<div className="passlabel">Passphrase</div>
+				<input className="pass" id="passphrase" type="password" onChange={update_pass}/>
+				<div className="passlabel">Retype Passphrase</div>
+				<input className="pass" id="passphraseretyped" type="password" onChange={update_retyped}/>
+				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
+			</div>
+
+			{(phrase && seed && node) ? <SeedContainer phrase={phrase} seed={seed} node={node}/> : ''}
+		</div>
 	</div>);
 }
 

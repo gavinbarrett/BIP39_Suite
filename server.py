@@ -1,7 +1,10 @@
+from sys import path
+path.append('./src/')
 from binascii import hexlify
 from json import loads, dumps
 from flask import Flask, request, render_template
-from src.bip39 import bip39, generate_rootseed
+from bip39 import bip39, generate_rootseed
+from bip32 import generate_rootkey
 
 app = Flask(__name__)
 
@@ -15,7 +18,9 @@ def generate():
 		print(mnemonics)
 		seed = generate_rootseed(mnemonics, data["passphrase"])
 		print(seed)
-		return dumps({"phrase": mnemonics, "seed": hexlify(seed).decode()})
+		node = generate_rootkey(seed)
+		print(node)
+		return dumps({"phrase": mnemonics, "seed": seed.decode(), "node": node})
 	except Exception as error:
 		print(f'Could not generate: ERROR {error}')
 		return dumps({"phrase": "failed"})
@@ -36,4 +41,4 @@ def serve_app():
 	return render_template('./index.html')
 
 if __name__ == "__main__":
-	app.run(threaded=True)
+	app.run(threaded=True, host='0.0.0.0')
