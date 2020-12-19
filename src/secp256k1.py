@@ -23,10 +23,12 @@ class CurvePoint:
 		''' Add two points on the secp256k1 curve '''
 		if self.x == 0 and self.y == 0:
 			return CurvePoint(other.x, other.y)
+		if other.x == 0 and other.y == 0:
+			return CurvePoint(self.x, self.y)
+		if self.x == other.x:
+			return self.double()
 		x1, y1 = self.x, self.y
 		x2, y2 = other.x, other.y
-		if x1 == x2:
-			return self.double()
 		lam = ((y2 - y1) * pow(x2 - x1, -1, self.p)) % self.p
 		x_r = (pow(lam, 2, self.p) - x1 - x2) % self.p
 		y_r = (lam * (x1 - x_r) - y1) % self.p
