@@ -4,6 +4,9 @@ from sys import exit
 from hashlib import pbkdf2_hmac
 from binascii import hexlify
 
+# map desired mnemonic phrase length with bytes of entropy
+mnemonic_bytemap = {'12': 16, '15': 20, '18': 24, '21': 28, '24': 32}
+
 def generate_entropy(size, entropy):
 	# generate entropy
 	if not entropy:
