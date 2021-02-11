@@ -51,7 +51,6 @@ def amt_bytes(n):
 def point(prv_key):
 	# compute the public key: K = k*G
 	private = int.from_bytes(prv_key, endianness)
-	print(f'Private: {private}')
 	return secp256k1().generate_pubkey(private)
 
 def compress_pubkey(pubkey):
@@ -165,23 +164,39 @@ def generate_extended_pubkey(depth, fingerprint, index, prvkey, chaincode):
 	xpub = pubkey_v + depth + fingerprint + index + chaincode + pubkey
 	return b58encode_check(xpub).decode()
 
-def generate_internal_chain():
-	pass
+def generate_internal_keypair(child_xprv, child_xpub, depth=2):
+	''' Generate internal level-2 derived child keys '''
+	depth = depth.to_bytes(1, endianness)
+	internal_idx = struct.pack('>L', 1)
+	# generate internal private key
+	internal_prv = generate_child_prvkey(child_xprv, child_xpub, depth, internal_idx)
+	# generate internal public key
+	internal_pub = generate_child_pubkey(internal_prv, child_xpub, depth, internal_idx)
+	return internal_prv, internal_pub
 
-def generate_external_chain():
-	pass
+def generate_external_chain(child_xprv, child_xpub, depth=2):
+	''' Generate external level-2 derived child keys '''
+	external_idx = struct.pack('>L', 0)
+	# generate external key
+	return generate_child_prvkey(child_xprv, child_xpub, depth.to_bytes(1, endianness), internal_idx)
+
+def generate_child_keypair(xprv, xpub, depth, index):
+	# pass in parent xprv and xpub keys, depth, index to child_prvkey function
+	index = struct.pack('>L', index)
+	# generate child extended private key
+	child_prv = generate_child_prvkey(xprv, xpub, depth, index)
+	# generate child extended public key
+	child_pub = generate_child_pubkey(child_prv, xpub, depth, index)
+	return child_prv, child_pub
 
 if __name__ == "__main__":
+	''' Deriving m/0'/1 '''
+	# m
 	xprv, xpub = generate_master_extended_keypair(unhexlify('000102030405060708090a0b0c0d0e0f'))
-	print(f'{xprv}\n{xpub}\n')
-	child_index = struct.pack('>L', 2**31)
-	
-	# generate level-1 derived child keys
-	child_xprv = generate_child_prvkey(xprv, xpub, b'\x01', child_index)
-	child_xpub = generate_child_pubkey(child_xprv, xpub, b'\x01', child_index)
-	print(f'{child_xprv}\n{child_xpub}\n')
-
-	# generate level-2 derived child keys
-	internal_idx = struct.pack('>L', 1)
-	internal_key = generate_child_prvkey(child_xprv, child_xpub, b'\x02', internal_idx)
-	print(f'{internal_key}')
+	print(f'm:\n{xprv}\n{xpub}\n')
+	# m/0'
+	child_xprv, child_xpub = generate_child_keypair(xprv, xpub, b'\x01', 2**31)
+	print(f"m/0':\n{child_xprv}\n{child_xpub}\n")
+	# m/0'/1
+	int_prv, int_pub = generate_internal_keypair(child_xprv, child_xpub, 2)
+	print(f"m/0'/1:\n{int_prv}\n{int_pub}")
