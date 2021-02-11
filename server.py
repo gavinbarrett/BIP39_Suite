@@ -28,10 +28,14 @@ def generate():
 @app.route('/recover', methods=["POST"])
 def recover():
 	data = request.data.decode('UTF-8')
+	print(f'Data: {data}')
 	data = loads(data)
+	print(f'Data parsed: {data}')
 	try:
+		print(f'Mnemonics: {data["mnemonics"]}\nSalt: {data["salt"]}')
 		seed = generate_rootseed(data['mnemonics'], data['salt'])
-		return dumps({"seed": seed})
+		print(f'Seed: {seed}')
+		return dumps({"seed": seed.decode()})
 	except Exception as error:
 		print(f'Could not decode data.\nERROR: {error}')
 		return dumps({"seed": "null"})

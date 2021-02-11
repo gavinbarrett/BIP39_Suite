@@ -8,10 +8,20 @@
 
 #recoveryinput {
 	width: 80vw;
+	height: 40vh;
 	background: white;
 	display: flex;
 	flex-direction: column;
-	padding: 3%;
+	border-radius: 7px;
+	color: black;
+}
+
+#recoveryseed {
+	width: 80vw;
+	height: 40vh;
+	background: orange;
+	display: flex;
+	flex-direction: column;
 	border-radius: 7px;
 	color: black;
 }

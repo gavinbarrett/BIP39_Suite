@@ -2,18 +2,14 @@ import React, { useState } from 'react';
 import './sass/Generator.scss';
 
 const ByteScheme = ({desc, bytes, active, updateSelected}) => {
-	
 	const byteclass = (bytes === active) ? "activebyte" : "bytes";
-
 	const updateActivity = async () => {
 		await updateSelected(bytes);
 	}
-
 	return (<div className={byteclass} onClick={updateActivity}>{desc}</div>);
 }
 
 const ByteSelector = ({selected, updateSelected}) => {
-	
 	// bytes of entropy/words in seed phrase - 16/12, 20/15, 24/18, 28/21, 32/24
 	return (<div id="byteselector">
 		<ByteScheme desc={"12 words"} bytes={16} active={selected} updateSelected={updateSelected}/>
@@ -39,7 +35,6 @@ const SeedContainer = ({phrase, seed, node}) => {
 }
 
 const Generator = () => {
-
 	const [pass, updatePass] = useState('');
 	const [retyped, updateRetyped] = useState('');
 	const [selected, updateSelected] = useState(32);
@@ -71,8 +66,8 @@ const Generator = () => {
 	}
 
 	return (<div className="generator">
+		<div className='selector-box'>
 		<ByteSelector selected={selected} updateSelected={updateSelected}/>
-		<div className="generatorbox">
 			<div className='parameters'>
 				<div className="passlabel">Passphrase</div>
 				<input className="pass" id="passphrase" type="password" onChange={update_pass}/>
@@ -80,7 +75,8 @@ const Generator = () => {
 				<input className="pass" id="passphraseretyped" type="password" onChange={update_retyped}/>
 				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
 			</div>
-
+		</div>
+		<div className="generatorbox">
 			{(phrase && seed && node) ? <SeedContainer phrase={phrase} seed={seed} node={node}/> : ''}
 		</div>
 	</div>);
