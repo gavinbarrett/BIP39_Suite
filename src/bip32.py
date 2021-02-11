@@ -19,7 +19,7 @@ class BIP32_Account:
 		# Generate BIP 39 root seed
 		self.rootseed = generate_rootseed(mnemonic, salt)
 		# Generate master extended private and public keys
-		self.master_xprv, self.master_xpub = generate_extended_keypair(self.rootseed)
+		#FIXME: self.master_xprv, self.master_xpub = generate_extended_keypair(self.rootseed)
 	def printXPUB(self):
 		print(self.master_xpub)
 
@@ -81,7 +81,7 @@ def hmac_key(chain, data):
 	return hmac.new(chain, data, sha512).hexdigest()
 
 
-def ckd_prv(prv, pub, chain, index):
+def ckd_prv(prv, chain, index):
 	''' Derives the child key from the parent private key and chain code
 		CKDpriv:
 		((k_par, c_par), i) -> (k_i, c_i)
@@ -98,11 +98,11 @@ def ckd_prv(prv, pub, chain, index):
 
 def generate_child_prvkey(xprv, xpub):
 	# extract private, public, and chain code
-	i = 0x80000000
+	index = 0x80000000
 	prv, chain = extract_prv(xprv)
 	pub = extract_pub(xpub)
 	# generate the private child key
-	child = ckd_prv(prv, pub, chain, i)
+	child = ckd_prv(prv, chain, index)
 	# split the private key and chain code
 	child_prv, child_chain = split_childkey(child)
 	# generate the fingerprint for the key
@@ -115,7 +115,7 @@ def generate_child_prvkey(xprv, xpub):
 	#print(f'new prv:   {hex(child_prv)[2:]}')
 	#print(f'new chain: {child_chain}\n')	
 	# child_prv.to_bytes(int2bytes(child_prv), sys.byteorder)
-	newkey = prvkey_v + b'\x01' + fingerprint + i.to_bytes(4, 'big') + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(amt_bytes(child_prv), 'big')
+	newkey = prvkey_v + b'\x01' + fingerprint + index.to_bytes(4, 'big') + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(amt_bytes(child_prv), 'big')
 	#print(f'fingerprint: {fingerprint}')
 	#print(f'child_chain: {child_chain}')
 	#print(f'child_prv: {hex(child_prv)[2:]}')
@@ -144,14 +144,18 @@ def generate_fingerprint(pubkey):
 	''' Return the first four bytes of the hash160 '''
 	return hash160(pubkey)[:4]
 
-def generate_extended_keypair(rootseed):
+def generate_master_extended_keypair(rootseed):
+	''' Generate a master extended key pair '''
+	depth = b'\x00'
+	# set master key index (0x00) and master key fingerprint (0x00000000)
+	master_id = b'\x00' * 4
 	# generate a private secret from the rootseed
-	prv, chaincode = generate_secret(rootseed)
+	prv_key, chain_code = generate_secret(rootseed)
 	# generate the extended key pair
-	return generate_extended_prvkey(prv, chaincode), generate_extended_pubkey(prv, chaincode)
+	return generate_extended_prvkey(depth, master_id, master_id, prv_key, chain_code), generate_extended_pubkey(depth, master_id, master_id, prv_key, chain_code)
 
 
-def generate_extended_pubkey(prvkey, chaincode):
+def generate_extended_pubkey(depth, fingerprint, index, prvkey, chaincode):
 	''' Generate the public key by multiplying the private key by the secp256k1 base point '''
 	pubkey = secp256k1().generate_pubkey(int(prvkey.hex(), 16))
 	try:
@@ -160,18 +164,17 @@ def generate_extended_pubkey(prvkey, chaincode):
 	except ValueError as v:
 		print(f'Error: {v}')
 	# generate and return an xpub key encoded with base58check
-	xpub = pubkey_v + b'\x00' + b'\x00\x00\x00\x00' + b'\x00\x00\x00\x00' + chaincode + pubkey
+	xpub = pubkey_v + depth + fingerprint + index + chaincode + pubkey
 	return b58encode_check(xpub).decode()
 
 
-def generate_extended_prvkey(prvkey, chaincode):
+def generate_extended_prvkey(depth, fingerprint, index, prvkey, chaincode):
 	''' Generate the private key from a BIP39 seed '''
-	xprv = prvkey_v + b'\x00' + b'\x00\x00\x00\x00' + b'\x00\x00\x00\x00' + chaincode + b'\x00' + prvkey
+	xprv = prvkey_v + depth + fingerprint + index + chaincode + b'\x00' + prvkey
 	return b58encode_check(xprv).decode()
 
-
 if __name__ == "__main__":
-	xprv, xpub = generate_extended_keypair(unhexlify('000102030405060708090a0b0c0d0e0f'))
+	xprv, xpub = generate_master_extended_keypair(unhexlify('000102030405060708090a0b0c0d0e0f'))
 	print(f'{xprv}\n{xpub}\n')
 	c = generate_child_prvkey(xprv, xpub)
 	print(c)
