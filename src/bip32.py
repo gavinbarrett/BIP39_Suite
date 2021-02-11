@@ -50,7 +50,9 @@ def amt_bytes(n):
 
 def point(prv_key):
 	# compute the public key: K = k*G
-	return secp256k1().generate_pubkey(int.from_bytes(prv_key, endianness))
+	private = int.from_bytes(prv_key, endianness)
+	print(f'Private: {private}')
+	return secp256k1().generate_pubkey(private)
 
 def compress_pubkey(pubkey):
 	# encode the y coordinte in the first byte of the public key
@@ -103,11 +105,11 @@ def ckd_prv(prv, chain, index):
 		key = b'\x00' + prv + index
 	else:
 		# child is a normal key
-		key = point(prv) + index
+		key = compress_pubkey(point(prv)) + index
 	# return the child private key
 	return hmac_key(chain, key)
 
-def generate_child_prvkey(xprv, xpub, index):
+def generate_child_prvkey(xprv, xpub, depth, index):
 	# extract private, public, and chain code
 	prv, chain = extract_prv(xprv)
 	pub = extract_pub(xpub)
@@ -120,10 +122,10 @@ def generate_child_prvkey(xprv, xpub, index):
 	# generate child private key
 	child_prv = (int(child_prv, 16) + int(prv.hex(), 16)) % secp256k1().n
 	#FIXME: check if derived key is valid
-	child_xprv = prvkey_v + b'\x01' + fingerprint + index + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(32, endianness)
+	child_xprv = prvkey_v + depth + fingerprint + index + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(32, endianness)
 	return b58encode_check(child_xprv).decode()
 
-def generate_child_pubkey(child_prv, parent_pub, index):
+def generate_child_pubkey(child_prv, parent_pub, depth, index):
 	''' Generate a child public key '''
 	# extract child private key and chain code
 	child_prv, child_chain = extract_prv(child_prv)
@@ -132,7 +134,7 @@ def generate_child_pubkey(child_prv, parent_pub, index):
 	# generate the parent fingerprint from the public key
 	fingerprint = generate_fingerprint(extract_pub(parent_pub))
 	# serialize the child xpub key
-	child_xpub = pubkey_v + b'\x01' + fingerprint + index + child_chain + child_pub
+	child_xpub = pubkey_v + depth + fingerprint + index + child_chain + child_pub
 	# return the child xpub key encoded in bas58_check
 	return b58encode_check(child_xpub).decode()
 
@@ -163,11 +165,23 @@ def generate_extended_pubkey(depth, fingerprint, index, prvkey, chaincode):
 	xpub = pubkey_v + depth + fingerprint + index + chaincode + pubkey
 	return b58encode_check(xpub).decode()
 
+def generate_internal_chain():
+	pass
+
+def generate_external_chain():
+	pass
 
 if __name__ == "__main__":
 	xprv, xpub = generate_master_extended_keypair(unhexlify('000102030405060708090a0b0c0d0e0f'))
 	print(f'{xprv}\n{xpub}\n')
 	child_index = struct.pack('>L', 2**31)
-	child_xprv = generate_child_prvkey(xprv, xpub, child_index)
-	child_xpub = generate_child_pubkey(child_xprv, xpub, child_index)
-	print(f'{child_xprv}\n{child_xpub}')
+	
+	# generate level-1 derived child keys
+	child_xprv = generate_child_prvkey(xprv, xpub, b'\x01', child_index)
+	child_xpub = generate_child_pubkey(child_xprv, xpub, b'\x01', child_index)
+	print(f'{child_xprv}\n{child_xpub}\n')
+
+	# generate level-2 derived child keys
+	internal_idx = struct.pack('>L', 1)
+	internal_key = generate_child_prvkey(child_xprv, child_xpub, b'\x02', internal_idx)
+	print(f'{internal_key}')
