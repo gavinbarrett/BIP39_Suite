@@ -91,7 +91,7 @@ def ckd_prv(prv, chain, index):
 		key = b'\x00' + prv + index.to_bytes(4, 'big')
 	else:
 		# child is a normal key
-		key = secp256k1().generate_pubkey(int.from_bytes(prv, 'big')) + index.to_bytes(4, 'big')
+		key = point(prv) + index.to_bytes(4, 'big')
 	# return the child private key
 	return hmac_key(chain, key)
 
@@ -129,6 +129,9 @@ def generate_child_prvkey(xprv, xpub):
 def generate_child_pubkey():
 	pass
 
+def point(prv_key):
+	# compute the public key: K = k*G
+	return secp256k1().generate_pubkey(int.from_bytes(prv_key, endianness))
 
 def hash160(pubkey):
 	# hash the parent key with sha256
@@ -157,7 +160,7 @@ def generate_master_extended_keypair(rootseed):
 
 def generate_extended_pubkey(depth, fingerprint, index, prvkey, chaincode):
 	''' Generate the public key by multiplying the private key by the secp256k1 base point '''
-	pubkey = secp256k1().generate_pubkey(int(prvkey.hex(), 16))
+	pubkey = point(prvkey)
 	try:
 		# compress the public key's y coordinate
 		pubkey = compress_pubkey(pubkey)
@@ -179,7 +182,7 @@ if __name__ == "__main__":
 	c = generate_child_prvkey(xprv, xpub)
 	print(c)
 	child_prv, child_chain = extract_prv(c)
-	pub = secp256k1().generate_pubkey(int.from_bytes(child_prv, 'big'))
+	pub = point(child_prv)
 	pub = compress_pubkey(pub)
 	xp = extract_pub(xpub)
 	fingerprint = generate_fingerprint(xp)
