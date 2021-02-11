@@ -75,11 +75,22 @@ def split_childkey(childkey):
 	return childkey[:length], childkey[length:]
 
 def decode_path(path):
+	# m/0'/1/2'/2/1000000000
 	args = path.split('/')
-	# FIXME: parse hardened and non-hardened keys
-	acc_idx = args[1]
-	# save keypair type (internal or external)
-	intext = args[2]
+	# pop master token `m` from path tokens
+	args.pop(0)
+	arrs = []
+	for a in args:
+		idx = None
+		if a[-1] == "'":
+			# hardened key
+			# strip apostrophe
+			a = a[:-1]
+			arrs.append(int(a) + 2**31)
+		else:
+			# non-hardened key
+			arrs.append(int(a))
+	return arrs
 
 def hash160(pubkey):
 	# hash the parent key with sha256
@@ -180,23 +191,19 @@ def generate_child_keypair(xprv, xpub, depth, index):
 	child_pub = generate_child_pubkey(child_prv, xpub, depth, index)
 	return child_prv, child_pub
 
+def generate_keypath(rootkey, path):
+	path_indices = decode_path(path)
+	# Generate the master extended key pair
+	xprv, xpub = generate_master_extended_keypair(unhexlify(rootkey))
+	print(f'{xprv}\n{xpub}\n')
+	# Derive the key pairs along the given path
+	for idx, index in enumerate(path_indices):
+		xprv, xpub = generate_child_keypair(xprv, xpub, (idx+1).to_bytes(1, endianness), index)
+		print(f"{xprv}\n{xpub}\n")
+
 if __name__ == "__main__":
-	''' Deriving m/0'/1 '''
-	# m
-	xprv, xpub = generate_master_extended_keypair(unhexlify('000102030405060708090a0b0c0d0e0f'))
-	print(f'm:\n{xprv}\n{xpub}\n')
-	# m/0'
-	child_xprv, child_xpub = generate_child_keypair(xprv, xpub, b'\x01', 2**31)
-	print(f"m/0':\n{child_xprv}\n{child_xpub}\n")
-	# m/0'/1
-	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x02', 1)
-	print(f"m/0'/1:\n{child_xprv}\n{child_xpub}\n")
-	# m/0'/1/2'
-	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x03', (2**31) + 2)
-	print(f"m/0'/1/2':\n{child_xprv}\n{child_xpub}\n")
-	# m/0'/1/2'/2
-	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x04', 2)
-	print(f"m/0'/1/2'/2:\n{child_xprv}\n{child_xpub}\n")
-	# m/0'/1/2'/2/1000000000
-	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x05', 1000000000)
-	print(f"m/0'/1/2'/2/1000000000:\n{child_xprv}\n{child_xpub}\n")
+	''' Deriving m/0'/1  for `000102030405060708090a0b0c0d0e0f` root seed '''
+	rootseed = "000102030405060708090a0b0c0d0e0f"
+	path = "m/0'/1/2'/2/1000000000"
+	# generate keys along given path
+	generate_keypath(rootseed, path)
