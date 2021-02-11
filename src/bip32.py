@@ -74,6 +74,13 @@ def split_childkey(childkey):
 	length = len(childkey) // 2
 	return childkey[:length], childkey[length:]
 
+def decode_path(path):
+	args = path.split('/')
+	# FIXME: parse hardened and non-hardened keys
+	acc_idx = args[1]
+	# save keypair type (internal or external)
+	intext = args[2]
+
 def hash160(pubkey):
 	# hash the parent key with sha256
 	sha = sha256()
@@ -164,22 +171,6 @@ def generate_extended_pubkey(depth, fingerprint, index, prvkey, chaincode):
 	xpub = pubkey_v + depth + fingerprint + index + chaincode + pubkey
 	return b58encode_check(xpub).decode()
 
-def generate_internal_keypair(child_xprv, child_xpub, depth=2):
-	''' Generate internal level-2 derived child keys '''
-	depth = depth.to_bytes(1, endianness)
-	internal_idx = struct.pack('>L', 1)
-	# generate internal private key
-	internal_prv = generate_child_prvkey(child_xprv, child_xpub, depth, internal_idx)
-	# generate internal public key
-	internal_pub = generate_child_pubkey(internal_prv, child_xpub, depth, internal_idx)
-	return internal_prv, internal_pub
-
-def generate_external_chain(child_xprv, child_xpub, depth=2):
-	''' Generate external level-2 derived child keys '''
-	external_idx = struct.pack('>L', 0)
-	# generate external key
-	return generate_child_prvkey(child_xprv, child_xpub, depth.to_bytes(1, endianness), internal_idx)
-
 def generate_child_keypair(xprv, xpub, depth, index):
 	# pass in parent xprv and xpub keys, depth, index to child_prvkey function
 	index = struct.pack('>L', index)
@@ -198,5 +189,14 @@ if __name__ == "__main__":
 	child_xprv, child_xpub = generate_child_keypair(xprv, xpub, b'\x01', 2**31)
 	print(f"m/0':\n{child_xprv}\n{child_xpub}\n")
 	# m/0'/1
-	int_prv, int_pub = generate_internal_keypair(child_xprv, child_xpub, 2)
-	print(f"m/0'/1:\n{int_prv}\n{int_pub}")
+	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x02', 1)
+	print(f"m/0'/1:\n{child_xprv}\n{child_xpub}\n")
+	# m/0'/1/2'
+	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x03', (2**31) + 2)
+	print(f"m/0'/1/2':\n{child_xprv}\n{child_xpub}\n")
+	# m/0'/1/2'/2
+	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x04', 2)
+	print(f"m/0'/1/2'/2:\n{child_xprv}\n{child_xpub}\n")
+	# m/0'/1/2'/2/1000000000
+	child_xprv, child_xpub = generate_child_keypair(child_xprv, child_xpub, b'\x05', 1000000000)
+	print(f"m/0'/1/2'/2/1000000000:\n{child_xprv}\n{child_xpub}\n")
