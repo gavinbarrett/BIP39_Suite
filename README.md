@@ -15,6 +15,8 @@ This is a Python3 implementation of the BIP39 and BIP32 protocols for handling B
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/xprv%20Derivation/badge.svg)
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/xpub%20Derivation/badge.svg)
 
+![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP%20Test%20Vectors/badge.svg)
+
 ## Testing
 
 You can test all of the BIP32/39 modules by running:
