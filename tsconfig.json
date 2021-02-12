@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+	"outDir": "./static/dist/",
+	"noImplicitAny": false,
+	"module": "commonjs",
+	"moduleResolution": "node",
+	"sourceMap": true,
+	"target": "es6",
+	"esModuleInterop": false,
+	"removeComments": true,
+	"allowSyntheticDefaultImports": true,
+	"jsx": "react",
+	"allowJs": true,
+	"baseUrl": "./",
+	"paths": {
+		"components/*": [
+			"src/components/*"
+		]
+	},
+	"typeRoots": [
+		"node_modules/@types"
+	],
+	"lib": [
+		"es2017",
+		"dom"
+	]
+  },
+  "include": ["static/**/*.tsx"],
+}

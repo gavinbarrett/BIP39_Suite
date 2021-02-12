@@ -54,95 +54,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./static/ui/App.jsx":
-/*!***************************!*\
-  !*** ./static/ui/App.jsx ***!
-  \***************************/
-/*! namespace exports */
-/*! exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var _components_SideBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/SideBar */ \"./static/ui/components/SideBar.jsx\");\n/* harmony import */ var _components_AppContainer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AppContainer */ \"./static/ui/components/AppContainer.jsx\");\n/* harmony import */ var _components_sass_App_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/sass/App.scss */ \"./static/ui/components/sass/App.scss\");\n\n\n\n\n\n\n\nconst App = () => {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"app\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_SideBar__WEBPACK_IMPORTED_MODULE_2__.SideBar, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_AppContainer__WEBPACK_IMPORTED_MODULE_3__.AppContainer, null));\n};\n\nreact_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.HashRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(App, null)), document.getElementById('root'));\n\n//# sourceURL=webpack://bip39/./static/ui/App.jsx?");
-
-/***/ }),
-
-/***/ "./static/ui/components/AppContainer.jsx":
-/*!***********************************************!*\
-  !*** ./static/ui/components/AppContainer.jsx ***!
-  \***********************************************/
-/*! namespace exports */
-/*! export AppContainer [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"AppContainer\": () => /* binding */ AppContainer\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router/esm/react-router.js\");\n/* harmony import */ var _Generator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Generator */ \"./static/ui/components/Generator.jsx\");\n/* harmony import */ var _Recover__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Recover */ \"./static/ui/components/Recover.jsx\");\n/* harmony import */ var _sass_AppContainer_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sass/AppContainer.scss */ \"./static/ui/components/sass/AppContainer.scss\");\n\n\n\n\n\n\nconst AppContainer = () => {\n  const loc = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_4__.useLocation)();\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"appcontainer\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"title\"\n  }, loc.pathname === '/' ? 'BIP Suite:Generate' : 'BIP Suite:Recover'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Switch, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {\n    path: \"/\",\n    exact: true,\n    render: () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Generator__WEBPACK_IMPORTED_MODULE_1__.Generator, null)\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Route, {\n    path: \"/recover\",\n    render: () => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Recover__WEBPACK_IMPORTED_MODULE_2__.Recover, null)\n  })));\n};\n\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/AppContainer.jsx?");
-
-/***/ }),
-
-/***/ "./static/ui/components/Button.jsx":
-/*!*****************************************!*\
-  !*** ./static/ui/components/Button.jsx ***!
-  \*****************************************/
-/*! namespace exports */
-/*! export Button [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Button\": () => /* binding */ Button\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _sass_Button_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sass/Button.scss */ \"./static/ui/components/sass/Button.scss\");\n\n\n\nconst Button = ({\n  icon\n}) => {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"button\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"img\", {\n    className: \"buttonicon\",\n    src: icon\n  }));\n};\n\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/Button.jsx?");
-
-/***/ }),
-
-/***/ "./static/ui/components/Generator.jsx":
-/*!********************************************!*\
-  !*** ./static/ui/components/Generator.jsx ***!
-  \********************************************/
-/*! namespace exports */
-/*! export Generator [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Generator\": () => /* binding */ Generator\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _sass_Generator_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sass/Generator.scss */ \"./static/ui/components/sass/Generator.scss\");\n\n\n\nconst ByteScheme = ({\n  desc,\n  bytes,\n  active,\n  updateSelected\n}) => {\n  const byteclass = bytes === active ? \"activebyte\" : \"bytes\";\n\n  const updateActivity = async () => {\n    await updateSelected(bytes);\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: byteclass,\n    onClick: updateActivity\n  }, desc);\n};\n\nconst ByteSelector = ({\n  selected,\n  updateSelected\n}) => {\n  // bytes of entropy/words in seed phrase - 16/12, 20/15, 24/18, 28/21, 32/24\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"byteselector\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ByteScheme, {\n    desc: \"12 words\",\n    bytes: 16,\n    active: selected,\n    updateSelected: updateSelected\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ByteScheme, {\n    desc: \"15 words\",\n    bytes: 20,\n    active: selected,\n    updateSelected: updateSelected\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ByteScheme, {\n    desc: \"18 words\",\n    bytes: 24,\n    active: selected,\n    updateSelected: updateSelected\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ByteScheme, {\n    desc: \"21 words\",\n    bytes: 28,\n    active: selected,\n    updateSelected: updateSelected\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ByteScheme, {\n    desc: \"24 words\",\n    bytes: 32,\n    active: selected,\n    updateSelected: updateSelected\n  }));\n};\n\nconst SeedContainer = ({\n  phrase,\n  seed,\n  node\n}) => {\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"seedcontainer\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"seedtext\"\n  }, phrase), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"seedtext\"\n  }, seed), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"seedtext\"\n  }, node));\n};\n\nconst Generator = () => {\n  const [pass, updatePass] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');\n  const [retyped, updateRetyped] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');\n  const [selected, updateSelected] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(32);\n  const [phrase, updatePhrase] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);\n  const [seed, updateSeed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);\n  const [node, updateNode] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);\n\n  const update_pass = async event => {\n    updatePass(event.target.value);\n  };\n\n  const update_retyped = async event => {\n    updateRetyped(event.target.value);\n  };\n\n  const submit_params = async () => {\n    if (pass != retyped) return; // gather desired passphrase and word count\n\n    const resp = await fetch('/generate', {\n      method: 'POST',\n      headers: {\n        \"Content-Type\": \"application/json\"\n      },\n      body: JSON.stringify({\n        \"bytes\": selected,\n        \"passphrase\": pass\n      })\n    });\n    const data = await resp.json();\n    console.log(data);\n\n    if (data[\"phrase\"] === \"failed\") {\n      console.log('failed');\n      return;\n    }\n\n    updatePhrase(data[\"phrase\"]);\n    updateSeed(data[\"seed\"]);\n    updateNode(data[\"node\"]);\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"generator\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"selector-box\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(ByteSelector, {\n    selected: selected,\n    updateSelected: updateSelected\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"parameters\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"passlabel\"\n  }, \"Passphrase\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    className: \"pass\",\n    id: \"passphrase\",\n    type: \"password\",\n    onChange: update_pass\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"passlabel\"\n  }, \"Retype Passphrase\"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    className: \"pass\",\n    id: \"passphraseretyped\",\n    type: \"password\",\n    onChange: update_retyped\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"button\", {\n    className: \"submitbutton\",\n    onClick: submit_params\n  }, \"Generate Seed\"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    className: \"generatorbox\"\n  }, phrase && seed && node ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(SeedContainer, {\n    phrase: phrase,\n    seed: seed,\n    node: node\n  }) : ''));\n};\n\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/Generator.jsx?");
-
-/***/ }),
-
-/***/ "./static/ui/components/Recover.jsx":
-/*!******************************************!*\
-  !*** ./static/ui/components/Recover.jsx ***!
-  \******************************************/
-/*! namespace exports */
-/*! export Recover [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"Recover\": () => /* binding */ Recover\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var _sass_Recover_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./sass/Recover.scss */ \"./static/ui/components/sass/Recover.scss\");\n\n\n\nconst Recover = () => {\n  const [mnemonics, updateMnemonics] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');\n  const [salt, updateSalt] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');\n  const [rootseed, updateRootseed] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('');\n\n  const recover_seed = async () => {\n    const resp = await fetch('/recover', {\n      method: \"POST\",\n      body: JSON.stringify({\n        \"mnemonics\": mnemonics,\n        \"salt\": salt\n      })\n    });\n    const data = await resp.json();\n    if (data && data[\"seed\"]) await updateRootseed(data[\"seed\"]);\n  };\n\n  const update_seed = async event => {\n    console.log(event.target.value);\n    await updateMnemonics(event.target.value);\n  };\n\n  const update_salt = async event => {\n    console.log(event.target.value);\n    await updateSalt(event.target.value);\n  };\n\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"recoveryinput\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    type: \"text\",\n    onChange: update_seed\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"input\", {\n    type: \"text\",\n    onChange: update_salt\n  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"button\", {\n    onClick: recover_seed\n  }, \"Recover\")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"recoveryseed\"\n  }, rootseed));\n};\n\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/Recover.jsx?");
-
-/***/ }),
-
-/***/ "./static/ui/components/SideBar.jsx":
-/*!******************************************!*\
-  !*** ./static/ui/components/SideBar.jsx ***!
-  \******************************************/
-/*! namespace exports */
-/*! export SideBar [provided] [no usage info] [missing usage info prevents renaming] */
-/*! other exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"SideBar\": () => /* binding */ SideBar\n/* harmony export */ });\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\n/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button */ \"./static/ui/components/Button.jsx\");\n/* harmony import */ var _sass_SideBar_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sass/SideBar.scss */ \"./static/ui/components/sass/SideBar.scss\");\n\n\n\n\n\nconst SideBar = () => {\n  const generate = './static/ui/components/icons/open-iconic-master/beaker.svg';\n  const recover = './static/ui/components/icons/open-iconic-master/loop-circular.svg';\n  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(\"div\", {\n    id: \"sidebar\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {\n    to: \"/\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__.Button, {\n    icon: generate,\n    width: \"25px\",\n    height: \"25px\"\n  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__.Link, {\n    to: \"/recover\"\n  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__.Button, {\n    icon: recover,\n    width: \"25px\",\n    height: \"25px\"\n  })));\n};\n\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/SideBar.jsx?");
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./static/ui/components/sass/App.scss":
 /*!*************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./static/ui/components/sass/App.scss ***!
@@ -397,7 +308,6 @@ eval("/** @license React v17.0.1\n * react-dom.development.js\n *\n * Copyright 
   \*****************************************/
 /*! dynamic exports */
 /*! export __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED [provided] [no usage info] [provision prevents renaming (no use info)] -> ./node_modules/react-dom/cjs/react-dom.development.js .__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED */
-/*! export __esModule [not provided] [no usage info] [missing usage info prevents renaming] */
 /*! export createPortal [provided] [no usage info] [provision prevents renaming (no use info)] -> ./node_modules/react-dom/cjs/react-dom.development.js .createPortal */
 /*! export findDOMNode [provided] [no usage info] [provision prevents renaming (no use info)] -> ./node_modules/react-dom/cjs/react-dom.development.js .findDOMNode */
 /*! export flushSync [provided] [no usage info] [provision prevents renaming (no use info)] -> ./node_modules/react-dom/cjs/react-dom.development.js .flushSync */
@@ -946,6 +856,97 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./static/ui/App.tsx":
+/*!***************************!*\
+  !*** ./static/ui/App.tsx ***!
+  \***************************/
+/*! flagged exports */
+/*! export __esModule [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__ */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst ReactDOM = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\nconst Router = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\nconst SideBar_1 = __webpack_require__(/*! ./components/SideBar */ \"./static/ui/components/SideBar.tsx\");\nconst AppContainer_1 = __webpack_require__(/*! ./components/AppContainer */ \"./static/ui/components/AppContainer.tsx\");\n__webpack_require__(/*! ./components/sass/App.scss */ \"./static/ui/components/sass/App.scss\");\nconst App = () => {\n    return (React.createElement(\"div\", { className: \"app\" },\n        React.createElement(SideBar_1.SideBar, null),\n        React.createElement(AppContainer_1.AppContainer, null)));\n};\nReactDOM.render(React.createElement(Router.HashRouter, null,\n    React.createElement(App, null)), document.getElementById('root'));\n\n\n//# sourceURL=webpack://bip39/./static/ui/App.tsx?");
+
+/***/ }),
+
+/***/ "./static/ui/components/AppContainer.tsx":
+/*!***********************************************!*\
+  !*** ./static/ui/components/AppContainer.tsx ***!
+  \***********************************************/
+/*! flagged exports */
+/*! export AppContainer [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export __esModule [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__ */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.AppContainer = void 0;\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst Router = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\nconst BIPGenerator_1 = __webpack_require__(/*! ./BIPGenerator */ \"./static/ui/components/BIPGenerator.tsx\");\nconst Recover_1 = __webpack_require__(/*! ./Recover */ \"./static/ui/components/Recover.tsx\");\n__webpack_require__(/*! ./sass/AppContainer.scss */ \"./static/ui/components/sass/AppContainer.scss\");\nconst AppContainer = () => {\n    const loc = Router.useLocation();\n    return (React.createElement(\"div\", { className: \"appcontainer\" },\n        React.createElement(\"div\", { id: \"title\" }, (loc.pathname === '/') ? 'BIP Suite:Generate' : 'BIP Suite:Recover'),\n        React.createElement(Router.Switch, null,\n            React.createElement(Router.Route, { path: '/', exact: true, render: () => React.createElement(BIPGenerator_1.BIPGenerator, null) }),\n            React.createElement(Router.Route, { path: '/recover', render: () => React.createElement(Recover_1.Recover, null) }))));\n};\nexports.AppContainer = AppContainer;\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/AppContainer.tsx?");
+
+/***/ }),
+
+/***/ "./static/ui/components/BIPGenerator.tsx":
+/*!***********************************************!*\
+  !*** ./static/ui/components/BIPGenerator.tsx ***!
+  \***********************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: top-level-this-exports, __webpack_exports__, __webpack_require__ */
+/*! CommonJS bailout: this is used directly at 2:17-21 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.BIPGenerator = void 0;\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n__webpack_require__(/*! ./sass/Generator.scss */ \"./static/ui/components/sass/Generator.scss\");\nconst ByteScheme = ({ desc, bytes, active, updateSelected }) => {\n    const byteclass = (bytes === active) ? \"activebyte\" : \"bytes\";\n    const updateActivity = () => __awaiter(void 0, void 0, void 0, function* () {\n        yield updateSelected(bytes);\n    });\n    return (React.createElement(\"div\", { className: byteclass, onClick: updateActivity }, desc));\n};\nconst ByteSelector = ({ selected, updateSelected }) => {\n    return (React.createElement(\"div\", { id: \"byteselector\" },\n        React.createElement(ByteScheme, { desc: \"12 words\", bytes: 16, active: selected, updateSelected: updateSelected }),\n        React.createElement(ByteScheme, { desc: \"15 words\", bytes: 20, active: selected, updateSelected: updateSelected }),\n        React.createElement(ByteScheme, { desc: \"18 words\", bytes: 24, active: selected, updateSelected: updateSelected }),\n        React.createElement(ByteScheme, { desc: \"21 words\", bytes: 28, active: selected, updateSelected: updateSelected }),\n        React.createElement(ByteScheme, { desc: \"24 words\", bytes: 32, active: selected, updateSelected: updateSelected })));\n};\nconst SeedContainer = ({ phrase, seed, node }) => {\n    return (React.createElement(\"div\", { className: \"seedcontainer\" },\n        React.createElement(\"div\", { className: \"seedtext\" }, phrase),\n        React.createElement(\"div\", { className: \"seedtext\" }, seed),\n        React.createElement(\"div\", { className: \"seedtext\" }, node)));\n};\nconst BIPGenerator = () => {\n    const [pass, updatePass] = React.useState('');\n    const [retyped, updateRetyped] = React.useState('');\n    const [selected, updateSelected] = React.useState(32);\n    const [phrase, updatePhrase] = React.useState(null);\n    const [seed, updateSeed] = React.useState(null);\n    const [node, updateNode] = React.useState(null);\n    const update_pass = (event) => __awaiter(void 0, void 0, void 0, function* () { updatePass(event.target.value); });\n    const update_retyped = (event) => __awaiter(void 0, void 0, void 0, function* () { updateRetyped(event.target.value); });\n    const submit_params = () => __awaiter(void 0, void 0, void 0, function* () {\n        if (pass != retyped)\n            return;\n        const resp = yield fetch('/generate', { method: 'POST', headers: { \"Content-Type\": \"application/json\" }, body: JSON.stringify({ \"bytes\": selected, \"passphrase\": pass }) });\n        const data = yield resp.json();\n        console.log(data);\n        if (data[\"phrase\"] === \"failed\") {\n            console.log('failed');\n            return;\n        }\n        updatePhrase(data[\"phrase\"]);\n        updateSeed(data[\"seed\"]);\n        updateNode(data[\"node\"]);\n    });\n    return (React.createElement(\"div\", { className: \"generator\" },\n        React.createElement(\"div\", { className: 'selector-box' },\n            React.createElement(ByteSelector, { selected: selected, updateSelected: updateSelected }),\n            React.createElement(\"div\", { className: 'parameters' },\n                React.createElement(\"div\", { className: \"passlabel\" }, \"Passphrase\"),\n                React.createElement(\"input\", { className: \"pass\", id: \"passphrase\", type: \"password\", onChange: update_pass }),\n                React.createElement(\"div\", { className: \"passlabel\" }, \"Retype Passphrase\"),\n                React.createElement(\"input\", { className: \"pass\", id: \"passphraseretyped\", type: \"password\", onChange: update_retyped }),\n                React.createElement(\"button\", { className: \"submitbutton\", onClick: submit_params }, \"Generate Seed\"))),\n        React.createElement(\"div\", { className: \"generatorbox\" }, (phrase && seed && node) ? React.createElement(SeedContainer, { phrase: phrase, seed: seed, node: node }) : '')));\n};\nexports.BIPGenerator = BIPGenerator;\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/BIPGenerator.tsx?");
+
+/***/ }),
+
+/***/ "./static/ui/components/Button.tsx":
+/*!*****************************************!*\
+  !*** ./static/ui/components/Button.tsx ***!
+  \*****************************************/
+/*! flagged exports */
+/*! export Button [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export __esModule [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__ */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Button = void 0;\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n__webpack_require__(/*! ./sass/Button.scss */ \"./static/ui/components/sass/Button.scss\");\n;\nconst Button = ({ icon }) => {\n    return (React.createElement(\"div\", { className: \"button\" },\n        React.createElement(\"img\", { className: \"buttonicon\", src: icon })));\n};\nexports.Button = Button;\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/Button.tsx?");
+
+/***/ }),
+
+/***/ "./static/ui/components/Recover.tsx":
+/*!******************************************!*\
+  !*** ./static/ui/components/Recover.tsx ***!
+  \******************************************/
+/*! unknown exports (runtime-defined) */
+/*! runtime requirements: top-level-this-exports, __webpack_exports__, __webpack_require__ */
+/*! CommonJS bailout: this is used directly at 2:17-21 */
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+eval("\nvar __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\n    return new (P || (P = Promise))(function (resolve, reject) {\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\n    });\n};\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.Recover = void 0;\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n__webpack_require__(/*! ./sass/Recover.scss */ \"./static/ui/components/sass/Recover.scss\");\nconst Recover = () => {\n    const [mnemonics, updateMnemonics] = React.useState('');\n    const [salt, updateSalt] = React.useState('');\n    const [rootseed, updateRootseed] = React.useState('');\n    const recover_seed = () => __awaiter(void 0, void 0, void 0, function* () {\n        const resp = yield fetch('/recover', { method: \"POST\", body: JSON.stringify({ \"mnemonics\": mnemonics, \"salt\": salt }) });\n        const data = yield resp.json();\n        if (data && data[\"seed\"])\n            yield updateRootseed(data[\"seed\"]);\n    });\n    const update_seed = (event) => __awaiter(void 0, void 0, void 0, function* () {\n        console.log(event.target.value);\n        yield updateMnemonics(event.target.value);\n    });\n    const update_salt = (event) => __awaiter(void 0, void 0, void 0, function* () {\n        console.log(event.target.value);\n        yield updateSalt(event.target.value);\n    });\n    return (React.createElement(React.Fragment, null,\n        React.createElement(\"div\", { id: \"recoveryinput\" },\n            React.createElement(\"input\", { type: \"text\", onChange: update_seed }),\n            React.createElement(\"input\", { type: \"text\", onChange: update_salt }),\n            React.createElement(\"button\", { onClick: recover_seed }, \"Recover\")),\n        React.createElement(\"div\", { id: \"recoveryseed\" }, rootseed)));\n};\nexports.Recover = Recover;\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/Recover.tsx?");
+
+/***/ }),
+
+/***/ "./static/ui/components/SideBar.tsx":
+/*!******************************************!*\
+  !*** ./static/ui/components/SideBar.tsx ***!
+  \******************************************/
+/*! flagged exports */
+/*! export SideBar [provided] [no usage info] [missing usage info prevents renaming] */
+/*! export __esModule [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_exports__, __webpack_require__ */
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.SideBar = void 0;\nconst React = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\nconst Router = __webpack_require__(/*! react-router-dom */ \"./node_modules/react-router-dom/esm/react-router-dom.js\");\nconst Button_1 = __webpack_require__(/*! ./Button */ \"./static/ui/components/Button.tsx\");\n__webpack_require__(/*! ./sass/SideBar.scss */ \"./static/ui/components/sass/SideBar.scss\");\nconst SideBar = () => {\n    const generate = './static/ui/components/icons/open-iconic-master/beaker.svg';\n    const recover = './static/ui/components/icons/open-iconic-master/loop-circular.svg';\n    return (React.createElement(\"div\", { id: \"sidebar\" },\n        React.createElement(Router.Link, { to: \"/\" },\n            React.createElement(Button_1.Button, { icon: generate })),\n        React.createElement(Router.Link, { to: \"/recover\" },\n            React.createElement(Button_1.Button, { icon: recover }))));\n};\nexports.SideBar = SideBar;\n\n\n//# sourceURL=webpack://bip39/./static/ui/components/SideBar.tsx?");
+
+/***/ }),
+
 /***/ "./node_modules/value-equal/esm/value-equal.js":
 /*!*****************************************************!*\
   !*** ./node_modules/value-equal/esm/value-equal.js ***!
@@ -980,7 +981,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 		};
 /******/ 	
 /******/ 		// Execute the module function
-/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/ 	
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
@@ -1042,7 +1043,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /************************************************************************/
 /******/ 	// startup
 /******/ 	// Load entry module
-/******/ 	__webpack_require__("./static/ui/App.jsx");
+/******/ 	__webpack_require__("./static/ui/App.tsx");
 /******/ 	// This entry module used 'exports' so it can't be inlined
 /******/ })()
 ;

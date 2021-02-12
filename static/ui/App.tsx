@@ -1,6 +1,6 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { HashRouter as Router } from 'react-router-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import * as Router from 'react-router-dom';
 import { SideBar } from './components/SideBar';
 import { AppContainer } from './components/AppContainer';
 import './components/sass/App.scss';
@@ -12,4 +12,4 @@ const App = () => {
 	</div>);
 }
 
-ReactDOM.render(<Router><App/></Router>, document.getElementById('root'));
+ReactDOM.render(<Router.HashRouter><App/></Router.HashRouter>, document.getElementById('root'));

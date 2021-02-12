@@ -1,12 +1,12 @@
 module.exports = {
-	entry: './static/ui/App.jsx',
+	entry: './static/ui/App.tsx',
 	mode: 'development',
 	module: {
 		rules: [
 			{
-				test: /\.(js|jsx)$/,
+				test: /\.(js|ts|tsx)$/,
 				exclude: /node_modules/,
-				use: ['babel-loader'],
+				use: ['ts-loader'],
 			},
 			{
 				test: /\.scss$/,
@@ -35,7 +35,7 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: ['.js', '.jsx']
+		extensions: ['.js', '.ts', '.tsx']
 	},
 	output: {
 		filename: 'App.js',

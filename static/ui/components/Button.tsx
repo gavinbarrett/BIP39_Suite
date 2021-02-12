@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import './sass/Button.scss';
 
-const Button = ({icon}) => {
+interface imagePath {
+	icon: string;
+};
+
+export const Button = ({icon}:imagePath) => {
 	return (<div className="button">
 		<img className="buttonicon" src={icon}/>
 	</div>);
-}
-
-export {
-	Button
 }

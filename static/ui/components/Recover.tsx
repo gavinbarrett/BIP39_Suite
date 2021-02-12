@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import './sass/Recover.scss';
 
-const Recover = () => {
-	const [mnemonics, updateMnemonics] = useState('');
-	const [salt, updateSalt] = useState('');
-	const [rootseed, updateRootseed] = useState('');
+export const Recover = () => {
+	const [mnemonics, updateMnemonics] = React.useState('');
+	const [salt, updateSalt] = React.useState('');
+	const [rootseed, updateRootseed] = React.useState('');
 
 	const recover_seed = async () => {
 		const resp = await fetch('/recover', {method: "POST", body: JSON.stringify({"mnemonics": mnemonics, "salt": salt})});
@@ -30,8 +30,4 @@ const Recover = () => {
 		</div><div id="recoveryseed">
 			{rootseed}
 		</div></>);
-}
-
-export {
-	Recover
 }
