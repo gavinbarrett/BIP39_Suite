@@ -1,3 +1,4 @@
+import json
 import hmac
 import hashlib
 import struct
@@ -78,11 +79,13 @@ def decode_path(path):
 	# m/0'/1/2'/2/1000000000
 	args = path.split('/')
 	# pop master token `m` from path tokens
-	args.pop(0)
+	#args.pop(0)
 	arrs = []
 	for a in args:
 		idx = None
-		if a[-1] == "'":
+		if a == "m":
+			arrs.append(a)
+		elif a[-1] == "'":
 			# hardened key
 			# strip apostrophe
 			a = a[:-1]
@@ -101,6 +104,13 @@ def hash160(pubkey):
 	ripemd.update(sha.digest())
 	return ripemd.digest()
 
+def generate_legacy_address(xpub):
+	''' Generate a legacy Bitcoin address '''
+	# hash the public key with sha256 and then ripemd160; prepend it with 0x00
+	pubkey_hash = b'\x00' + hash160(xpub)
+	# encode the hash
+	return b58encode_check(pubkey_hash).decode()
+
 def generate_fingerprint(pubkey):
 	''' Return the first four bytes of the hash160 '''
 	return hash160(pubkey)[:4]
@@ -108,9 +118,6 @@ def generate_fingerprint(pubkey):
 def hmac_key(chain, data):
 	# hash a key appended with the index with hmac keyed with the chain code and using sha512
 	return hmac.new(chain, data, sha512).hexdigest()
-
-def generate_child_keypair():
-	pass
 
 def ckd_prv(prv, chain, index):
 	''' Derives the child key from the parent private key and chain code
@@ -192,18 +199,30 @@ def generate_child_keypair(xprv, xpub, depth, index):
 	return child_prv, child_pub
 
 def generate_keypath(rootkey, path):
+	# FIXME: refactor
 	path_indices = decode_path(path)
-	# Generate the master extended key pair
-	xprv, xpub = generate_master_extended_keypair(unhexlify(rootkey))
-	print(f'{xprv}\n{xpub}\n')
 	# Derive the key pairs along the given path
+	keypairs = []
 	for idx, index in enumerate(path_indices):
-		xprv, xpub = generate_child_keypair(xprv, xpub, (idx+1).to_bytes(1, endianness), index)
-		print(f"{xprv}\n{xpub}\n")
+		if index == "m":
+			# Generate the master extended key pair
+			xprv, xpub = generate_master_extended_keypair(unhexlify(rootkey))
+		else:
+			# Generate a child extended key pair
+			xprv, xpub = generate_child_keypair(xprv, xpub, idx.to_bytes(1, endianness), index)
+		keypairs.append({"prv": xprv, "pub": xpub})
+	return keypairs
 
 if __name__ == "__main__":
 	''' Deriving m/0'/1  for `000102030405060708090a0b0c0d0e0f` root seed '''
 	rootseed = "000102030405060708090a0b0c0d0e0f"
-	path = "m/0'/1/2'/2/1000000000"
+	# Generate the first address
+	path = "m/0'/1/2'/2/1000000000/0"
 	# generate keys along given path
-	generate_keypath(rootseed, path)
+	keypairs = generate_keypath(rootseed, path)
+	#print(f'Pairs:\n{keypairs}')
+	pair = keypairs[-1]["pub"]
+	# extract compressed public key
+	extracted_pub = extract_pub(pair)
+	address = generate_legacy_address(extracted_pub)
+	print(f'Address: {address}')
