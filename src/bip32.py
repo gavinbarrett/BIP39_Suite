@@ -175,22 +175,22 @@ class BIP32_Account:
 		# return the child xpub key encoded in bas58_check
 		return b58encode_check(child_xpub).decode()
 
-	def generate_master_extended_keypair(self, rootseed):
+	def gen_master_xkeys(self, rootseed):
 		''' Generate a master extended key pair '''
 		depth = b'\x00'
 		# set master key index (0x00) and master key fingerprint (0x00000000)
-		master_id = b'\x00' * 4
+		m_id = b'\x00' * 4
 		# generate a private secret from the rootseed
 		prv_key, chain_code = self.generate_secret(rootseed)
 		# generate the extended key pair
-		return self.generate_extended_prvkey(depth, master_id, master_id, prv_key, chain_code), self.generate_extended_pubkey(depth, master_id, master_id, prv_key, chain_code)
+		return self.gen_xprv(depth, m_id, m_id, prv_key, chain_code), self.gen_xpub(depth, m_id, m_id, prv_key, chain_code)
 
-	def generate_extended_prvkey(self, depth, fingerprint, index, prvkey, chaincode):
+	def gen_xprv(self, depth, fingerprint, index, prvkey, chaincode):
 		''' Generate the private key from a BIP39 seed '''
 		xprv = prvkey_v + depth + fingerprint + index + chaincode + b'\x00' + prvkey
 		return b58encode_check(xprv).decode()
 
-	def generate_extended_pubkey(self, depth, fingerprint, index, prvkey, chaincode):
+	def gen_xpub(self, depth, fingerprint, index, prvkey, chaincode):
 		''' Generate the public key by multiplying the private key by the secp256k1 base point '''
 		pubkey = self.point(prvkey)
 		try:
@@ -218,7 +218,7 @@ class BIP32_Account:
 		for depth, index in enumerate(path_indices):
 			if index == "m":
 				# Generate the master extended key pair
-				xprv, xpub = self.generate_master_extended_keypair(unhexlify(rootkey))
+				xprv, xpub = self.gen_master_xkeys(unhexlify(rootkey))
 			else:
 				try:
 					# ensure that key index and depth variables do not overflow
