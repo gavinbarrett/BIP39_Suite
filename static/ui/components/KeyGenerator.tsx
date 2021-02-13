@@ -77,8 +77,7 @@ export const KeyGenerator = () => {
 		<div className='selector-box'>
 		<ByteSelector selected={selected} updateSelected={updateSelected}/>
 			<div className='parameters'>
-				<div className="passlabel">Passphrase</div>
-				<input className="pass" id="passphrase" type="password" onChange={update_pass}/>
+				<input className="pass passphrase" type="password" placeholder={"Enter your HD wallet passphrase here"} title={"HD Wallet Passphrase"} onChange={update_pass}/>
 				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
 			</div>
 		</div>

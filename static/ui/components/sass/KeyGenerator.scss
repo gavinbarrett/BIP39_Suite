@@ -20,28 +20,34 @@
 	height: 4vh;
 }
 
-#passphrase {
-	margin-bottom: 2%;
+.passphrase {
+	width: 50vw;
+	height: 4vh;
+	background: #FFA62B;
+	padding: 1%;
+	border: 0;
+	border-radius: 20px;
 }
 
-#passphraseretyped {
-	margin-bottom: 2%;
+.passphrase:focus {
+	outline: none;
 }
 
 .submitbutton {
 	width: 25vw;
 	height: 5vh;
-	background: black;
-	color: white;
-	border: solid black 2px;
-	border-radius: 6px;
+	background: transparent;
+	color: #FFA62B;
+	border: solid #FFA62B 3px;
+	border-radius: 25px;
+	font-weight: bold;
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
 }
 
 .submitbutton:hover {
-	background: white;
-	color: black;
+	background: #FFA62B;
+	color: white;
 }
 
 #byteselector {
@@ -54,34 +60,35 @@
 .bytes {
 	width: 10vw;
 	height: 5vh;
-	background: black;
+	background: transparent;
+	border: solid #FFA62B 3px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: white;
-	border: solid black 2px;
-	border-radius: 6px;
+	color: #FFA62B;
+	border-radius: 20px;
 	margin-right: 6%;
 	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 }
 
 .bytes:hover {
-	background: white;
-	color: black;
+	background: #FFA62B;
+	color: white;
 }
 
 .activebyte {
 	width: 10vw;
 	height: 5vh;
-	background: #ffffff;
-	color: #000000;
+	background: #FFA62B;
+	color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: solid black 2px;
-	border-radius: 6px;
+	border: solid #FFA62B 3px;
+	border-radius: 20px;
 	margin-right: 6%;
 	font-family: 'Quicksand', sans-serif;
 	cursor: pointer;
@@ -152,8 +159,9 @@
 }
 
 .parameters {
+	height: 30vh;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 }
