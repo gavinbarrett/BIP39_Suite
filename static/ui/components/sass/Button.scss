@@ -4,10 +4,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: all 0.15s ease-in-out;
 }
 
 .button:hover {
 	background: #FFA62B;
+	cursor: default;
 }
 
 .buttonicon {

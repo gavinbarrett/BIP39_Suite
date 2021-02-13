@@ -23,11 +23,13 @@ export const Recover = () => {
 		await updateSalt(event.target.value);
 	}
 
-	return (<><div id="recoveryinput">
-			<input type="text" onChange={update_seed}/>
-			<input type="text" onChange={update_salt}/>
-			<button onClick={recover_seed}>Recover</button>
-		</div><div id="recoveryseed">
+	return (<div className="recovery-box">
+	<div className="recovery-input">
+			<input type="text" className="" placeholder="Enter mnemonic seed phrase here" title="Mnemonic Seed" onChange={update_seed}/>
+			<input type="text" className="" placeholder="Enter passphrase here" title="Salting Phrase" onChange={update_salt}/>
+			<button className="recovery-button" onClick={recover_seed}>Recover</button>
+		</div><div className="recovery-seed">
 			{rootseed}
-		</div></>);
+		</div>
+	</div>);
 }

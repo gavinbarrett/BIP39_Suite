@@ -1,11 +1,10 @@
 .generator {
-	width: 80vw;
-	height: 80vh;
+	width: 90vw;
+	height: 90vh;
 	background: white;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: 3%;
 	border-radius: 7px;
 }
 
@@ -107,6 +106,30 @@
 	display: flex;
 	color: white;
 	background: black;
+	word-break: break-all;
+	padding: 1%;
+	font-size: 1.25vw;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.m_xprv {
+	width: 70vw;
+	height: 10vh;
+	display: flex;
+	color: white;
+	background: pink;
+	word-break: break-all;
+	padding: 1%;
+	font-size: 1.25vw;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.m_xpub {
+	width: 70vw;
+	height: 10vh;
+	display: flex;
+	color: white;
+	background: red;
 	word-break: break-all;
 	padding: 1%;
 	font-size: 1.25vw;

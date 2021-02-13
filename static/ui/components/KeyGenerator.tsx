@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './sass/Generator.scss';
+import './sass/KeyGenerator.scss';
 
 interface byteScheme {
 	desc: string;
@@ -16,7 +16,8 @@ interface byteSelector {
 interface seedContainer {
 	phrase: string;
 	seed: string;
-	node: string;
+	m_xprv: string;
+	m_xpub: string;
 }
 
 const ByteScheme = ({desc, bytes, active, updateSelected}:byteScheme) => {
@@ -38,28 +39,26 @@ const ByteSelector = ({selected, updateSelected}:byteSelector) => {
 	</div>);
 }
 
-const SeedContainer = ({phrase, seed, node}) => {
+const SeedContainer = ({phrase, seed, m_xprv, m_xpub}:seedContainer) => {
 	return (<div className="seedcontainer">
 		<div className="seedtext">{phrase}</div>
 		<div className="seedtext">{seed}</div>
-		<div className="seedtext">{node}</div>
+		<div className="m_xprv">{m_xprv}</div>
+		<div className="m_xpub">{m_xpub}</div>
 	</div>);
 }
 
-export const BIPGenerator = () => {
+export const KeyGenerator = () => {
 	const [pass, updatePass] = React.useState('');
-	const [retyped, updateRetyped] = React.useState('');
 	const [selected, updateSelected] = React.useState(32);
 	const [phrase, updatePhrase] = React.useState(null);
 	const [seed, updateSeed] = React.useState(null);
-	const [node, updateNode] = React.useState(null);
+	const [m_xprv, updateMxprv] = React.useState(null);
+	const [m_xpub, updateMxpub] = React.useState(null);
 
 	const update_pass = async (event) => { updatePass(event.target.value); }
 
-	const update_retyped = async (event) => { updateRetyped(event.target.value); }
-
 	const submit_params = async () => {
-		if (pass != retyped) return;
 		// gather desired passphrase and word count
 		const resp = await fetch('/generate', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({"bytes": selected, "passphrase": pass})});
 		const data = await resp.json();
@@ -70,7 +69,8 @@ export const BIPGenerator = () => {
 		}
 		updatePhrase(data["phrase"]);
 		updateSeed(data["seed"]);
-		updateNode(data["node"]);
+		updateMxprv(data["m_xprv"]);
+		updateMxpub(data["m_xpub"]);
 	}
 
 	return (<div className="generator">
@@ -79,13 +79,11 @@ export const BIPGenerator = () => {
 			<div className='parameters'>
 				<div className="passlabel">Passphrase</div>
 				<input className="pass" id="passphrase" type="password" onChange={update_pass}/>
-				<div className="passlabel">Retype Passphrase</div>
-				<input className="pass" id="passphraseretyped" type="password" onChange={update_retyped}/>
 				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
 			</div>
 		</div>
 		<div className="generatorbox">
-			{(phrase && seed && node) ? <SeedContainer phrase={phrase} seed={seed} node={node}/> : ''}
+			{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed} m_xprv={m_xprv} m_xpub={m_xpub}/> : ''}
 		</div>
 	</div>);
 }
