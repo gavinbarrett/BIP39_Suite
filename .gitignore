@@ -1,5 +1,0 @@
-.gitignore
-venv/
-node_modules/
-src/__pycache__/
-tests/__pycache__/
