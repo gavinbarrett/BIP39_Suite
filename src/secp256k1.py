@@ -85,8 +85,3 @@ class secp256k1():
 	def generate_pubkey(self, privkey):
 		# compute the public key from the private key through EC multiplication: K = nk
 		return privkey * self.point
-
-if __name__ == "__main__":
-	#expected_pubkey = '0339a36013301597daef41fbe593a02cc513d0b55527ec2df1050e2e8ff49c85c2'
-	s = secp256k1()
-	s.generate_pubkey(2)
