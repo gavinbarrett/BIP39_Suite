@@ -1,0 +1,67 @@
+.seedcontainer {
+	width: 80vw;
+	height: 45vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	border: solid gray 1px;
+	border-radius: 8px;
+	color: #000000;
+}
+
+.seedinfo {
+	width: 80vw;
+	height: 10vh;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background: white;
+}
+.seedtext {
+	width: 50vw;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background: black;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.m_xprv {
+	width: 50vw;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background: pink;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.m_xpub {
+	width: 50vw;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background: red;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
+}

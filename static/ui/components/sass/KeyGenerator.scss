@@ -1,11 +1,10 @@
 .generator {
-	width: 90vw;
-	height: 90vh;
-	background: white;
+	width: 96vw;
+	height: 100vh;
+	background: #12073b;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border-radius: 7px;
 }
 
 .passlabel {
@@ -31,6 +30,17 @@
 
 .passphrase:focus {
 	outline: none;
+}
+
+.hidden {
+	background: url('../icons/open-iconic-master/eye909090ff.svg');
+	background-size: cover;
+}
+
+.displayed {
+	background: url('../icons/open-iconic-master/eyeFFA62B.svg');
+	background-size: cover;
+	transition: all 0.2s ease-in-out;
 }
 
 .submitbutton {
@@ -70,13 +80,16 @@
 	margin-right: 6%;
 	font-family: 'Quicksand', sans-serif;
 	font-weight: bold;
-	cursor: pointer;
 	transition: all 0.2s ease-in-out;
+	font-size: 1.25vw;
 }
 
 .bytes:hover {
 	background: #FFA62B;
 	color: white;
+	font-weight: bold;
+	font-size: 1.25vw;
+	cursor: default;
 }
 
 .activebyte {
@@ -91,70 +104,132 @@
 	border-radius: 20px;
 	margin-right: 6%;
 	font-family: 'Quicksand', sans-serif;
-	cursor: pointer;
+	cursor: default;
+	font-weight: bold;
+	font-size: 1.25vw;
 }
 
 .seedcontainer {
 	width: 80vw;
-	height: 30vh;
+	height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	border: solid gray 1px;
+	border-radius: 8px;
+	color: #000000;
+}
+
+.seedinfo {
+	width: 80vw;
+	height: 12vh;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	background: white;
+}
+
+.expose-button::before {
+	content: "Expose";
+}
+
+.expose-button {
+	width: 10vw;
+	height: 8vh;
+	background-color: transparent;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: solid gray 1px;
-	border-radius: 8px;
-	color: #000000;
-	margin-top: 2%;
+	border: 3px solid red;
+	border-radius: 30px;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	transition: all 0.2s ease-in-out;
+}
+
+.active-field {
+	background-color: red;
+	color: white;
+}
+
+.active-field::before {
+	content: "Hide";
 }
 
 .seedtext {
-	width: 70vw;
+	width: 50vw;
 	height: 10vh;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: white;
 	background: black;
-	word-break: break-all;
-	padding: 1%;
-	font-size: 1.25vw;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
 .m_xprv {
-	width: 70vw;
+	width: 50vw;
 	height: 10vh;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: white;
 	background: pink;
-	word-break: break-all;
-	padding: 1%;
-	font-size: 1.25vw;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
 .m_xpub {
-	width: 70vw;
+	width: 50vw;
 	height: 10vh;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: white;
 	background: red;
-	word-break: break-all;
-	padding: 1%;
-	font-size: 1.25vw;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
 .selector-box {
-	width: 85vw;
-	height: 50vh;
-	background: green;
+	width: 96vw;
+	height: 42vh;
 }
 
 .generatorbox {
 	display: flex;
-	height: 40vh;
-	background: blue;
+	width: 96vw;
+	height: 58vh;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+}
+
+#password-hider {
+	width: 35px;
+	height: 35px;
+}
+
+.password-elements {
+	width: 56vw;
+	display: flex;
+	justify-content: space-evenly;
 	align-items: center;
 }
 

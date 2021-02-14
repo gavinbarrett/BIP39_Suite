@@ -3,12 +3,16 @@ import * as ReactDOM from 'react-dom';
 import * as Router from 'react-router-dom';
 import { SideBar } from './components/SideBar';
 import { AppContainer } from './components/AppContainer';
+import { Footer } from './components/Footer';
 import './components/sass/App.scss';
 
 const App = () => {
-	return (<div className="app">
-		<SideBar/>
-		<AppContainer/>
+	return (<div className="app-wrapper">
+		<div className="app">
+			<SideBar/>
+			<AppContainer/>
+		</div>
+		<Footer/>
 	</div>);
 }
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SeedContainer } from './SeedContainer';
 import './sass/KeyGenerator.scss';
 
 interface byteScheme {
@@ -11,13 +12,6 @@ interface byteScheme {
 interface byteSelector {
 	selected: number;
 	updateSelected: (number) => number;
-}
-
-interface seedContainer {
-	phrase: string;
-	seed: string;
-	m_xprv: string;
-	m_xpub: string;
 }
 
 const ByteScheme = ({desc, bytes, active, updateSelected}:byteScheme) => {
@@ -39,15 +33,6 @@ const ByteSelector = ({selected, updateSelected}:byteSelector) => {
 	</div>);
 }
 
-const SeedContainer = ({phrase, seed, m_xprv, m_xpub}:seedContainer) => {
-	return (<div className="seedcontainer">
-		<div className="seedtext">{phrase}</div>
-		<div className="seedtext">{seed}</div>
-		<div className="m_xprv">{m_xprv}</div>
-		<div className="m_xpub">{m_xpub}</div>
-	</div>);
-}
-
 export const KeyGenerator = () => {
 	const [pass, updatePass] = React.useState('');
 	const [selected, updateSelected] = React.useState(32);
@@ -55,6 +40,8 @@ export const KeyGenerator = () => {
 	const [seed, updateSeed] = React.useState(null);
 	const [m_xprv, updateMxprv] = React.useState(null);
 	const [m_xpub, updateMxpub] = React.useState(null);
+	const [phraseType, updatePhraseType] = React.useState("password");
+	const [toggle, updateToggle] = React.useState('hidden');
 
 	const update_pass = async (event) => { updatePass(event.target.value); }
 
@@ -73,11 +60,25 @@ export const KeyGenerator = () => {
 		updateMxpub(data["m_xpub"]);
 	}
 
+	const toggleDisplay = () => {
+		if (pass === "") return;
+		if (toggle === "hidden") {
+			// display the password
+			updateToggle("hidden displayed");
+			updatePhraseType("text");
+		} else {
+			// hide the password
+			updatePhraseType("password");
+			updateToggle("hidden");
+		}
+	}
+
 	return (<div className="generator">
 		<div className='selector-box'>
 		<ByteSelector selected={selected} updateSelected={updateSelected}/>
 			<div className='parameters'>
-				<input className="pass passphrase" type="password" placeholder={"Enter your HD wallet passphrase here"} title={"HD Wallet Passphrase"} onChange={update_pass}/>
+				<div className="password-elements">
+				<input className="pass passphrase" type={phraseType} placeholder={"Enter your HD wallet passphrase here"} title={"HD Wallet Passphrase"} onChange={update_pass}/><div id="password-hider" className={`${toggle}`} onClick={toggleDisplay}></div></div>
 				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
 			</div>
 		</div>
