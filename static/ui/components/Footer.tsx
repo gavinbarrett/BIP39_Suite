@@ -1,14 +1,15 @@
 import * as React from 'react';
+import * as Router from 'react-router-dom';
 import './sass/Footer.scss';
 
 export const Footer = () => {
 	return (<footer>
 		<div className="footer-box">
-			<div className="footer-field">
+			<a className="footer-field" href="https://github.com/gavinbarrett/BIP39_Suite">
 				Source Code
-			</div>
+			</a>
 			<div className="footer-field">
-				Privacy Policy
+				<Router.Link className="privacy" to="/privacy">Privacy Policy</Router.Link>
 			</div>
 			<div className="footer-field">
 				BipSuite &copy; 2021

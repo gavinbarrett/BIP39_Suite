@@ -16,8 +16,8 @@
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
-	background: white;
 }
+
 .seedtext {
 	width: 50vw;
 	height: 10vh;
@@ -64,4 +64,42 @@
 	font-family: 'Quicksand', sans-serif;
 	padding-left: 3%;
 	padding-right: 3%;
+}
+
+.expose-button::before {
+	content: "Expose";
+}
+
+.expose-button {
+	width: 10vw;
+	height: 8vh;
+	background-color: transparent;
+	color: red;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 3px solid red;
+	border-radius: 30px;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	transition: all 0.2s ease-in-out;
+}
+
+.expose-button:focus {
+	outline: none;
+}
+
+.active-field::before {
+	content: "Hide";
+}
+
+.active-field {
+	background-color: red;
+	color: white;
+}
+
+.active-field:focus {
+	outline: none;
 }

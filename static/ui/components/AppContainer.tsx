@@ -5,6 +5,7 @@ import { KeyGenerator } from './KeyGenerator';
 import { Recover } from './Recover';
 import { Download } from './Download';
 import { Documentation } from './Documentation';
+import { PrivacyPolicy } from './PrivacyPolicy';
 import './sass/AppContainer.scss';
 
 export const AppContainer = () => {
@@ -15,6 +16,7 @@ export const AppContainer = () => {
 			<Router.Route path='/recover' render={() => <Recover/>}/>
 			<Router.Route path='/download' render={() => <Download/>}/>
 			<Router.Route path='/documentation' render={() => <Documentation/>}/>
+			<Router.Route path='/privacy' render={() => <PrivacyPolicy/>}/>
 		</Router.Switch>
 	</div>);
 }

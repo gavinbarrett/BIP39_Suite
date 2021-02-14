@@ -8,27 +8,54 @@ export const Recover = () => {
 	const [rootseed, updateRootseed] = React.useState('');
 	const [xprv, updateXprv] = React.useState('');
 	const [xpub, updateXpub] = React.useState('');
+	const [hideMnemonic, updateHideMnemonic] = React.useState('password');
+	const [hidePass, updateHidePass] = React.useState('password');
+	const [eyeMnemonic, updateEyeMnemonic] = React.useState('hidden');
+	const [eyePass, updateEyePass] = React.useState('hidden');
 
 	const recover_seed = async () => {
 		const resp = await fetch('/recover', {method: "POST", body: JSON.stringify({"mnemonics": mnemonics, "salt": salt})});
 		const data = await resp.json();
 		if (data && data["seed"]) {
-			console.log(Object.getOwnPropertyNames(data));
+			// update container properties
 			updateRootseed(data["seed"]);
 			updateXprv(data["m_xprv"]);
 			updateXpub(data["m_xpub"]);
 		}
 	}
-	const update_seed = event => {
-		updateMnemonics(event.target.value);
+	
+	const update_seed = event => updateMnemonics(event.target.value)
+	
+	const update_salt = event => updateSalt(event.target.value);
+
+	const update_mnemonic_box = () => {
+		if (hideMnemonic === "password") {
+			updateHideMnemonic("text");
+			updateEyeMnemonic("displayed");
+		} else {
+			updateHideMnemonic("password");
+			updateEyeMnemonic("hidden");
+		}
 	}
-	const update_salt = event => {
-		updateSalt(event.target.value);
+
+	const update_pass_box = () => {
+		if (hidePass === "password") {
+			updateHidePass("text")
+			updateEyeMnemonic("displayed");
+		} else {
+			updateHidePass("password")
+			updateEyeMnemonic("hidden");
+		}
 	}
+
 	return (<div className="recovery-box">
 	<div className="recovery-input">
-			<input type="text" className="" placeholder="Enter mnemonic seed phrase here" title="Mnemonic Seed" onChange={update_seed}/>
-			<input type="text" className="" placeholder="Enter passphrase here" title="Salting Phrase" onChange={update_salt}/>
+		<div className="recovery-line">
+			<input type={hideMnemonic} pattern={'([a-z]+\s?){12,24}'} placeholder="Enter mnemonic seed phrase here" title="Mnemonic Seed" onChange={update_seed}/><div className={`password-hider ${eyeMnemonic}`} onClick={update_mnemonic_box}></div>
+		</div>
+		<div className="recovery-line">
+			<input type={hidePass} placeholder="Enter passphrase here" title="Salting Phrase" onChange={update_salt}/><div className={`password-hider ${eyePass}`} onClick={update_pass_box}></div>
+		</div>
 			<button className="recovery-button" onClick={recover_seed}>Recover</button>
 		</div><div className="recovery-seed">
 			{rootseed ? <SeedContainer phrase={mnemonics} seed={rootseed} m_xprv={xprv} m_xpub={xpub}/> : ""}

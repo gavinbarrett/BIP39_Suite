@@ -1,7 +1,7 @@
 footer {
 	width: 100vw;
 	height: 15vh;
-	background: purple;
+	background-color: white;
 	display: flex;
 	justify-content: flex-end;
 }
@@ -9,7 +9,6 @@ footer {
 .footer-box {
 	width: 15vw;
 	height: 15vh;
-	background: olive;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -18,7 +17,12 @@ footer {
 }
 
 .footer-field {
-	color: pink;
+	color: #12073b;
+	text-decoration: none;
 	font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
+}
+
+.privacy {
+	text-decoration: none;
 }

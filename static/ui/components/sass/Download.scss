@@ -1,14 +1,38 @@
 .download-wrapper {
-	width: 90vw;
-	height: 90vh;
-	background: #FFA62B;
-	border-radius: 7px;
+	width: 96vw;
+	height: 100vh;
+	background: #12073b;
+}
+
+.download-header {
+	width: 96vw;
+	height: 20vh;
+	background: #12073b;
+}
+
+.download-options {
+	width: 96vw;
+	height: 80vh;
+	display: flex;
+	background: #12073b;
 }
 
 .local-webclient {
-
+	width: 48vw;
+	background: #12073b;
+	transition: all 0.35s ease-in-out;
 }
 
 .cli-client {
+	width: 48vw;
+	background: #12073b;
+	transition: all 0.35s ease-in-out;
+}
 
+.local-webclient:hover {
+	filter: brightness(120%);
+}
+
+.cli-client:hover {
+	filter: brightness(120%);
 }

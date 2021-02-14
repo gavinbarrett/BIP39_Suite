@@ -7,8 +7,8 @@
 }
 
 .recovery-box {
-	width: 90vw;
-	height: 90vh;
+	width: 96vw;
+	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -16,18 +16,23 @@
 }
 
 .recovery-input {
-	width: 90vw;
-	height: 45vh;
-	background: white;
+	width: 96vw;
+	height: 50vh;
+	background: #12073b;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
-	border-radius: 7px;
 	color: black;
 }
 
-.recovery-input > input {
+.recovery-line {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.recovery-line > input {
 	background: #FFA62B;
 	width: 50vw;
 	height: 3vh;
@@ -47,8 +52,8 @@ input:hover {
 .recovery-button {
 	width: 15vw;
 	height: 8vh;
-	background: white;
 	border: 3px solid #FFA62B;
+	background-color: transparent;
 	color: #FFA62B;
 	border-radius: 30px;
 	font-size: 1.5vw;
@@ -64,11 +69,12 @@ input:hover {
 }
 
 .recovery-seed {
-	width: 90vw;
-	height: 45vh;
-	background: orange;
+	width: 96vw;
+	height: 50vh;
+	background: #12073b;
 	display: flex;
 	flex-direction: column;
-	border-radius: 7px;
+	justify-content: center;
+	align-items: center;
 	color: black;
 }
