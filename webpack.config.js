@@ -9,7 +9,7 @@ module.exports = {
 				use: ['ts-loader'],
 			},
 			{
-				test: /\.scss$/,
+				test: /\.(css|scss)$/,
 				exclude: /node_modules/,
 				use: [
 					{ 
@@ -20,17 +20,9 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.css$/,
-				use: [
-					'style-loader',
-					{
-						loader: 'css-loader?modules',
-						options: {
-							importLoaders: 1,
-							modules: true
-						}
-					}
-				]
+				test: /\.(svg|webp)$/,
+				exclude: /node_modules/,
+				use: ['url-loader']
 			},
 		]
 	},
