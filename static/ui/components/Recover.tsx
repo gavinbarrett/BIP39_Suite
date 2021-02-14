@@ -29,6 +29,7 @@ export const Recover = () => {
 	const update_salt = event => updateSalt(event.target.value);
 
 	const update_mnemonic_box = () => {
+		if (mnemonics === "") return;
 		if (hideMnemonic === "password") {
 			updateHideMnemonic("text");
 			updateEyeMnemonic("displayed");
@@ -39,12 +40,13 @@ export const Recover = () => {
 	}
 
 	const update_pass_box = () => {
+		if (salt === "") return;
 		if (hidePass === "password") {
 			updateHidePass("text")
-			updateEyeMnemonic("displayed");
+			updateEyePass("displayed");
 		} else {
 			updateHidePass("password")
-			updateEyeMnemonic("hidden");
+			updateEyePass("hidden");
 		}
 	}
 

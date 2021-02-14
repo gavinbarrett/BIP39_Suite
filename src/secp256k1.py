@@ -13,7 +13,7 @@ def modinv(a, m):
         return x % m
 
 class CurvePoint:
-	
+	''' This class defines a point (x, y) over the curve secp256k1 '''	
 	def __init__(self, x, y):
 		self.x = x
 		self.y = y

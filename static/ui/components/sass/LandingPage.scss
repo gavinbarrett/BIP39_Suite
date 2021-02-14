@@ -1,6 +1,53 @@
 .landing-page {
 	width: 96vw;
+	height: 200vh;
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+}
+
+.landing-box {
+	width: 96vw;
+	height: 80vh;
+	background-color: black;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-start;
+	padding-top: 5vh;
+}
+
+.landing-header {
+	width: 45vw;
+	height: 60vh;
+	font-size: 5vw;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 5%;
+}
+
+.landing-image {
+	width: 38vw;
+	height: 35vh;
+}
+
+.landing-image > img {
+	width: 100%;
+	height: auto;
+	border-radius: 30px;
+	box-shadow: inset 40px 40px 40px 40px #000000;
+}
+
+.learn-more {
+	width: 96vw;
+	height: 15vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5vw;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.more-info {
+	width: 96vw;
 	height: 100vh;
-	background: url('assets/bitcoinwallpaper.webp');
-	background-size: cover;
+	background: purple;
 }

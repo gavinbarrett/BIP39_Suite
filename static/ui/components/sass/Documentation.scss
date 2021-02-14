@@ -3,3 +3,22 @@
 	height: 100vh;
 	background: #12073b;
 }
+
+.doc-header {
+	width: 96vw;
+	height: 15vh;
+	background: pink;
+}
+
+.doc-title {
+	margin-left: 8%;
+	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
+	font-size: 2.5vw;
+	color: white;
+}
+
+.doc {
+	height: 10vh;
+	display: flex;
+}

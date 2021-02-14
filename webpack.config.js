@@ -20,7 +20,7 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.(svg|webp)$/,
+				test: /\.(svg|jpg|webp)$/,
 				exclude: /node_modules/,
 				use: ['url-loader']
 			},
