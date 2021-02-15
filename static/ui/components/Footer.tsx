@@ -5,6 +5,17 @@ import './sass/Footer.scss';
 export const Footer = () => {
 	return (<footer>
 		<div className="footer-box">
+			<div className="footer-field">
+				Generate
+			</div>
+			<div className="footer-field">
+				Recover
+			</div>
+			<div className="footer-field">
+				Documentation
+			</div>
+		</div>
+		<div className="footer-box">
 			<a className="footer-field" href="https://github.com/gavinbarrett/BIP39_Suite">
 				Source Code
 			</a>

@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+$dl_option_color: #c0c0c0;
+
 .download-wrapper {
 	width: 96vw;
 	height: 100vh;
@@ -8,6 +12,7 @@
 	width: 96vw;
 	height: 20vh;
 	background: #12073b;
+	font-family: 'Quicksand', sans-serif;
 }
 
 .download-options {
@@ -19,18 +24,40 @@
 
 .local-webclient {
 	width: 48vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
 	background: #12073b;
 	transition: all 0.35s ease-in-out;
+	font-family: 'Quicksand', sans-serif;
+	border-radius: 35px;
+}
+
+.local-installs {
+	width: 40vw;
+	height: 40vh;
+	display: flex;
+	align-items: flex-start;
+	color: black;
+	background: $dl_option_color;
+	font-size: 2.25vw;
+	padding-top: 5%;
+	padding-left: 5%;
+	border-radius: 30px;
+	font-family: 'Source Code Pro', monospace;
 }
 
 .cli-client {
 	width: 48vw;
 	background: #12073b;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-evenly;
 	align-items: center;
 	transition: all 0.35s ease-in-out;
 	border-radius: 35px;
+	font-family: 'Quicksand', sans-serif;
 }
 
 .local-webclient:hover {
@@ -44,8 +71,21 @@
 .pip-install {
 	width: 40vw;
 	height: 40vh;
-	background: silver;
+	background: $dl_option_color;
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 	color: black;
+	font-size: 2.25vw;
+	padding-top: 5%;
+	padding-left: 5%;
+	border-radius: 30px;
+	font-family: 'Source Code Pro', monospace;
+}
+
+.download-title {
+	font-size: 2vw;
+}
+
+.download-desc {
+	color: red;
 }

@@ -142,7 +142,7 @@ class BIP32_Account:
 		# encode private key with WIF codes
 		return b58encode_check(b'\x80' + prv + b'\x01')
 
-	def generate_legacy_address(self, xpub):
+	def gen_legacy_addr(self, xpub):
 		''' Generate a legacy Bitcoin address '''
 		# hash the public key with sha256 and then ripemd160; prepend it with 0x00
 		pubkey_hash = b'\x00' + self.hash160(xpub)
@@ -273,7 +273,7 @@ class BIP32_Account:
 		depth = int(5).to_bytes(1, endianness)
 		for i in range(rnge):
 			xprv, xpub = self.gen_child_xkeys(m_xprv, m_xpub, depth, i)
-			print(f'add: {self.generate_legacy_address(self.extract_pub(xpub))}')
+			print(f'add: {self.gen_legacy_addr(self.extract_pub(xpub))}')
 			print(f'pub: {self.extract_pub(xpub).hex()}')
 			print(f'prv: {self.wif_encode_prv(xprv)}\n')
 
