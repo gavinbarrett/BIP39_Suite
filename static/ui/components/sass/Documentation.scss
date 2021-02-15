@@ -1,6 +1,5 @@
 .documentation {
 	width: 96vw;
-	height: 100vh;
 	background: #12073b;
 }
 
@@ -8,10 +7,19 @@
 	width: 96vw;
 	height: 15vh;
 	background: pink;
+	font-size: 3vw;
+	font-family: 'Quicksand', sans-serif;
+	color: black;
+	display: flex;
+	align-items: center;
+	padding-left: 3vw;
 }
 
 .doc-title {
 	margin-left: 8%;
+	height: 16vh;
+	display: flex;
+	align-items: center;
 	font-family: 'Quicksand', sans-serif;
 	font-weight: bold;
 	font-size: 2.5vw;
@@ -19,6 +27,31 @@
 }
 
 .doc {
-	height: 10vh;
 	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+}
+
+.doc-text {
+	width: 80vw;
+	margin-left: 10vw;
+	font-family: 'Quicksand', sans-serif;
+	font-size: 1.5vw;
+}
+
+.code-box {
+	width: 60vw;
+	background: purple;
+	display: flex;
+	flex-direction: column;
+	padding: 3%;
+	border-radius: 35px;
+}
+
+.code-line {
+	word-break: break-all;
+}
+
+.indented-code {
+	margin-left: 3vw;
 }

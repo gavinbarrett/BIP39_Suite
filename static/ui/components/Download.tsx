@@ -11,7 +11,9 @@ export const Download = () => {
 				{"Install local client"}
 			</div>
 			<div className="cli-client">
-				{"pip install bippy"}
+				<div className="pip-install">
+					{"$ pip install bippy"}
+				</div>
 			</div>
 		</div>
 	</div>);

@@ -2,6 +2,13 @@ import * as React from 'react';
 import './sass/LandingPage.scss';
 
 export const LandingPage = () => {
+	
+	const scrollToInfo = event => {
+		const elem = document.getElementById("more-info");
+		if (elem)
+			elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+
 	return (<div className="landing-page">
 		<div className="landing-box">
 			<div className="landing-header">
@@ -11,8 +18,9 @@ export const LandingPage = () => {
 				<img src={"./static/ui/components/sass/assets/botcrypto.jpg"}/>
 			</div>
 		</div>
-		<div className="learn-more">{"Learn more."}</div>
-		<div className="more-info">
+		<div className="learn-more" onClick={scrollToInfo}>{"Learn more."}</div>
+		<div id="more-info">
+			{"Here's some info."}
 		</div>
 	</div>);
 }

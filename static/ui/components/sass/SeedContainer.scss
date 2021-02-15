@@ -41,7 +41,6 @@
 	justify-content: center;
 	align-items: center;
 	color: white;
-	background: pink;
 	word-break: break-word;
 	font-size: 1vw;
 	font-weight: bold;
@@ -57,7 +56,36 @@
 	justify-content: center;
 	align-items: center;
 	color: white;
-	background: red;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.phrase {
+	width: 50vw;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	word-break: break-word;
+	font-size: 1vw;
+	font-weight: bold;
+	font-family: 'Quicksand', sans-serif;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.seed {
+	width: 50vw;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
 	word-break: break-word;
 	font-size: 1vw;
 	font-weight: bold;
@@ -102,4 +130,25 @@
 
 .active-field:focus {
 	outline: none;
+}
+
+
+.seed-phrase {
+	display: none;
+}
+
+.seed-seed {
+	display: none;
+}
+
+.seed-xprv {
+	display: none;
+}
+
+.seed-xpub {
+	display: none;
+}
+
+.display-info {
+	display: flex;
 }

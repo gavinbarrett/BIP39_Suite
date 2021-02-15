@@ -46,7 +46,11 @@
 	font-family: 'Quicksand', sans-serif;
 }
 
-.more-info {
+.learn-more:hover {
+	cursor: default;
+}
+
+#more-info {
 	width: 96vw;
 	height: 100vh;
 	background: purple;

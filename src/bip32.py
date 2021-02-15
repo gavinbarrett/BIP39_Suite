@@ -231,7 +231,7 @@ class BIP32_Account:
 		xpub = pubkey_v + depth + fingerprint + index + chaincode + pubkey
 		return b58encode_check(xpub).decode()
 
-	def generate_child_keypair(self, xprv, xpub, depth, index):
+	def gen_child_xkeys(self, xprv, xpub, depth, index):
 		# pass in parent xprv and xpub keys, depth, index to child_prvkey function
 		index = struct.pack('>L', index)
 		# generate child extended private key
@@ -240,14 +240,14 @@ class BIP32_Account:
 		child_pub = self.generate_child_pubkey(child_prv, xpub, depth, index)
 		return child_prv, child_pub
 
-	def generate_keypath(self, rootkey, path_indices):
+	def generate_keypath(self, path_indices):
 		''' Generate a BIP wallet chain along a given path '''
 		# decode the chain's path
 		keypairs = []
 		for depth, index in enumerate(path_indices):
 			if index == "m":
 				# Generate the master extended key pair
-				xprv, xpub = self.gen_master_xkeys(unhexlify(rootkey))
+				xprv, xpub = self.gen_master_xkeys(unhexlify(self.rootseed))
 			else:
 				try:
 					# ensure that key index and depth variables do not overflow
@@ -256,7 +256,7 @@ class BIP32_Account:
 					if not (0x00 <= index <= 0xffffffff):
 						raise ValueError(f'Invalid key index {index}')
 					# Generate a child extended key pair
-					xprv, xpub = self.generate_child_keypair(xprv, xpub, depth.to_bytes(1, endianness), index)
+					xprv, xpub = self.gen_child_xkeys(xprv, xpub, depth.to_bytes(1, endianness), index)
 				except ValueError as err:
 					print(f'Error deriving child key: {err}.')
 					return None
@@ -264,21 +264,21 @@ class BIP32_Account:
 		return keypairs
 
 
-	def generate_address_range(self, rootkey, path, rnge):
+	def generate_address_range(self, path, rnge):
 		# generate the BIP 44 path down to the 4th level
-		keypairs = self.generate_bip44_path(rootkey, path)
+		keypairs = self.gen_bip44_path(path)
 		keys = keypairs[-1]
 		# extract keys
 		m_xprv, m_xpub = keys["prv"], keys["pub"]
 		depth = int(5).to_bytes(1, endianness)
 		for i in range(rnge):
-			xprv, xpub = self.generate_child_keypair(m_xprv, m_xpub, depth, i)
+			xprv, xpub = self.gen_child_xkeys(m_xprv, m_xpub, depth, i)
 			print(f'add: {self.generate_legacy_address(self.extract_pub(xpub))}')
 			print(f'pub: {self.extract_pub(xpub).hex()}')
 			print(f'prv: {self.wif_encode_prv(xprv)}\n')
 
 
-	def generate_bip44_path(self, rootkey, path):
+	def gen_bip44_path(self, path):
 		''' Derive a BIP 44 path:
 				m/44'/coin_type'/account'/change/address_index
 		'''
@@ -292,7 +292,7 @@ class BIP32_Account:
 				raise ValueError('BIP 44 coin_type `{path_indices[2]}` is not valid')
 			if not self.is_hardened(path_indices[3]):
 				raise ValueError('BIP 44 account number `{path_indices[3]}` is not valid')
-			return self.generate_keypath(rootkey, path_indices)
+			return self.generate_keypath(path_indices)
 		except ValueError as err:
 			print(f'Error occurred: {err}.')
 
@@ -303,4 +303,4 @@ if __name__ == "__main__":
 	path = "m/44'/0'/0'/0"
 	#generate_address_range(rootseed, path, 5)
 	wallet = BIP32_Account(rootseed)
-	wallet.generate_address_range(wallet.rootseed, path, 5)
+	wallet.generate_address_range(path, 5)

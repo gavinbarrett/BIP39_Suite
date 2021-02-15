@@ -13,7 +13,13 @@ export const Recover = () => {
 	const [eyeMnemonic, updateEyeMnemonic] = React.useState('hidden');
 	const [eyePass, updateEyePass] = React.useState('hidden');
 
+	const validMnemonics = (mnemonics) => {
+		if (mnemonics === "") return false;
+		return true;
+	}
+
 	const recover_seed = async () => {
+		if (!validMnemonics(mnemonics)) return;
 		const resp = await fetch('/recover', {method: "POST", body: JSON.stringify({"mnemonics": mnemonics, "salt": salt})});
 		const data = await resp.json();
 		if (data && data["seed"]) {

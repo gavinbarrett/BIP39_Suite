@@ -9,35 +9,49 @@ interface seedContainer {
 }
 
 export const SeedContainer = ({phrase, seed, m_xprv, m_xpub}:seedContainer) => {
-
 	const [phraseSwitch, togglePhraseSwitch] = React.useState('');
 	const [seedSwitch, toggleSeedSwitch] = React.useState('');
 	const [xprvSwitch, toggleXprvSwitch] = React.useState('');
 	const [xpubSwitch, toggleXpubSwitch] = React.useState('');
+	const [hiddenPhrase, updateHiddenPhrase] = React.useState('');
+	const [hiddenSeed, updateHiddenSeed] = React.useState('');
+	const [hiddenXprv, updateHiddenXprv] = React.useState('');
+	const [hiddenXpub, updateHiddenXpub] = React.useState('');
 
-	const exposeField = (field, toggleField) => {
+	const exposeField = (field, toggleField, toggleHidden) => {
+		console.log('toggling');
 		if (field === "") {
-			toggleField("active-field")
+			toggleHidden("display-info");
+			toggleField("active-field");
 		} else {
+			toggleHidden("");
 			toggleField("");
 		}
 	}
 	return (<div className="seedcontainer">
 		<div className="seedinfo">
-			<div className="seedtext">{phrase}</div>
-			<button className={`expose-button ${phraseSwitch}`} onClick={() => exposeField(phraseSwitch, togglePhraseSwitch)}>{"Mmnemonic"}</button>
+			<div className={`phrase`}>
+				<div className={`seed-phrase ${hiddenPhrase}`}>{phrase}</div>
+			</div>
+			<button className={`expose-button ${phraseSwitch}`} onClick={() => exposeField(phraseSwitch, togglePhraseSwitch, updateHiddenPhrase)}>{"Mmnemonic"}</button>
 		</div>
 		<div className="seedinfo">
-			<div className="seedtext">{seed}</div>
-			<button className={`expose-button ${seedSwitch}`} onClick={() => exposeField(seedSwitch, toggleSeedSwitch)}>{"Root Node"}</button>
+			<div className={`seed ${hiddenSeed}`}>
+				<div className={`seed-seed ${hiddenSeed}`}>{seed}</div>
+			</div>
+			<button className={`expose-button ${seedSwitch}`} onClick={() => exposeField(seedSwitch, toggleSeedSwitch, updateHiddenSeed)}>{"Root Node"}</button>
 		</div>
 		<div className="seedinfo">
-			<div className="m_xprv">{m_xprv}</div>
-			<button className={`expose-button ${xprvSwitch}`} onClick={() => exposeField(xprvSwitch, toggleXprvSwitch)}>{"XPrivate Key"}</button>
+			<div className={`m_xprv`}>
+				<div className={`seed-xprv ${hiddenXprv}`}>{m_xprv}</div>
+			</div>
+			<button className={`expose-button ${xprvSwitch}`} onClick={() => exposeField(xprvSwitch, toggleXprvSwitch, updateHiddenXprv)}>{"XPrivate Key"}</button>
 		</div>
 		<div className="seedinfo">
-			<div className="m_xpub">{m_xpub}</div>
-			<button className={`expose-button ${xpubSwitch}`} onClick={() => exposeField(xpubSwitch, toggleXpubSwitch)}>{"XPublic Key"}</button>
+			<div className={`m_xpub`}>
+				<div className={`seed-xpub ${hiddenXpub}`}>{m_xpub}</div>
+			</div>
+			<button className={`expose-button ${xpubSwitch}`} onClick={() => exposeField(xpubSwitch, toggleXpubSwitch, updateHiddenXpub)}>{"XPublic Key"}</button>
 		</div>
 	</div>);
 }

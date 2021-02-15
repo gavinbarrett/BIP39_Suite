@@ -26,7 +26,11 @@
 .cli-client {
 	width: 48vw;
 	background: #12073b;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	transition: all 0.35s ease-in-out;
+	border-radius: 35px;
 }
 
 .local-webclient:hover {
@@ -35,4 +39,13 @@
 
 .cli-client:hover {
 	filter: brightness(120%);
+}
+
+.pip-install {
+	width: 40vw;
+	height: 40vh;
+	background: silver;
+	display: flex;
+	align-items: center;
+	color: black;
 }

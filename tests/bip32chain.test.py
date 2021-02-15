@@ -30,7 +30,7 @@ class BIPChainTester(unittest.TestCase):
 		for k in range(1, len(keys)):
 			with self.subTest():
 				# generate child key pair
-				xprv, xpub = wallet.generate_child_keypair(xprv, xpub, k.to_bytes(1, 'big'), path[k])
+				xprv, xpub = wallet.gen_child_xkeys(xprv, xpub, k.to_bytes(1, 'big'), path[k])
 				# check child keys
 				self.assertEqual(xprv, keys[k]["prv"])
 				self.assertEqual(xpub, keys[k]["pub"])
@@ -52,7 +52,7 @@ class BIPChainTester(unittest.TestCase):
 		for k in range(1, len(keys)):
 			with self.subTest():
 				# generate child key pair
-				xprv, xpub = wallet.generate_child_keypair(xprv, xpub, k.to_bytes(1, 'big'), path[k])
+				xprv, xpub = wallet.gen_child_xkeys(xprv, xpub, k.to_bytes(1, 'big'), path[k])
 				# check child keys
 				self.assertEqual(xprv, keys[k]["prv"])
 				self.assertEqual(xpub, keys[k]["pub"])
@@ -74,7 +74,7 @@ class BIPChainTester(unittest.TestCase):
 		for k in range(1, len(keys)):
 			with self.subTest():
 				# generate child key pair
-				xprv, xpub = wallet.generate_child_keypair(xprv, xpub, k.to_bytes(1, 'big'), path[k])
+				xprv, xpub = wallet.gen_child_xkeys(xprv, xpub, k.to_bytes(1, 'big'), path[k])
 				# check child keys
 				self.assertEqual(xprv, keys[k]["prv"])
 				self.assertEqual(xpub, keys[k]["pub"])
