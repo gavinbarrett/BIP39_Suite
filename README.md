@@ -4,7 +4,7 @@ This repository presents a library for generating and managing hierarchical dete
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Build/badge.svg)
 
 
-![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP39%20Tests/badge.svg)
+![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP39%20Seed%20Generation/badge.svg)
 
 
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Elliptic%20Curve%20Arithmetic/badge.svg)

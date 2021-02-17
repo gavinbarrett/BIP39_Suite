@@ -1,4 +1,4 @@
-name: BIP39 Tests
+name: BIP39 Seed Generation
 
 on:
   push:
