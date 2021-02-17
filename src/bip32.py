@@ -9,10 +9,19 @@ from bip39 import bip39, generate_rootseed
 from secp256k1 import secp256k1, CurvePoint
 from base58 import b58encode, b58encode_check, b58decode, b58decode_check
 
-# public key version metadata
-pubkey_v = b'\x04\x88\xB2\x1E'
-# private key version metadata
-prvkey_v = b'\x04\x88\xAD\xE4'
+# xprivate key version
+x_prvkey_v = b'\x04\x88\xAD\xE4'
+# xpublic key version
+x_pubkey_v = b'\x04\x88\xB2\x1E'
+# yprivate key version
+y_prvkey_v = b'\x04\x9d\x78\x78'
+# ypublic key version
+y_pubkey_v = b'\x04\x9d\x7c\xb2'
+# zprivate key version
+z_prvkey_v = b'\x04\xb2\x43\x0c'
+# zpublic key version
+z_pubkey_v = b'\x04\xb2\x47\x46'
+
 # set byte endianness
 endianness = 'big'
 
@@ -36,7 +45,7 @@ class XPrivateKey:
 		pass
 	def nat_segwit_address(self):
 		''' Return the native SegWit address '''
-		pass
+	pass
 	def child(self):
 		pass
 
@@ -175,7 +184,7 @@ class BIP32_Account:
 		# return the child private key
 		return self.hmac_key(chain, key)
 
-	def generate_child_prvkey(self, xprv, xpub, depth, index):
+	def generate_child_prvkey(self, xprv, xpub, depth, index, version):
 		# extract private, public, and chain code
 		prv, chain = self.extract_prv(xprv)
 		pub = self.extract_pub(xpub)
@@ -188,10 +197,10 @@ class BIP32_Account:
 		# generate child private key
 		child_prv = (int(child_prv, 16) + int(prv.hex(), 16)) % secp256k1().n
 		#FIXME: check if derived key is valid
-		child_xprv = prvkey_v + depth + fingerprint + index + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(32, endianness)
-		return b58encode_check(child_xprv).decode()
+		child_yprv = version + depth + fingerprint + index + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(32, endianness)
+		return b58encode_check(child_yprv).decode()
 
-	def generate_child_pubkey(self, child_prv, parent_pub, depth, index):
+	def generate_child_pubkey(self, child_prv, parent_pub, depth, index, version):
 		''' Generate a child public key '''
 		# extract child private key and chain code
 		child_prv, child_chain = self.extract_prv(child_prv)
@@ -200,9 +209,9 @@ class BIP32_Account:
 		# generate the parent fingerprint from the public key
 		fingerprint = self.generate_fingerprint(self.extract_pub(parent_pub))
 		# serialize the child xpub key
-		child_xpub = pubkey_v + depth + fingerprint + index + child_chain + child_pub
+		child_ypub = version + depth + fingerprint + index + child_chain + child_pub
 		# return the child xpub key encoded in bas58_check
-		return b58encode_check(child_xpub).decode()
+		return b58encode_check(child_ypub).decode()
 
 	def gen_master_xkeys(self, rootseed):
 		''' Generate a master extended key pair '''
@@ -214,9 +223,19 @@ class BIP32_Account:
 		# generate the extended key pair
 		return self.gen_xprv(depth, m_id, m_id, prv_key, chain_code), self.gen_xpub(depth, m_id, m_id, prv_key, chain_code)
 
+	def gen_master_ykeys(self, rootseed):
+		''' Generate a master extended key pair '''
+		depth = b'\x00'
+		# set master key index (0x00) and master key fingerprint (0x00000000)
+		m_id = b'\x00' * 4
+		# generate a private secret from the rootseed
+		prv_key, chain_code = self.generate_secret(rootseed)
+		# generate the extended key pair
+		return self.gen_yprv(depth, m_id, m_id, prv_key, chain_code), self.gen_ypub(depth, m_id, m_id, prv_key, chain_code)
+
 	def gen_xprv(self, depth, fingerprint, index, prvkey, chaincode):
 		''' Generate the private key from a BIP39 seed '''
-		xprv = prvkey_v + depth + fingerprint + index + chaincode + b'\x00' + prvkey
+		xprv = x_prvkey_v + depth + fingerprint + index + chaincode + b'\x00' + prvkey
 		return b58encode_check(xprv).decode()
 
 	def gen_xpub(self, depth, fingerprint, index, prvkey, chaincode):
@@ -228,17 +247,53 @@ class BIP32_Account:
 		except ValueError as v:
 			print(f'Error: {v}')
 		# generate and return an xpub key encoded with base58check
-		xpub = pubkey_v + depth + fingerprint + index + chaincode + pubkey
+		xpub = x_pubkey_v + depth + fingerprint + index + chaincode + pubkey
 		return b58encode_check(xpub).decode()
+	
+	def gen_yprv(self, depth, fingerprint, index, prvkey, chaincode):
+		''' Generate the private key from a BIP39 seed '''
+		yprv = y_prvkey_v + depth + fingerprint + index + chaincode + b'\x00' + prvkey
+		return b58encode_check(yprv).decode()
+
+	def gen_ypub(self, depth, fingerprint, index, prvkey, chaincode):
+		''' Generate the public key by multiplying the private key by the secp256k1 base point '''
+		pubkey = self.point(prvkey)
+		try:
+			# compress the public key's y coordinate
+			pubkey = self.compress_pubkey(pubkey)
+		except ValueError as v:
+			print(f'Error: {v}')
+		# generate and return an xpub key encoded with base58check
+		ypub = y_pubkey_v + depth + fingerprint + index + chaincode + pubkey
+		return b58encode_check(ypub).decode()
 
 	def gen_child_xkeys(self, xprv, xpub, depth, index):
 		# pass in parent xprv and xpub keys, depth, index to child_prvkey function
 		index = struct.pack('>L', index)
 		# generate child extended private key
-		child_prv = self.generate_child_prvkey(xprv, xpub, depth, index)
+		child_prv = self.generate_child_prvkey(xprv, xpub, depth, index, x_prvkey_v)
 		# generate child extended public key
-		child_pub = self.generate_child_pubkey(child_prv, xpub, depth, index)
+		child_pub = self.generate_child_pubkey(child_prv, xpub, depth, index, x_pubkey_v)
 		return child_prv, child_pub
+	
+	def gen_child_ykeys(self, xprv, xpub, depth, index):
+		# pass in parent xprv and xpub keys, depth, index to child_prvkey function
+		index = struct.pack('>L', index)
+		# generate child extended private key
+		child_prv = self.generate_child_prvkey(xprv, xpub, depth, index, y_prvkey_v)
+		# generate child extended public key
+		child_pub = self.generate_child_pubkey(child_prv, xpub, depth, index, y_pubkey_v)
+		return child_prv, child_pub
+	
+	def gen_child_zkeys(self, xprv, xpub, depth, index):
+		# pass in parent xprv and xpub keys, depth, index to child_prvkey function
+		index = struct.pack('>L', index)
+		# generate child extended private key
+		child_prv = self.generate_child_prvkey(xprv, xpub, depth, index, z_prvkey_v)
+		# generate child extended public key
+		child_pub = self.generate_child_pubkey(child_prv, xpub, depth, index, z_pubkey_v)
+		return child_prv, child_pub
+
 
 	def generate_keypath(self, path_indices):
 		''' Generate a BIP wallet chain along a given path '''
@@ -262,7 +317,29 @@ class BIP32_Account:
 					return None
 			keypairs.append({"prv": xprv, "pub": xpub})
 		return keypairs
-
+	
+	def generate_ykeypath(self, path_indices):
+		''' Generate a BIP wallet chain along a given path '''
+		# decode the chain's path
+		keypairs = []
+		for depth, index in enumerate(path_indices):
+			if index == "m":
+				# Generate the master extended key pair
+				yprv, ypub = self.gen_master_ykeys(unhexlify(self.rootseed))
+			else:
+				try:
+					# ensure that key index and depth variables do not overflow
+					if not (0x00 <= depth <= 0xff):
+						raise ValueError(f'Invalid key depth {depth}')
+					if not (0x00 <= index <= 0xffffffff):
+						raise ValueError(f'Invalid key index {index}')
+					# Generate a child extended key pair
+					yprv, ypub = self.gen_child_ykeys(yprv, ypub, depth.to_bytes(1, endianness), index)
+				except ValueError as err:
+					print(f'Error deriving child key: {err}.')
+					return None
+			keypairs.append({"prv": yprv, "pub": ypub})
+		return keypairs
 
 	def gen_addr_range(self, path, rnge):
 		# generate the BIP 44 path down to the 4th level
@@ -299,7 +376,7 @@ class BIP32_Account:
 			print(f'Error occurred: {err}.')
 	
 	def gen_bip49_path(self, path):
-	#FIXME: define BIP 49 segwit addresses
+	#FIXME: define BIP 49 segwit addresses (P2WPKH-P2SH)
 		''' Derive a BIP 49 path:
 				m/44'/coin_type'/account'/change/address_index
 		'''
@@ -307,13 +384,13 @@ class BIP32_Account:
 		try:
 			if len(path_indices) < 5:
 				raise ValueError('BIP 44 path `{path_indices}` is not valid')
-			if path_indices[1] != 0x8000002C:
-				raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
+			#if path_indices[1] != 0x8000002C:
+			#	raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
 			if not self.is_hardened(path_indices[2]):
 				raise ValueError('BIP 44 coin_type `{path_indices[2]}` is not valid')
 			if not self.is_hardened(path_indices[3]):
 				raise ValueError('BIP 44 account number `{path_indices[3]}` is not valid')
-			return self.generate_keypath(path_indices)
+			return self.generate_ykeypath(path_indices)
 		except ValueError as err:
 			print(f'Error occurred: {err}.')
 
@@ -335,13 +412,35 @@ class BIP32_Account:
 			return self.generate_keypath(path_indices)
 		except ValueError as err:
 			print(f'Error occurred: {err}.')
-
+	
+	def gen_segwit_addr(self, ypub):
+		witness = b'\x00\x14' + self.hash160(ypub)
+		enc = b58encode_check(b'\x05' + self.hash160(witness))
+		print(enc)
+		return enc
+	
+	def gen_yaddr_range(self, path, rnge):
+		# generate the BIP 44 path down to the 4th level
+		keypairs = self.gen_bip49_path(path)
+		keys = keypairs[-1]
+		# extract keys
+		m_yprv, m_ypub = keys["prv"], keys["pub"]
+		depth = int(5).to_bytes(1, endianness)
+		addrs = []
+		for i in range(rnge):
+			yprv, ypub = self.gen_child_ykeys(m_yprv, m_ypub, depth, i)
+			addrs.append(self.gen_segwit_addr(self.extract_pub(ypub)))
+		return addrs
+	
 
 if __name__ == "__main__":
 	rootseed = "67f93560761e20617de26e0cb84f7234aaf373ed2e66295c3d7397e6d7ebe882ea396d5d293808b0defd7edd2babd4c091ad942e6a9351e6d075a29d4df872af"
 	# Generate the first address
-	path = "m/44'/0'/0'/0"
+	path = "m/49'/0'/0'/0"
 	#generate_address_range(rootseed, path, 5)
 	wallet = BIP32_Account(rootseed)
-	addrs = wallet.gen_addr_range(path, 20)
-	print(addrs)
+	#addrs = wallet.gen_addr_range(path, 20)
+	#print(addrs)
+	addresses = wallet.gen_yaddr_range(path, 20)
+	for addr in addresses:
+		print(addr)
