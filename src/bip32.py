@@ -264,19 +264,21 @@ class BIP32_Account:
 		return keypairs
 
 
-	def generate_address_range(self, path, rnge):
+	def gen_addr_range(self, path, rnge):
 		# generate the BIP 44 path down to the 4th level
 		keypairs = self.gen_bip44_path(path)
 		keys = keypairs[-1]
 		# extract keys
 		m_xprv, m_xpub = keys["prv"], keys["pub"]
 		depth = int(5).to_bytes(1, endianness)
+		addrs = []
 		for i in range(rnge):
 			xprv, xpub = self.gen_child_xkeys(m_xprv, m_xpub, depth, i)
-			print(f'add: {self.gen_legacy_addr(self.extract_pub(xpub))}')
-			print(f'pub: {self.extract_pub(xpub).hex()}')
-			print(f'prv: {self.wif_encode_prv(xprv)}\n')
-
+			addrs.append(self.gen_legacy_addr(self.extract_pub(xpub)))
+			#print(f'add: {self.gen_legacy_addr(self.extract_pub(xpub))}')
+			#print(f'pub: {self.extract_pub(xpub).hex()}')
+			#print(f'prv: {self.wif_encode_prv(xprv)}\n')
+		return addrs
 
 	def gen_bip44_path(self, path):
 		''' Derive a BIP 44 path:
@@ -295,12 +297,51 @@ class BIP32_Account:
 			return self.generate_keypath(path_indices)
 		except ValueError as err:
 			print(f'Error occurred: {err}.')
+	
+	def gen_bip49_path(self, path):
+	#FIXME: define BIP 49 segwit addresses
+		''' Derive a BIP 49 path:
+				m/44'/coin_type'/account'/change/address_index
+		'''
+		path_indices = self.decode_path(path)
+		try:
+			if len(path_indices) < 5:
+				raise ValueError('BIP 44 path `{path_indices}` is not valid')
+			if path_indices[1] != 0x8000002C:
+				raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
+			if not self.is_hardened(path_indices[2]):
+				raise ValueError('BIP 44 coin_type `{path_indices[2]}` is not valid')
+			if not self.is_hardened(path_indices[3]):
+				raise ValueError('BIP 44 account number `{path_indices[3]}` is not valid')
+			return self.generate_keypath(path_indices)
+		except ValueError as err:
+			print(f'Error occurred: {err}.')
+
+	def gen_bip84_path(self, path):
+		#FIXME: define BIP 84 (bech32/native segwit addresses)
+		''' Derive a BIP 84 path:
+				m/84'/coin_type'/account'/change/address_index
+		'''
+		path_indices = self.decode_path(path)
+		try:
+			if len(path_indices) < 5:
+				raise ValueError('BIP 44 path `{path_indices}` is not valid')
+			if path_indices[1] != 0x8000002C:
+				raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
+			if not self.is_hardened(path_indices[2]):
+				raise ValueError('BIP 44 coin_type `{path_indices[2]}` is not valid')
+			if not self.is_hardened(path_indices[3]):
+				raise ValueError('BIP 44 account number `{path_indices[3]}` is not valid')
+			return self.generate_keypath(path_indices)
+		except ValueError as err:
+			print(f'Error occurred: {err}.')
 
 
 if __name__ == "__main__":
-	rootseed = "1b7a95e4ee67157b6d369add2dddd2152a5182ba112f882395ec6648efe36fb7a60bb6c4587210fdaca4cef2aa1de06c20f2468eca196beb34bf73fbe652d88f"
+	rootseed = "67f93560761e20617de26e0cb84f7234aaf373ed2e66295c3d7397e6d7ebe882ea396d5d293808b0defd7edd2babd4c091ad942e6a9351e6d075a29d4df872af"
 	# Generate the first address
 	path = "m/44'/0'/0'/0"
 	#generate_address_range(rootseed, path, 5)
 	wallet = BIP32_Account(rootseed)
-	wallet.generate_address_range(path, 5)
+	addrs = wallet.gen_addr_range(path, 20)
+	print(addrs)
