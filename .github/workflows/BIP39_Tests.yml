@@ -21,4 +21,4 @@ jobs:
       run: |
         cd tests
         python seed.test.py
-		python mnemonic.test.py
+        python mnemonic.test.py

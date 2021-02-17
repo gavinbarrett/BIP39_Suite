@@ -19,5 +19,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Test BIP Vectors
       run: |
-        cd tests
+        pip install -r requirements.txt
+		cd tests
         python bip32chain.test.py
