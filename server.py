@@ -1,10 +1,11 @@
-from sys import path
-path.append('./src/')
 from binascii import hexlify
 from json import loads, dumps
 from flask import Flask, request, render_template
-from bip32 import BIP32_Account
-from bip39 import bip39, generate_rootseed
+from src.bip39 import bip39, generate_rootseed
+from src.bip32 import BIP32_Account
+from src.bip44 import BIP44
+from src.bip49 import BIP49
+from src.bip84 import BIP84
 
 app = Flask(__name__)
 

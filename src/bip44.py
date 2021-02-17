@@ -1,8 +1,8 @@
 import struct
 from binascii import unhexlify
+from base58 import b58encode_check
 from src.secp256k1 import secp256k1, CurvePoint
 from src.bip32 import BIP32_Account
-from base58 import b58encode_check
 
 endianness = 'big'
 
