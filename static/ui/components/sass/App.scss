@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
+$main-background: #36454F;
+
 html, body {
 	width: 100vw;
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
-	scroll-behavior: smooth;
 }
 
 #root {

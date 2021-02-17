@@ -44,7 +44,7 @@
 }
 
 .submitbutton {
-	width: 25vw;
+	width: 20vw;
 	height: 8vh;
 	background: transparent;
 	color: #FFA62B;
@@ -53,6 +53,7 @@
 	font-weight: bold;
 	transition: all 0.2s ease-in-out;
 	cursor: pointer;
+	font-size: 1.5vw;
 }
 
 .submitbutton:hover {
@@ -62,7 +63,7 @@
 
 #byteselector {
 	display: flex;
-	height: 15vh;
+	height: 20vh;
 	justify-content: center;
 	align-items: center;
 }
@@ -111,13 +112,13 @@
 
 .selector-box {
 	width: 96vw;
-	height: 42vh;
+	height: 50vh;
 }
 
 .generatorbox {
 	display: flex;
 	width: 96vw;
-	height: 58vh;
+	height: 50vh;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;

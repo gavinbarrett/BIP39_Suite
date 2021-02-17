@@ -17,7 +17,7 @@ const CodeBox = ({code_lines}) => {
 
 export const Documentation = () => {
 	const impt = "from bippy import BIP32_Account"
-	const seed = "seed = '1b7a95e4ee67157b6d369add2dddd2152a5182ba112f882395ec6648efe36fb7a60bb6c4587210fdaca4cef2aa1de06c20f2468eca196beb34bf73fbe652d88f'";
+	const seed = "seed = '000102030405060708090a0b0c0d0e0f'";
 	const wallet = "wallet = BIP32_Account(seed)";
 	const xkeys = "xprv, xpub = wallet.gen_master_xkeys(wallet.rootseed)";
 	const depth = "depth = 2**31";
@@ -30,15 +30,16 @@ export const Documentation = () => {
 		<div id="tutorial" className="doc-title">{"Setting up a simple wallet"}</div>
 			<div className="doc">
 				<div className="doc-text">
-					<div className="document-text">{"To set up a simple BIP wallet, all you need to do is call the BIP32_Account constructor."}</div>
+					<div className="document-text">{"To set up a simple BIP wallet, all you need to do is call the BIP32_Account constructor and pass in the seed phrase."}</div>
 					<CodeBox code_lines={[impt, seed, wallet]}/>
 				</div>
 			</div>
 		<div id="bippath" className="doc-title">{"Deriving a BIP 44 path"}</div>
 			<div className="doc">
 				<div className="doc-text">
-					<div className="document-text">{"To derive a BIP 44 path, you can use the generate_bip44_path method defined on the BIP32_Account class."}</div>
+					<div className="document-text">{"To derive a BIP 44 path, you can use the gen_bip44_path method defined on the BIP32_Account class."}</div>
 					<CodeBox code_lines={[path, bippath]}/>
+					{"This will return a list of keys derived along the given path."}
 				</div>
 			</div>
 		<div id="masternode" className="doc-title">{"Deriving the master node"}</div>
@@ -67,6 +68,7 @@ export const Documentation = () => {
 				<div className="doc-text">
 					{"Legacy (P2PKH) Bitcoin addresses can be computed with the gen_legacy_addr function on any extended public key."}
 					<CodeBox code_lines={["addr = wallet.gen_legacy_addr(xpub)"]}/>
+					{"P2SH-P2WPKH addresses can be computed with the gen_segwit_addr"}
 				</div>
 			</div>
 	</div>);

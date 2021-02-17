@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Prompt } from './Prompt';
 import { SeedContainer } from './SeedContainer';
 import './sass/Recover.scss';
 
@@ -66,7 +67,7 @@ export const Recover = () => {
 		</div>
 			<button className="recovery-button" onClick={recover_seed}>Recover</button>
 		</div><div className="recovery-seed">
-			{rootseed ? <SeedContainer phrase={mnemonics} seed={rootseed} m_xprv={xprv} m_xpub={xpub}/> : ""}
+			{rootseed ? <SeedContainer phrase={mnemonics} seed={rootseed} m_xprv={xprv} m_xpub={xpub}/> : <Prompt text={"this is a fucking prompt"}/>}
 		</div>
 	</div>);
 }

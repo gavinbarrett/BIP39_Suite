@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Prompt } from './Prompt';
 import { SeedContainer } from './SeedContainer';
 import './sass/KeyGenerator.scss';
 
@@ -83,7 +84,7 @@ export const KeyGenerator = () => {
 			</div>
 		</div>
 		<div className="generatorbox">
-			{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed} m_xprv={m_xprv} m_xpub={m_xpub}/> : ''}
+			{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed} m_xprv={m_xprv} m_xpub={m_xpub}/> : <Prompt text={"hellur"}/>}
 		</div>
 	</div>);
 }

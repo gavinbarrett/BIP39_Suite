@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
-$dl_option_color: #c0c0c0;
+$dl_option_color: #2b2d2f;
 
 .download-wrapper {
 	width: 96vw;
-	height: 100vh;
 	background: #12073b;
 }
 
@@ -17,7 +16,7 @@ $dl_option_color: #c0c0c0;
 
 .download-options {
 	width: 96vw;
-	height: 80vh;
+	height: 140vh;
 	display: flex;
 	background: #12073b;
 }
@@ -32,18 +31,19 @@ $dl_option_color: #c0c0c0;
 	transition: all 0.35s ease-in-out;
 	font-family: 'Quicksand', sans-serif;
 	border-radius: 35px;
+	word-break: all;
 }
 
 .local-installs {
 	width: 40vw;
-	height: 40vh;
+	height: 110vh;
 	display: flex;
+	flex-direction: column;
 	align-items: flex-start;
 	color: black;
 	background: $dl_option_color;
-	font-size: 2.25vw;
-	padding-top: 5%;
-	padding-left: 5%;
+	font-size: 1.5vw;
+	padding: 4%;
 	border-radius: 30px;
 	font-family: 'Source Code Pro', monospace;
 }
@@ -70,22 +70,34 @@ $dl_option_color: #c0c0c0;
 
 .pip-install {
 	width: 40vw;
-	height: 40vh;
+	height: 110vh;
 	background: $dl_option_color;
 	display: flex;
 	align-items: flex-start;
+	flex-direction: column;
 	color: black;
-	font-size: 2.25vw;
-	padding-top: 5%;
-	padding-left: 5%;
+	font-size: 1.5vw;
+	padding: 4%;
 	border-radius: 30px;
 	font-family: 'Source Code Pro', monospace;
 }
 
 .download-title {
-	font-size: 2vw;
+	font-size: 2.5vw;
 }
 
 .download-desc {
+	font-size: 2vw;
 	color: red;
+}
+
+.download-comment {
+	padding: 0;
+	color: gray;
+}
+
+.download-command {
+	padding: 0;
+	color: lime;
+	word-break: break-word;
 }

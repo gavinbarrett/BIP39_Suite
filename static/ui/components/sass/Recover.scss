@@ -51,7 +51,7 @@ input:hover {
 }
 
 .recovery-button {
-	width: 15vw;
+	width: 20vw;
 	height: 8vh;
 	border: 3px solid #FFA62B;
 	background-color: transparent;
@@ -59,6 +59,7 @@ input:hover {
 	border-radius: 30px;
 	font-size: 1.5vw;
 	font-weight: bold;
+	transition: all 0.2s ease-in-out;
 }
 
 .recovery-button:focus {
@@ -67,6 +68,8 @@ input:hover {
 
 .recovery-button:hover {
 	cursor: pointer;
+	background-color: #FFA62B;
+	color: white;
 }
 
 .recovery-seed {

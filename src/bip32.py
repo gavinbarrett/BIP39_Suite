@@ -57,7 +57,7 @@ class XPrivateKey:
 class BIP32_Account:
 	def __init__(self, rootseed):
 		# Generate BIP 39 root seed
-		self.rootseed = rootseed#generate_rootseed(mnemonic, salt)
+		self.rootseed = rootseed
 		# Generate master extended private and public keys
 		#FIXME: self.master_xprv, self.master_xpub = generate_extended_keypair(self.rootseed)
 		#self.rootkey = self.generate_rootkey(self.rootseed)

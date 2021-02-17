@@ -1,13 +1,15 @@
+$main-background: #36454F;
+
 footer {
 	width: 100vw;
 	height: 16vh;
-	background-color: white;
+	background-color: $main-background;
 	display: flex;
 	justify-content: flex-end;
 }
 
 .footer-box {
-	width: 15vw;
+	width: 12vw;
 	height: 16vh;
 	display: flex;
 	flex-direction: column;
@@ -22,8 +24,16 @@ footer {
 	text-decoration: none;
 	font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
+	transition: all 0.2s ease-in-out;
 }
 
-.privacy {
+.footer-link {
+	color: #12073b;
+	cursor: default;
 	text-decoration: none;
+	transition: all 0.2s ease-in-out;
+}
+
+.footer-field:hover, .footer-link:hover {
+	color: purple;
 }
