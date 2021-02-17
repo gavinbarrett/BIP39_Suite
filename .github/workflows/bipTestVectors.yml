@@ -20,5 +20,5 @@ jobs:
     - name: Test BIP Vectors
       run: |
         pip install -r requirements.txt
-		cd tests
+        cd tests
         python bip32chain.test.py
