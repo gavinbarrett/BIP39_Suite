@@ -1,4 +1,4 @@
-name: BIP Test Vectors
+name: BIP32 Path Derivation
 
 on:
   push:
@@ -17,8 +17,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Test BIP Vectors
+    - name: Test BIP32 Path Derivation
       run: |
         pip install -r requirements.txt
         cd tests
-        python bip32chain.test.py
+        python bip32path.test.py

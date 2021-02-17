@@ -10,7 +10,7 @@ This repository presents a library for generating and managing hierarchical dete
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Elliptic%20Curve%20Arithmetic/badge.svg)
 
 
-![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP%20Test%20Vectors/badge.svg)
+![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP32%20Path%20Derivation/badge.svg)
 
 ## Testing
 
