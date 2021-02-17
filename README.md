@@ -4,12 +4,11 @@ This repository presents a library for generating and managing hierarchical dete
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Build/badge.svg)
 
 
-![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Mnemonic%20Generation/badge.svg)
-![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Seed%20Generation/badge.svg)
+![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP39%20Tests/badge.svg)
 
 
-![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Elliptic%20Point%20Addition/badge.svg)
-![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Elliptic%20Point%20Multiplication/badge.svg)
+![](https://github.com/gavinbarrett/BIP39_Suite/workflows/Elliptic%20Curve%20Arithmetic/badge.svg)
+
 
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP%20Test%20Vectors/badge.svg)
 

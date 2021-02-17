@@ -1,4 +1,4 @@
-name: Mnemonic Generation
+name: Elliptic Curve Arithmetic
 
 on:
   push:
@@ -17,7 +17,9 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Generate Mnemonics
+    - name: Elliptic Curve Arithmetic
       run: |
         cd tests
-        python mnemonic.test.py
+        python ellipticadd.test.py
+        python ellipticdouble.test.py
+        python ellipticmult.test.py
