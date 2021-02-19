@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Prompt } from './Prompt';
+import { SideBar } from './SideBar';
 import { SeedContainer } from './SeedContainer';
 import './sass/Recover.scss';
 
@@ -72,7 +73,9 @@ export const Recover = () => {
 		}
 	}
 
-	return (<div className="recovery-box">
+	return (<div className="recovery-app">
+	<SideBar/>
+	<div className="recovery-box">
 	<div className="recovery-input">
 		<div className="recovery-line">
 			<input type={hideMnemonic} pattern={'([a-z]+\s?){12,24}'} placeholder="Enter mnemonic seed phrase here" title="Mnemonic Seed" onChange={update_seed}/><div className={`password-hider ${eyeMnemonic}`} onClick={update_mnemonic_box}></div>
@@ -84,5 +87,5 @@ export const Recover = () => {
 		</div><div className="recovery-seed">
 			{rootseed ? <SeedContainer phrase={mnemonics} seed={rootseed} m_xprv={xprv} m_xpub={xpub}/> : <Prompt texts={[prompt1, prompt2]}/>}
 		</div>
-	</div>);
+	</div></div>);
 }

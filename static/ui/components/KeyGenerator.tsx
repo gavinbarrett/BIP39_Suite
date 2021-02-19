@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Prompt } from './Prompt';
+import { SideBar } from './SideBar';
 import { PathSelector } from './PathSelector';
 import { SeedContainer } from './SeedContainer';
 import './sass/KeyGenerator.scss';
@@ -18,8 +19,8 @@ interface byteSelector {
 
 const ByteScheme = ({desc, bytes, active, updateSelected}:byteScheme) => {
 	const byteclass = (bytes === active) ? "activebyte" : "bytes";
-	const updateActivity = async () => {
-		await updateSelected(bytes);
+	const updateActivity = () => {
+		updateSelected(bytes);
 	}
 	return (<div className={byteclass} onClick={updateActivity}>{desc}</div>);
 }
@@ -44,6 +45,7 @@ export const KeyGenerator = () => {
 	const [m_xpub, updateMxpub] = React.useState(null);
 	const [phraseType, updatePhraseType] = React.useState("password");
 	const [toggle, updateToggle] = React.useState('hidden');
+	const [path, updatePath] = React.useState('Native SegWit');
 
 	const prompt1 = 'Select a scheme of 12, 15, 18, 21, or 24 words (hint: 24 words is by far the most secure)';
 	const prompt2 = 'Enter a passphrase to protect your wallet (This optional and would be needed to recover your wallet)';
@@ -59,7 +61,7 @@ export const KeyGenerator = () => {
 
 	const submit_params = async () => {
 		// gather desired passphrase and word count
-		const resp = await fetch('/generate', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({"bytes": selected, "passphrase": pass})});
+		const resp = await fetch('/generate', {method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify({"bytes": selected, "passphrase": pass, "addr": path})});
 		const data = await resp.json();
 		console.log(data);
 		if (data["phrase"] === "failed") {
@@ -85,18 +87,20 @@ export const KeyGenerator = () => {
 		}
 	}
 
-	return (<div className="generator">
+	return (<div className="generator-app">
+	<SideBar/>
+	<div className="generator">
 		<div className='selector-box'>
 		<ByteSelector selected={selected} updateSelected={updateSelected}/>
 			<div className='parameters'>
 				<div className="password-elements">
 				<input className="pass passphrase" type={phraseType} placeholder={"Enter your HD wallet passphrase here"} title={"HD Wallet Passphrase"} onChange={update_pass}/><div className={`password-hider ${toggle}`} onClick={toggleDisplay}></div></div>
-				<PathSelector/>
+				<PathSelector path={path} updatePath={updatePath}/>
 				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
 			</div>
 		</div>
 		<div className="generatorbox">
 			{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed} m_xprv={m_xprv} m_xpub={m_xpub}/> : <Prompt texts={[prompt1, prompt2, prompt3]}/>}
 		</div>
-	</div>);
+	</div></div>);
 }

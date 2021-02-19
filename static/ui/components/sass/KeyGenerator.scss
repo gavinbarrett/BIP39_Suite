@@ -1,3 +1,11 @@
+$blue-highlight: #6385E9;
+
+.generator-app {
+	width: 100vw;
+	background: white;
+	display: flex;
+}
+
 .generator {
 	width: 96vw;
 	height: 100vh;
@@ -22,7 +30,8 @@
 .passphrase {
 	width: 50vw;
 	height: 4vh;
-	background: #FFA62B;
+	background: $blue-highlight;
+	color: white;
 	padding: 1%;
 	border: 0;
 	border-radius: 30px;
@@ -47,8 +56,8 @@
 	width: 20vw;
 	height: 8vh;
 	background: transparent;
-	color: #FFA62B;
-	border: solid #FFA62B 3px;
+	color: $blue-highlight;
+	border: 3px solid $blue-highlight;
 	border-radius: 30px;
 	font-weight: bold;
 	transition: all 0.2s ease-in-out;
@@ -57,7 +66,7 @@
 }
 
 .submitbutton:hover {
-	background: #FFA62B;
+	background: $blue-highlight;
 	color: white;
 }
 
@@ -72,11 +81,11 @@
 	width: 10vw;
 	height: 5vh;
 	background: transparent;
-	border: solid #FFA62B 3px;
+	border: 3px solid $blue-highlight;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: #FFA62B;
+	color: $blue-highlight;
 	border-radius: 20px;
 	margin-right: 6%;
 	font-family: 'Quicksand', sans-serif;
@@ -86,7 +95,7 @@
 }
 
 .bytes:hover {
-	background: #FFA62B;
+	background: $blue-highlight;
 	color: white;
 	font-weight: bold;
 	font-size: 1.25vw;
@@ -96,12 +105,12 @@
 .activebyte {
 	width: 10vw;
 	height: 5vh;
-	background: #FFA62B;
+	background: $blue-highlight;
 	color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: solid #FFA62B 3px;
+	border: 3px solid $blue-highlight;
 	border-radius: 20px;
 	margin-right: 6%;
 	font-family: 'Quicksand', sans-serif;

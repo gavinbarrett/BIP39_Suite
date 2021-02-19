@@ -9,14 +9,12 @@ import { PrivacyPolicy } from './PrivacyPolicy';
 import './sass/AppContainer.scss';
 
 export const AppContainer = () => {
-	return (<div className="appcontainer">
-		<Router.Switch>
+	return (<Router.Switch>
 			<Router.Route path='/' exact render={() => <LandingPage/>}/>
 			<Router.Route path='/generate' render={() => <KeyGenerator/>}/>
 			<Router.Route path='/recover' render={() => <Recover/>}/>
 			<Router.Route path='/download' render={() => <Download/>}/>
 			<Router.Route path='/documentation' render={() => <Documentation/>}/>
 			<Router.Route path='/privacy' render={() => <PrivacyPolicy/>}/>
-		</Router.Switch>
-	</div>);
+		</Router.Switch>);
 }

@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { SideBar } from './SideBar';
 import './sass/Download.scss';
 
 export const Download = () => {
-	return (<div className="download-wrapper">
+	return (<div className="download-app">
+	<SideBar/>
+	<div className="download-wrapper">
 		<div className="download-header">
 			{"Download Header"}
 		</div>
@@ -39,5 +42,5 @@ export const Download = () => {
 				</div>
 			</div>
 		</div>
-	</div>);
+	</div></div>);
 }

@@ -8,10 +8,7 @@ import './components/sass/App.scss';
 
 const App = () => {
 	return (<div className="app-wrapper">
-		<div className="app">
-			<SideBar/>
-			<AppContainer/>
-		</div>
+		<AppContainer/>
 		<Footer/>
 	</div>);
 }

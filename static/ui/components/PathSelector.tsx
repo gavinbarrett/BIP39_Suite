@@ -1,10 +1,30 @@
 import * as React from 'react';
 import './sass/PathSelector.scss';
 
-export const PathSelector = () => {
+interface pathSelector {
+	path: string;
+	updatePath: (string) => string;
+};
+
+interface pathType {
+	style: string;
+	type: string;
+	path: string;
+	updatePath: (string) => string;
+};
+
+const Path = ({style, type, path, updatePath}:pathType) => {
+	const ptype = (type === path) ? 'active' : '';
+	const changePath = () => {
+		updatePath(type)
+	}
+	return (<div className={`${style} ${ptype}`} onClick={changePath}>{type}</div>);
+}
+
+export const PathSelector = ({path, updatePath}:pathSelector) => {
 	return (<div className="path-selector">
-		<div className="address legacy">{"Legacy"}</div>
-		<div className="address segwit">{"SegWit"}</div>
-		<div className="address native-segwit">{"Native SegWit"}</div>
+		<Path style={"address legacy"} type={"Legacy"} path={path} updatePath={updatePath}/>
+		<Path style={"address segwit"} type={"SegWit"} path={path} updatePath={updatePath}/>
+		<Path style={"address native-segwit"} type={"Native SegWit"} path={path} updatePath={updatePath}/>
 	</div>);
 } 

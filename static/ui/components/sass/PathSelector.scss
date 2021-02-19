@@ -1,3 +1,5 @@
+$blue-highlight: #6385E9;
+
 .path-selector {
 	height: 8vh;
 	display: flex;
@@ -8,10 +10,10 @@
 .address {
 	width: 12vw;
 	height: 5vh;
-	color: #FFA62B;
+	color: $blue-highlight;
 	background-color: transparent;
 	border-radius: 30px;
-	border: 3px solid #FFA62B;
+	border: 3px solid $blue-highlight;
 	font-family: 'Quicksand', sans-serif;
 	display: flex;
 	justify-content: center;
@@ -19,11 +21,19 @@
 	margin-left: 1vw;
 	margin-right: 1vw;
 	transition: all 0.2s ease-in-out;
+	cursor: default;
 }
 
 .address:hover {
-	background-color: #FFA62B;
+	background-color: $blue-highlight;
 	color: white;
+	cursor: default;
+}
+
+.active {
+	background-color: $blue-highlight;
+	color: white;
+	cursor: default;
 }
 
 .legacy {

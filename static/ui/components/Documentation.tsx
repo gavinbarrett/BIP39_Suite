@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { SideBar } from './SideBar';
 import './sass/Documentation.scss';
 
 const DocumentationHeader = () => {
@@ -25,7 +26,8 @@ export const Documentation = () => {
 	const child = "xprv, xpub = wallet.gen_child_xkeys(xprv, xpub, depth, index)";
 	const path = "m/44'/0'/0'/0";
 	const bippath = "keypairs = wallet.gen_bip44_path.(path)";
-	return (<div className="documentation">
+	return (<div className="app"><SideBar/>
+	<div className="documentation">
 		<DocumentationHeader/>
 		<div id="tutorial" className="doc-title">{"Setting up a simple wallet"}</div>
 			<div className="doc">
@@ -71,5 +73,5 @@ export const Documentation = () => {
 					{"P2SH-P2WPKH addresses can be computed with the gen_segwit_addr"}
 				</div>
 			</div>
-	</div>);
+	</div></div>);
 }
