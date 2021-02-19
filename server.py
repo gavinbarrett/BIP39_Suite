@@ -9,7 +9,22 @@ from src.bip84 import BIP84
 
 app = Flask(__name__)
 
-@app.route('/generate', methods=["POST"])
+def gen_wallet(seed, addr):
+	if addr == "Legacy":
+		return BIP44(seed)
+	elif addr == "SegWit":
+		return BIP49(seed)
+	elif addr == "Native SegWit":
+		return BIP84(seed)
+	return None
+
+def gen_keys(seed, addr):
+	# determine path type (44/49/84)
+	wallet = gen_wallet(seed.decode(), addr)
+	# derive master key pair
+	return wallet.derive_master_keys()
+
+@app.route('/generate', methods=['POST'])
 def generate():
 	data = request.data.decode('UTF-8')
 	data = loads(data)
@@ -17,12 +32,10 @@ def generate():
 		# generate mnemonic passphrase
 		mnemonics = bip39(data['bytes'])
 		# generate BIP32 root seed
-		seed = generate_rootseed(mnemonics, data["passphrase"])
-		# create a BIP32 wallet
-		wallet = BIP32_Account(seed)
-		# derive master key pair
-		m_xprv, m_xpub = wallet.gen_master_xkeys(seed)
-		return dumps({"phrase": mnemonics, "seed": seed.decode(), "m_xprv": m_xprv, "m_xpub": m_xpub})
+		seed = generate_rootseed(mnemonics, data['passphrase'])
+		addr = data['addr']
+		prv, pub = gen_keys(seed, addr)
+		return dumps({"phrase": mnemonics, "seed": seed.decode(), "m_xprv": prv, "m_xpub": pub})
 	except Exception as error:
 		print(f'Could not generate: ERROR {error}')
 		return dumps({"phrase": "failed"})

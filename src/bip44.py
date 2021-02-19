@@ -7,12 +7,11 @@ from src.bip32 import BIP32_Account
 endianness = 'big'
 
 class BIP44(BIP32_Account):
-
 	def __init__(self, seed):
 		super().__init__(seed)
 		self.prv_version = b'\x04\x88\xAD\xE4'
 		self.pub_version = b'\x04\x88\xB2\x1E'
-		self.master_xprv, self.master_xpub = self.derive_master_keys()
+		self.master_prv, self.master_pub = self.derive_master_keys()
 
 	def derive_master_keys(self):
 		''' Generate a master extended key pair '''
@@ -21,6 +20,10 @@ class BIP44(BIP32_Account):
 		m_id = b'\x00' * 4
 		# generate the extended key pair
 		return self.gen_prv(depth, m_id, m_id, self.master_prv, self.master_chain), self.gen_pub(depth, m_id, m_id, self.master_prv, self.master_chain)
+
+	def get_master_keys(self):
+		''' Return the master xkeys '''
+		return self.master_prv, self.master_pub
 
 	def gen_prv(self, depth, fingerprint, index, prvkey, chaincode):
 		''' Generate the private key from a BIP39 seed '''
@@ -102,7 +105,7 @@ class BIP44(BIP32_Account):
 		for depth, index in enumerate(path_indices):
 			if index == "m":
 				# Generate the master extended key pair
-				xprv, xpub = self.master_xprv, self.master_xpub
+				xprv, xpub = self.get_master_keys()
 			else:
 				try:
 					# ensure that key index and depth variables do not overflow

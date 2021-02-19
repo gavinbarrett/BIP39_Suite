@@ -67,12 +67,6 @@ class BIP32_Account:
 		length = len(childkey) // 2
 		return childkey[:length], childkey[length:]
 
-	def generate_secret(self, rootseed):
-		# generate the master node
-		key = self.generate_rootkey(rootseed)
-		# split the private key from the chain code
-		return self.split_rootkey(key)
-	
 	def wif_encode_prv(self, xprv):
 		''' Encrypt a private key in WIF format '''
 		# extract private key

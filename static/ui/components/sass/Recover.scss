@@ -1,3 +1,5 @@
+$blue-highlight: #6385E9;
+
 .recovery-app {
 	width: 100vw;
 	background: white;
@@ -40,7 +42,9 @@
 }
 
 .recovery-line > input {
-	background: #FFA62B;
+	background: $blue-highlight;
+	color: white;
+	font-size: 1.5vw;
 	width: 50vw;
 	height: 4vh;
 	border-radius: 30px;
@@ -59,9 +63,9 @@ input:hover {
 .recovery-button {
 	width: 20vw;
 	height: 8vh;
-	border: 3px solid #FFA62B;
+	border: 3px solid $blue-highlight;
 	background-color: transparent;
-	color: #FFA62B;
+	color: $blue-highlight;
 	border-radius: 30px;
 	font-size: 1.5vw;
 	font-weight: bold;
@@ -74,7 +78,7 @@ input:hover {
 
 .recovery-button:hover {
 	cursor: pointer;
-	background-color: #FFA62B;
+	background-color: $blue-highlight;
 	color: white;
 }
 
