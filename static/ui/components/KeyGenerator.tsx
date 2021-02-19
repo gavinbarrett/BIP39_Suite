@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Prompt } from './Prompt';
+import { PathSelector } from './PathSelector';
 import { SeedContainer } from './SeedContainer';
 import './sass/KeyGenerator.scss';
 
@@ -46,9 +47,15 @@ export const KeyGenerator = () => {
 
 	const prompt1 = 'Select a scheme of 12, 15, 18, 21, or 24 words (hint: 24 words is by far the most secure)';
 	const prompt2 = 'Enter a passphrase to protect your wallet (This optional and would be needed to recover your wallet)';
-	const prompt3 = 'Select whether you want to see keys for Legacy (P2PKH), SegWit (P2SH-P2WPKH), or Native SegWit addresses';
+	const prompt3 = 'Select whether you want keys for Legacy (P2PKH), SegWit (P2SH-P2WPKH), or Native SegWit addresses';
 
-	const update_pass = async (event) => { updatePass(event.target.value); }
+	const update_pass = async (event) => { 
+		updatePass(event.target.value);
+		if (event.target.value === "" && toggle !== "hidden") {
+			updatePhraseType("password");
+			updateToggle("hidden");
+		}
+	}
 
 	const submit_params = async () => {
 		// gather desired passphrase and word count
@@ -84,6 +91,7 @@ export const KeyGenerator = () => {
 			<div className='parameters'>
 				<div className="password-elements">
 				<input className="pass passphrase" type={phraseType} placeholder={"Enter your HD wallet passphrase here"} title={"HD Wallet Passphrase"} onChange={update_pass}/><div className={`password-hider ${toggle}`} onClick={toggleDisplay}></div></div>
+				<PathSelector/>
 				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
 			</div>
 		</div>

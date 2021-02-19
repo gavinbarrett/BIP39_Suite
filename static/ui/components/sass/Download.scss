@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
 $dl_option_color: #2b2d2f;
+$blue-highlight: #6385E9;
+$background: #ffffff;
 
 .download-wrapper {
 	width: 96vw;
@@ -18,7 +20,7 @@ $dl_option_color: #2b2d2f;
 	width: 96vw;
 	height: 140vh;
 	display: flex;
-	background: #12073b;
+	background: $background;
 }
 
 .local-webclient {
@@ -27,7 +29,7 @@ $dl_option_color: #2b2d2f;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
-	background: #12073b;
+	background: $background;
 	transition: all 0.35s ease-in-out;
 	font-family: 'Quicksand', sans-serif;
 	border-radius: 35px;
@@ -50,7 +52,7 @@ $dl_option_color: #2b2d2f;
 
 .cli-client {
 	width: 48vw;
-	background: #12073b;
+	background: $background;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -84,11 +86,13 @@ $dl_option_color: #2b2d2f;
 
 .download-title {
 	font-size: 2.5vw;
+	color: black;
 }
 
 .download-desc {
 	font-size: 2vw;
-	color: red;
+	font-weight: bold;
+	color: $blue-highlight;
 }
 
 .download-comment {
@@ -98,6 +102,6 @@ $dl_option_color: #2b2d2f;
 
 .download-command {
 	padding: 0;
-	color: lime;
+	color: $blue-highlight;
 	word-break: break-word;
 }

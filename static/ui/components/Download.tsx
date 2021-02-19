@@ -30,12 +30,12 @@ export const Download = () => {
 					<p className="download-command">{"$ pip install bippy"}</p>
 					<p className="download-comment">{"# Start the Python shell"}</p>
 					<p className="download-command">{"$ python"}</p>
-					<p className="download-comment">{"# Import the BIP32 class"}</p>
-					<p className="download-command">{">>> from bippy import BIP32_Account"}</p>
+					<p className="download-comment">{"# Import a BIP32 subclass"}</p>
+					<p className="download-command">{">>> from bippy import BIP44"}</p>
 					<p className="download-comment">{"# Generate a BIP32 compatible wallet"}</p>
-					<p className="download-command">{">>> wallet = BIP32_Account('000102030405060708090a0b0c0d0e0f')"}</p>
+					<p className="download-command">{">>> wallet = BIP44('000102030405060708090a0b0c0d0e0f')"}</p>
 					<p className="download-comment">{"# Generate master extended keys"}</p>
-					<p className="download-command">{">>> xprv, xpub = wallet.gen_master_xkeys()"}</p>
+					<p className="download-command">{">>> xprv, xpub = wallet.get_master_keys()"}</p>
 				</div>
 			</div>
 		</div>

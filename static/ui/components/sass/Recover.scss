@@ -13,12 +13,12 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	background: white;
 }
 
 .recovery-input {
 	width: 96vw;
 	height: 50vh;
-	background: #12073b;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -75,7 +75,6 @@ input:hover {
 .recovery-seed {
 	width: 96vw;
 	height: 50vh;
-	background: #12073b;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

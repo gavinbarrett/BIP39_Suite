@@ -34,9 +34,21 @@ export const Recover = () => {
 		}
 	}
 	
-	const update_seed = event => updateMnemonics(event.target.value)
+	const update_seed = event => {
+		updateMnemonics(event.target.value);
+		if (event.target.value === "" && hideMnemonic !== "password") {
+			updateHideMnemonic("password")
+			updateEyeMnemonic("hidden");
+		}
+	}
 	
-	const update_salt = event => updateSalt(event.target.value);
+	const update_salt = event => {
+		updateSalt(event.target.value);
+		if (event.target.value === "" && hidePass !== "password") {
+			updateHidePass("password")
+			updateEyePass("hidden");
+		}
+	}
 
 	const update_mnemonic_box = () => {
 		if (mnemonics === "") return;
