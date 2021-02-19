@@ -14,6 +14,9 @@ export const Recover = () => {
 	const [eyeMnemonic, updateEyeMnemonic] = React.useState('hidden');
 	const [eyePass, updateEyePass] = React.useState('hidden');
 
+	const prompt1 = 'Enter your BIP32 mnemonic seed phrase, and your password if your wallet has one.';
+	const prompt2 = 'Select whether you want to see keys for Legacy, SegWit, or Native SegWit addresses.';
+
 	const validMnemonics = (mnemonics) => {
 		if (mnemonics === "") return false;
 		return true;
@@ -67,7 +70,7 @@ export const Recover = () => {
 		</div>
 			<button className="recovery-button" onClick={recover_seed}>Recover</button>
 		</div><div className="recovery-seed">
-			{rootseed ? <SeedContainer phrase={mnemonics} seed={rootseed} m_xprv={xprv} m_xpub={xpub}/> : <Prompt text={"this is a fucking prompt"}/>}
+			{rootseed ? <SeedContainer phrase={mnemonics} seed={rootseed} m_xprv={xprv} m_xpub={xpub}/> : <Prompt texts={[prompt1, prompt2]}/>}
 		</div>
 	</div>);
 }

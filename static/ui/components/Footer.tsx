@@ -3,7 +3,7 @@ import * as Router from 'react-router-dom';
 import './sass/Footer.scss';
 
 export const Footer = () => {
-	return (<footer>
+	return (<footer id="footer">
 		<div className="footer-box">
 			<div className="footer-field">
 				<Router.Link className="footer-link" to="/">Home</Router.Link>

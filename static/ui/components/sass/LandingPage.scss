@@ -1,32 +1,68 @@
+$landing-color: linear-gradient(#6585E8, #1976D3);
+
 .landing-page {
 	width: 96vw;
-	height: 200vh;
-	background-color: black;
+	background-image: black;
 	display: flex;
 	flex-direction: column;
 }
 
 .landing-box {
 	width: 96vw;
-	height: 80vh;
-	background-color: black;
+	//height: 100vh;
 	display: flex;
-	justify-content: space-evenly;
-	align-items: flex-start;
-	padding-top: 5vh;
+	background: $landing-color;
+	justify-content: flex-end;
+}
+
+.landing-text {
+	width: 35vw;
+	height: 100vh;
+	color: white;
+	font-size: 6.25vw;
+	font-family: 'Baloo 2', cursive;
+	padding-left: 3%;
+}
+
+.learn-more {
+	width: 65vw;
+	height: 100vh;
+	display: flex;
+	justify-content: flex-end;
+}
+
+.learn-more-button {
+	width: 15vw;
+	height: 7vh;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: 'Baloo 2', cursive;
+	font-weight: bold;
+	font-size: 1.5vw;
+	background: #EF9501;
+	border: 0;
+	border-radius: 30px;
+	margin-top: 7vh;
+	margin-right: 7vw;
 }
 
 .landing-header {
 	width: 45vw;
-	height: 60vh;
+	//height: 60vh;
 	font-size: 5vw;
-	font-family: 'Quicksand', sans-serif;
+	font-family: 'Inconsolata', monospace;
 	padding-left: 5%;
 }
 
 .landing-image {
-	width: 38vw;
-	height: 35vh;
+	background: url('assets/bitcoin-background-large.jpg');
+	background-size: cover;
+	display: flex;
+	border: 3px solid $landing-color;
+	width: 96vw;
+	//height: 100vh;
 }
 
 .landing-image > img {
@@ -36,22 +72,24 @@
 	box-shadow: inset 40px 40px 40px 40px #000000;
 }
 
-.learn-more {
-	width: 96vw;
-	height: 15vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 1.5vw;
-	font-family: 'Quicksand', sans-serif;
-}
-
 .learn-more:hover {
 	cursor: default;
+}
+
+.arrow {
+	font-size: 3vw;
 }
 
 #more-info {
 	width: 96vw;
 	height: 100vh;
-	background: purple;
+	background: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#info {
+	width: 96vw;
+	height: 100vh;
 }

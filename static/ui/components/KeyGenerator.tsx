@@ -44,6 +44,10 @@ export const KeyGenerator = () => {
 	const [phraseType, updatePhraseType] = React.useState("password");
 	const [toggle, updateToggle] = React.useState('hidden');
 
+	const prompt1 = 'Select a scheme of 12, 15, 18, 21, or 24 words (hint: 24 words is by far the most secure)';
+	const prompt2 = 'Enter a passphrase to protect your wallet (This optional and would be needed to recover your wallet)';
+	const prompt3 = 'Select whether you want to see keys for Legacy (P2PKH), SegWit (P2SH-P2WPKH), or Native SegWit addresses';
+
 	const update_pass = async (event) => { updatePass(event.target.value); }
 
 	const submit_params = async () => {
@@ -84,7 +88,7 @@ export const KeyGenerator = () => {
 			</div>
 		</div>
 		<div className="generatorbox">
-			{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed} m_xprv={m_xprv} m_xpub={m_xpub}/> : <Prompt text={"hellur"}/>}
+			{(phrase && seed) ? <SeedContainer phrase={phrase} seed={seed} m_xprv={m_xprv} m_xpub={m_xpub}/> : <Prompt texts={[prompt1, prompt2, prompt3]}/>}
 		</div>
 	</div>);
 }

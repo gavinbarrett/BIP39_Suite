@@ -1,9 +1,9 @@
-$main-background: #36454F;
+$footer-background: #1976D3;
 
 footer {
 	width: 100vw;
 	height: 16vh;
-	background-color: $main-background;
+	background-color: $footer-background;
 	display: flex;
 	justify-content: flex-end;
 }
@@ -20,7 +20,7 @@ footer {
 
 .footer-field {
 	cursor: default;
-	color: #12073b;
+	color: white;
 	text-decoration: none;
 	font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
@@ -28,7 +28,7 @@ footer {
 }
 
 .footer-link {
-	color: #12073b;
+	color: white;
 	cursor: default;
 	text-decoration: none;
 	transition: all 0.2s ease-in-out;
