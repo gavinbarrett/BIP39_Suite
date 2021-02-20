@@ -51,6 +51,15 @@ $landing-color: linear-gradient(#6585E8, #1976D3);
 	border-radius: 30px;
 	margin-top: 7vh;
 	margin-right: 7vw;
+	transition: all 0.2s ease-in-out;
+}
+
+.learn-more-button:hover {
+	background: #FFA62B;
+}
+
+.learn-more-button:focus {
+	outline: none;
 }
 
 .landing-header {
@@ -84,13 +93,12 @@ $landing-color: linear-gradient(#6585E8, #1976D3);
 }
 
 #more-info {
-	width: 96vw;
+	width: 100vw;
 	height: 100vh;
 	background: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 3%;
 }
 
 #info {
@@ -100,4 +108,23 @@ $landing-color: linear-gradient(#6585E8, #1976D3);
 	border-radius: 30px;
 	font-size: 1.5vw;
 	font-family: 'Inconsolata', monospace;
+	padding: 3%;
+}
+
+.arrow-down {
+	font-size: 2vw;
+	transform: rotate(90deg);
+}
+
+.info-header {
+	font-size: 3vw;
+	text-align: center;
+}
+
+.info-desc {
+
+}
+
+.info-precaution {
+	color: red;
 }

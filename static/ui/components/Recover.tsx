@@ -78,10 +78,10 @@ export const Recover = () => {
 	<div className="recovery-box">
 	<div className="recovery-input">
 		<div className="recovery-line">
-			<input type={hideMnemonic} pattern={'([a-z]+\s?){12,24}'} placeholder="Enter mnemonic seed phrase here" title="Mnemonic Seed" onChange={update_seed}/><div className={`password-hider ${eyeMnemonic}`} onClick={update_mnemonic_box}></div>
+			<input type={hideMnemonic} pattern={'([a-z]+\s?){12,24}'} placeholder="Enter mnemonic seed phrase here" title="Mnemonic Seed" onChange={update_seed} autoComplete={"off"}/><div className={`password-hider ${eyeMnemonic}`} onClick={update_mnemonic_box}></div>
 		</div>
 		<div className="recovery-line">
-			<input type={hidePass} placeholder="Enter passphrase here" title="Salting Phrase" onChange={update_salt}/><div className={`password-hider ${eyePass}`} onClick={update_pass_box}></div>
+			<input type={hidePass} placeholder="Enter passphrase here" title="Salting Phrase" onChange={update_salt} autoComplete={"off"}/><div className={`password-hider ${eyePass}`} onClick={update_pass_box}></div>
 		</div>
 			<button className="recovery-button" onClick={recover_seed}>Recover</button>
 		</div><div className="recovery-seed">

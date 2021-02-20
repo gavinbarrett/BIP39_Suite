@@ -9,9 +9,7 @@ f = open('test_vectors/bip32chain.json', 'r')
 data = loads(f.read())
 f.close()
 
-
 class BIPChainTester(unittest.TestCase):
-
 	def test_chain_1(self):
 		seed = data[0]["seed"]
 		# Generate the BIP32 wallet
@@ -21,7 +19,7 @@ class BIPChainTester(unittest.TestCase):
 		# Retrieve expected keys
 		keys = data[0]["keys"]
 		# generate master key pair
-		xprv, xpub = wallet.derive_master_keys()
+		xprv, xpub = wallet.get_master_keys()
 		# check master keys
 		self.assertEqual(xprv, keys[0]["prv"])
 		self.assertEqual(xpub, keys[0]["pub"])
@@ -41,7 +39,7 @@ class BIPChainTester(unittest.TestCase):
 		path = wallet.decode_path(data[1]["path"])
 		keys = data[1]["keys"]
 		# generate master key pair
-		xprv, xpub = wallet.derive_master_keys()
+		xprv, xpub = wallet.get_master_keys()
 		# check master keys
 		self.assertEqual(xprv, keys[0]["prv"])
 		self.assertEqual(xpub, keys[0]["pub"])
@@ -61,7 +59,7 @@ class BIPChainTester(unittest.TestCase):
 		path = wallet.decode_path(data[2]["path"])
 		keys = data[2]["keys"]
 		# generate master key pair
-		xprv, xpub = wallet.derive_master_keys()
+		xprv, xpub = wallet.get_master_keys()
 		# check master keys
 		self.assertEqual(xprv, keys[0]["prv"])
 		self.assertEqual(xpub, keys[0]["pub"])

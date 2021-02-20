@@ -49,7 +49,11 @@ $background: #ffffff;
 	flex-direction: column;
 	align-items: flex-start;
 	color: black;
-	background: $dl_option_color;
+	background-blend-mode: screen;
+	background-image: url('assets/webclient.webp');
+	background-color: #0E399B;
+	background-size: cover;
+	opacity: 0.5;
 	font-size: 1.5vw;
 	padding: 4%;
 	border-radius: 30px;
@@ -103,11 +107,13 @@ $background: #ffffff;
 
 .download-comment {
 	padding: 0;
-	color: gray;
+	color: white;
+	filter: brightness(120%);
 }
 
 .download-command {
 	padding: 0;
-	color: $blue-highlight;
+	color: cyan;
 	word-break: break-word;
+	filter: brightness(120%);
 }
