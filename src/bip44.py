@@ -27,11 +27,13 @@ class BIP44(BIP32_Account):
 
 	def gen_prv(self, depth, fingerprint, index, prvkey, chaincode):
 		''' Generate the private key from a BIP39 seed '''
+		print(f'PRV: \n{depth}\n{fingerprint}\n{index}\n{prvkey}\n{chaincode}')
 		xprv = self.prv_version + depth + fingerprint + index + chaincode + b'\x00' + prvkey
 		return b58encode_check(xprv).decode()
 
 	def gen_pub(self, depth, fingerprint, index, prvkey, chaincode):
 		''' Generate the public key by multiplying the private key by the secp256k1 base point '''
+		print(f'PUB: \n{depth}\n{fingerprint}\n{index}\n{prvkey}\n{chaincode}')
 		pubkey = self.point(prvkey)
 		try:
 			# compress the public key's y coordinate
@@ -105,7 +107,8 @@ class BIP44(BIP32_Account):
 		for depth, index in enumerate(path_indices):
 			if index == "m":
 				# Generate the master extended key pair
-				xprv, xpub = self.get_master_keys()
+				xprv, xpub = self.master_prv, self.master_pub
+				print(f'Keys: \n{xprv}\n{xpub}')
 			else:
 				try:
 					# ensure that key index and depth variables do not overflow

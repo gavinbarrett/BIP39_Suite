@@ -22,7 +22,7 @@ def gen_keys(seed, addr):
 	# determine path type (44/49/84)
 	wallet = gen_wallet(seed.decode(), addr)
 	# derive master key pair
-	return wallet.derive_master_keys()
+	return wallet.get_master_keys()
 
 @app.route('/generate', methods=['POST'])
 def generate():
@@ -35,6 +35,7 @@ def generate():
 		seed = generate_rootseed(mnemonics, data['passphrase'])
 		addr = data['addr']
 		prv, pub = gen_keys(seed, addr)
+		print(f'Keys:\n{prv}\n{pub}')
 		return dumps({"phrase": mnemonics, "seed": seed.decode(), "m_xprv": prv, "m_xpub": pub})
 	except Exception as error:
 		print(f'Could not generate: ERROR {error}')

@@ -22,7 +22,10 @@ class BIP49(BIP32_Account):
 		m_id = b'\x00' * 4
 		# generate the extended key pair
 		return self.gen_prv(depth, m_id, m_id, self.master_prv, self.master_chain), self.gen_pub(depth, m_id, m_id, self.master_prv, self.master_chain)
-	
+
+	def get_master_keys(self):
+		return self.master_yprv, self.master_ypub
+
 	def gen_prv(self, depth, fingerprint, index, prvkey, chaincode):
 		''' Generate the private key from a BIP39 seed '''
 		yprv = self.prv_version + depth + fingerprint + index + chaincode + b'\x00' + prvkey
