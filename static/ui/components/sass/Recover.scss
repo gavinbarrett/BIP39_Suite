@@ -36,7 +36,7 @@ $blue-highlight: #6385E9;
 
 .recovery-line {
 	width: 56vw;
-	height: 20vh;
+	height: 12.5vh;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -59,6 +59,14 @@ input:focus {
 
 input:hover {
 	cursor: default;
+}
+
+.recovery-wrapper {
+	width: 96vw;
+	height: 12.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .recovery-button {

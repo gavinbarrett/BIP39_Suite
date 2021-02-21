@@ -92,10 +92,10 @@ export const KeyGenerator = () => {
 	<div className="generator">
 		<div className='selector-box'>
 		<ByteSelector selected={selected} updateSelected={updateSelected}/>
-			<div className='parameters'>
-				<div className="password-elements">
-				<input className="pass passphrase" type={phraseType} placeholder={"Enter your HD wallet passphrase here"} title={"HD Wallet Passphrase"} onChange={update_pass} autoComplete={"off"}/><div className={`password-hider ${toggle}`} onClick={toggleDisplay}></div></div>
-				<PathSelector path={path} updatePath={updatePath}/>
+			<div className="password-elements">
+			<input className="pass passphrase" type={phraseType} placeholder={"Enter your HD wallet passphrase here"} title={"HD Wallet Passphrase"} onChange={update_pass} autoComplete={"off"}/><div className={`password-hider ${toggle}`} onClick={toggleDisplay}></div></div>
+			<PathSelector path={path} updatePath={updatePath}/>
+			<div className="generator-wrapper">
 				<button className="submitbutton" onClick={submit_params}>Generate Seed</button>
 			</div>
 		</div>

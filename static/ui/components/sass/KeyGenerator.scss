@@ -73,7 +73,7 @@ $blue-highlight: #6385E9;
 
 #byteselector {
 	display: flex;
-	height: 20vh;
+	height: 12.5vh;
 	justify-content: center;
 	align-items: center;
 }
@@ -123,6 +123,18 @@ $blue-highlight: #6385E9;
 .selector-box {
 	width: 96vw;
 	height: 50vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.generator-wrapper {
+	width: 96vw;
+	height: 12.5vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .generatorbox {
@@ -141,6 +153,7 @@ $blue-highlight: #6385E9;
 
 .password-elements {
 	width: 56vw;
+	height: 12.5vh;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
