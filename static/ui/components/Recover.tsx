@@ -27,7 +27,7 @@ export const Recover = () => {
 
 	const recover_seed = async () => {
 		if (!validMnemonics(mnemonics)) return;
-		const resp = await fetch('/recover', {method: "POST", body: JSON.stringify({"mnemonics": mnemonics, "salt": salt})});
+		const resp = await fetch('/recover', {method: "POST", body: JSON.stringify({"mnemonics": mnemonics, "salt": salt, "addr": path})});
 		const data = await resp.json();
 		if (data && data["seed"]) {
 			// update container properties

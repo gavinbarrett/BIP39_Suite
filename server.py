@@ -31,9 +31,10 @@ def generate():
 	try:
 		# generate mnemonic passphrase
 		mnemonics = bip39(data['bytes'])
+		# extract address type
+		addr = data['addr']
 		# generate BIP32 root seed
 		seed = generate_rootseed(mnemonics, data['passphrase'])
-		addr = data['addr']
 		prv, pub = gen_keys(seed, addr)
 		print(f'Keys:\n{prv}\n{pub}')
 		return dumps({"phrase": mnemonics, "seed": seed.decode(), "m_xprv": prv, "m_xpub": pub})
@@ -47,12 +48,11 @@ def recover():
 	data = loads(data)
 	try:
 		seed = generate_rootseed(data['mnemonics'], data['salt'])
+		# extract address type
+		addr = data["addr"]
 		# generate a BIP32 wallet
-		prv, pub = gen_keys(seed, None)
-		wallet = BIP44(seed)
-		# derive master key pair
-		zprv, zpub = wallet.get_master_keys()
-		return dumps({"seed": seed.decode(), "m_xprv": zprv, "m_xpub": zpub})
+		prv, pub = gen_keys(seed, addr)
+		return dumps({"seed": seed.decode(), "m_xprv": prv, "m_xpub": pub})
 	except Exception as error:
 		print(f'Could not decode data.\nERROR: {error}')
 		return dumps({"seed": "null"})
