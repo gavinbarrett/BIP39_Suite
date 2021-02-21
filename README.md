@@ -28,5 +28,5 @@ This will test 1) the generation of bits of entropy and a corresponding mnemonic
 from bipsuite import BIP44
 seed = '000102030405060708090a0b0c0d0e0f'
 wallet = BIP44(seed)
-xprv, xpub = wallet.derive_master_keys()
+xprv, xpub = wallet.get_master_keys()
 ```
