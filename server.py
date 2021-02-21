@@ -16,7 +16,7 @@ def gen_wallet(seed, addr):
 		return BIP49(seed)
 	elif addr == "Native SegWit":
 		return BIP84(seed)
-	return None
+	return BIP44(seed)
 
 def gen_keys(seed, addr):
 	# determine path type (44/49/84)
@@ -48,10 +48,11 @@ def recover():
 	try:
 		seed = generate_rootseed(data['mnemonics'], data['salt'])
 		# generate a BIP32 wallet
-		wallet = BIP32_Account(seed)
+		prv, pub = gen_keys(seed, None)
+		wallet = BIP44(seed)
 		# derive master key pair
-		m_xprv, m_xpub = wallet.gen_master_xkeys(wallet.rootseed)
-		return dumps({"seed": seed.decode(), "m_xprv": m_xprv, "m_xpub": m_xpub})
+		zprv, zpub = wallet.get_master_keys()
+		return dumps({"seed": seed.decode(), "m_xprv": zprv, "m_xpub": zpub})
 	except Exception as error:
 		print(f'Could not decode data.\nERROR: {error}')
 		return dumps({"seed": "null"})
