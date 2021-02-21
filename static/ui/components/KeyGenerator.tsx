@@ -49,7 +49,7 @@ export const KeyGenerator = () => {
 
 	const prompt1 = 'Select a scheme of 12, 15, 18, 21, or 24 words (hint: 24 words is by far the most secure)';
 	const prompt2 = 'Enter a passphrase to protect your wallet (This optional and would be needed to recover your wallet)';
-	const prompt3 = 'Select whether you want keys for Legacy (P2PKH), SegWit (P2SH-P2WPKH), or Native SegWit addresses';
+	const prompt3 = 'Select whether you want keys for Legacy (P2PKH), SegWit (P2SH-P2WPKH), or Native SegWit (P2WPKH) addresses';
 
 	const update_pass = async (event) => { 
 		updatePass(event.target.value);
