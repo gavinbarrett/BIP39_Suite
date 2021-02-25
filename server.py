@@ -48,6 +48,7 @@ def recover():
 	data = loads(data)
 	try:
 		seed = generate_rootseed(data['mnemonics'], data['salt'])
+		# FIXME: fix decoding error
 		# extract address type
 		addr = data["addr"]
 		# generate a BIP32 wallet

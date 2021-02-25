@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gavinbarrett/BIP39_Suite.git"
+    "url": "git+https://github.com/gavinbarrett/bipsuite.git"
   },
   "keywords": [
     "Bitcoin",
@@ -26,9 +26,9 @@
   "author": "Gavin Barrett",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/gavinbarrett/BIP39_Suite/issues"
+    "url": "https://github.com/gavinbarrett/bipsuite/issues"
   },
-  "homepage": "https://github.com/gavinbarrett/BIP39_Suite#readme",
+  "homepage": "https://github.com/gavinbarrett/bipsuite#readme",
   "dependencies": {
     "@babel/preset-typescript": "^7.12.16",
     "express": "^4.17.1",
