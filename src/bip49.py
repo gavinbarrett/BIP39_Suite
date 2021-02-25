@@ -7,8 +7,8 @@ from src.secp256k1 import secp256k1, CurvePoint
 endianness = 'big'
 
 class BIP49(BIP32_Account):
-	def __init__(self, seed):
-		super().__init__(seed)
+	def __init__(self, seed, fromseed=False):
+		super().__init__(seed, fromseed)
 		# yprivate key version
 		self.prv_version = b'\x04\x9d\x78\x78'
 		# ypublic key version

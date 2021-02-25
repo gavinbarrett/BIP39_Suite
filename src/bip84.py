@@ -31,8 +31,8 @@ def bech32_create_checksum(hrp, data):
 endianness = 'big'
 
 class BIP84(BIP32_Account):
-	def __init__(self, seed):
-		super().__init__(seed)
+	def __init__(self, seed, fromseed=False):
+		super().__init__(seed, fromseed)
 		self.prv_version = b'\x04\xb2\x43\x0c'
 		self.pub_version = b'\x04\xb2\x47\x46'
 		self.master_prv, self.master_pub = self.derive_master_keys()

@@ -13,7 +13,7 @@ class BIPChainTester(unittest.TestCase):
 	def test_chain_1(self):
 		seed = data[0]["seed"]
 		# Generate the BIP32 wallet
-		wallet = BIP44(seed)
+		wallet = BIP44(seed, True)
 		# Decode the BIP path
 		path = wallet.decode_path(data[0]["path"])
 		# Retrieve expected keys
@@ -34,7 +34,7 @@ class BIPChainTester(unittest.TestCase):
 	def test_chain_2(self):
 		seed = data[1]["seed"]
 		# Generate the BIP32 wallet
-		wallet = BIP44(seed)
+		wallet = BIP44(seed, True)
 		# Decode the BIP path
 		path = wallet.decode_path(data[1]["path"])
 		keys = data[1]["keys"]
@@ -54,7 +54,7 @@ class BIPChainTester(unittest.TestCase):
 	def test_chain_3(self):
 		seed = data[2]["seed"]
 		# Generate the BIP32 wallet
-		wallet = BIP44(seed)
+		wallet = BIP44(seed, True)
 		# Decode the BIP path
 		path = wallet.decode_path(data[2]["path"])
 		keys = data[2]["keys"]

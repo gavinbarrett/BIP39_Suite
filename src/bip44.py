@@ -7,8 +7,8 @@ from src.bip32 import BIP32_Account
 endianness = 'big'
 
 class BIP44(BIP32_Account):
-	def __init__(self, seed):
-		super().__init__(seed)
+	def __init__(self, seed, fromseed=False):
+		super().__init__(seed, fromseed)
 		self.prv_version = b'\x04\x88\xAD\xE4'
 		self.pub_version = b'\x04\x88\xB2\x1E'
 		self.master_prv, self.master_pub = self.derive_master_keys()
