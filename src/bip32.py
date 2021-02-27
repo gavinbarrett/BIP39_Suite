@@ -21,18 +21,16 @@ class BIP32_Account:
 	# FIXME: 	ideally we should be passing in a custom class to prevent people from using this construtor to
 	#			creating brain wallets
 
-	def __init__(self, seed, fromseed=False):
+	def __init__(self, seed, fromseed=False, salt=''):
 		# Generate BIP 32 master keys
 		if fromseed:
-			# FIXME: constructing from BIP39 seed
+			# constructing from BIP39 seed
 			self.rootseed = unhexlify(seed)
-			self.rootnode = self.generate_rootkey(self.rootseed)
-			self.master_prv, self.master_chain = self.split_rootkey(self.rootnode)
 		else:
 			# constructing from an ascii BIP39 mnemonic phrase
-			self.rootseed = generate_rootseed(seed)
-			self.rootnode = self.generate_rootkey(self.rootseed)
-			self.master_prv, self.master_chain = self.split_rootkey(self.rootnode)
+			self.rootseed = generate_rootseed(seed, salt)
+		self.rootnode = self.generate_rootkey(self.rootseed)
+		self.master_prv, self.master_chain = self.split_rootkey(self.rootnode)
 
 	# FIXME: create valid_key/on_curve function
 	def generate_rootkey(self, seed):

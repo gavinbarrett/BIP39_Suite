@@ -86,7 +86,7 @@ class BIP44(BIP32_Account):
 		'''
 		path_indices = self.decode_path(path)
 		try:
-			if len(path_indices) < 5:
+			if len(path_indices) < 4:
 				raise ValueError('BIP 44 path `{path_indices}` is not valid')
 			#if path_indices[1] != 0x8000002C:
 			#	raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
@@ -128,25 +128,18 @@ class BIP44(BIP32_Account):
 		# encode the hash
 		return b58encode_check(pubkey_hash).decode()
 
-	def gen_addr_range(self, path, rnge):
+	def gen_addr_range(self, path, rnge, hardened=False):
 		# generate the BIP 44 path down to the 4th level
 		keypairs = self.derive_path(path)
 		keys = keypairs[-1]
 		# extract keys
-		m_yprv, m_ypub = keys["prv"], keys["pub"]
+		m_xprv, m_xpub = keys["prv"], keys["pub"]
 		depth = int(5).to_bytes(1, endianness)
 		addrs = []
+		offset = 2**31 if hardened else 0
 		for i in range(rnge):
 			#
-			yprv, ypub = self.derive_child_keys(m_yprv, m_ypub, depth, i)
+			xprv, xpub = self.derive_child_keys(m_xprv, m_xpub, depth, i + offset)
 			#
-			addrs.append(self.derive_address(self.extract_pub(ypub)))
+			addrs.append(self.derive_address(self.extract_pub(xpub)))
 		return addrs
-
-if __name__ == "__main__":
-	rootseed = "67f93560761e20617de26e0cb84f7234aaf373ed2e66295c3d7397e6d7ebe882ea396d5d293808b0defd7edd2babd4c091ad942e6a9351e6d075a29d4df872af"
-	path = "m/49'/0'/0'/0"
-	wallet = BIP44(rootseed)
-	addrs = wallet.gen_addr_range(path, 20)
-	for a in addrs:
-		print(a)

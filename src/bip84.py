@@ -26,17 +26,16 @@ def bech32_create_checksum(hrp, data):
 	polymod = bech32_polymod(values + [0,0,0,0,0,0]) ^ 1
 	return [(polymod >> 5 * (5 - i)) & 31 for i in range(6)]
 
-
 # set byte endianness
 endianness = 'big'
 
 class BIP84(BIP32_Account):
-	def __init__(self, seed, fromseed=False):
-		super().__init__(seed, fromseed)
+	def __init__(self, seed, fromseed=False, salt=""):
+		super().__init__(seed, fromseed, salt)
 		self.prv_version = b'\x04\xb2\x43\x0c'
 		self.pub_version = b'\x04\xb2\x47\x46'
 		self.master_prv, self.master_pub = self.derive_master_keys()
-		self.alphabet = list('qpzry9x8gf2tvdw0s3jn54khce6mua71')
+		self.alphabet = list('qpzry9x8gf2tvdw0s3jn54khce6mua7l')
 
 	def derive_master_keys(self):
 		''' Generate a master extended key pair '''
@@ -171,42 +170,42 @@ class BIP84(BIP32_Account):
 					return None
 			keypairs.append({"prv": zprv, "pub": zpub})
 		return keypairs
+	
+	def encode_bits(self, bytestring):
+		# reverse byte so that most significant bit of each byte is first
+		bstring = int.from_bytes(bytestring, 'big')
+		# encode the bytes into the character set
+		return [(bstring >> i) & 0x1f for i in range(0, 160, 5)][::-1]
 
-	def bech_encode(self, bytestring):
-		bstring = int.from_bytes(bytestring, 'little')
-		# encode the bytes in bech32
-		return ''.join([self.alphabet[(bstring >> (i*5)) & 0x1f] for i in range(0, bstring.bit_length() // 5)])
+	def bech_encode(self, witness):
+		# set the human readable portion
+		hrp = 'bc'
+		# append the bech32 checksum
+		witness = [0] + self.encode_bits(witness)
+		# append checksum 
+		witness = witness + bech32_create_checksum(hrp, witness)
+		# serialize the address
+		return hrp + '1' + ''.join([self.alphabet[idx] for idx in witness])
 
-	def derive_address(self, xpub):
+	def derive_address(self, pub):
 		''' Generate a legacy Bitcoin address '''
 		# hash the public key with sha256 and then ripemd160; prepend it with 0x00
-		pubkey_hash = b'\x00\x14' + self.hash160(xpub)
+		pubkey_hash = b'\x00' + self.hash160(pub)
 		# encode the hash
-		return b58encode_check(pubkey_hash).decode()
+		return self.bech_encode(pubkey_hash)
 
-	def gen_addr_range(self, path, rnge):
+	def gen_addr_range(self, path, rnge, hardened=False):
 		# generate the BIP 44 path down to the 4th level
 		keypairs = self.derive_path(path)
 		keys = keypairs[-1]
 		# extract keys
 		m_zprv, m_zpub = keys["prv"], keys["pub"]
 		depth = int(5).to_bytes(1, endianness)
-		addrs = []
+		addresses = []
+		offset = 2**31 if hardened else 0
 		for i in range(rnge):
-			#
-			zprv, zpub = self.derive_child_keys(m_zprv, m_zpub, depth, i)
-			#
-			addrs.append(self.derive_address(self.extract_pub(zpub)))
-		return addrs
-
-
-
-if __name__ == "__main__":
-	seed = '5eb00bbddcf069084889a8ab9155568165f5c453ccb85e70811aaed6f6da5fc19a5ac40b389cd370d086206dec8aa6c43daea6690f20ad3d8d48b2d2ce9e38e4'
-	wallet = BIP84(seed)
-	prv, pub = wallet.get_master_keys()
-	#print(f'{prv}\n{pub}')
-	pubkey = wallet.extract_pub(pub)
-	print(pubkey)
-	
-
+			# derive the extended key pair for i'
+			zprv, zpub = self.derive_child_keys(m_zprv, m_zpub, depth, i + offset)
+			# add the associated address
+			addresses.append(self.derive_address(self.extract_pub(zpub)))
+		return addresses

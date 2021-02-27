@@ -127,7 +127,7 @@ class BIP49(BIP32_Account):
 		witness = b'\x00\x14' + self.hash160(ypub)
 		return b58encode_check(b'\x05' + self.hash160(witness)).decode()
 
-	def gen_addr_range(self, path, rnge):
+	def gen_addr_range(self, path, rnge, hardened=False):
 		# generate the BIP 44 path down to the 4th level
 		keypairs = self.derive_path(path)
 		keys = keypairs[-1]
@@ -135,18 +135,10 @@ class BIP49(BIP32_Account):
 		m_yprv, m_ypub = keys["prv"], keys["pub"]
 		depth = int(5).to_bytes(1, endianness)
 		addrs = []
+		offset = 2**31 if hardened else 0
 		for i in range(rnge):
 			#
-			yprv, ypub = self.derive_child_keys(m_yprv, m_ypub, depth, i)
+			yprv, ypub = self.derive_child_keys(m_yprv, m_ypub, depth, i + offset)
 			#
 			addrs.append(self.derive_address(self.extract_pub(ypub)))
 		return addrs
-
-if __name__ == "__main__":
-	rootseed = "67f93560761e20617de26e0cb84f7234aaf373ed2e66295c3d7397e6d7ebe882ea396d5d293808b0defd7edd2babd4c091ad942e6a9351e6d075a29d4df872af"
-	# Generate the first address
-	path = "m/49'/0'/0'/0"
-	wallet = BIP49(rootseed)
-	addrs = wallet.gen_addr_range(path, 20)
-	for a in addrs:
-		print(a)
