@@ -16,11 +16,13 @@ def gen_wallet(seed, addr):
 		return BIP49(seed)
 	elif addr == "Native SegWit":
 		return BIP84(seed)
-	return BIP44(seed)
+	return None
 
 def gen_keys(seed, addr):
 	# determine path type (44/49/84)
-	wallet = gen_wallet(seed.decode(), addr)
+	wallet = gen_wallet(seed.hex(), addr)
+	if not wallet:
+		return (None, None)
 	# derive master key pair
 	return wallet.get_master_keys()
 
@@ -36,8 +38,9 @@ def generate():
 		# generate BIP32 root seed
 		seed = generate_rootseed(mnemonics, data['passphrase'])
 		prv, pub = gen_keys(seed, addr)
-		print(f'Keys:\n{prv}\n{pub}')
-		return dumps({"phrase": mnemonics, "seed": seed.decode(), "m_xprv": prv, "m_xpub": pub})
+		if (prv, pub) == (None, None):
+			return dumps({"phrase": "failed"})
+		return dumps({"phrase": mnemonics, "seed": seed.hex(), "m_xprv": prv, "m_xpub": pub})
 	except Exception as error:
 		print(f'Could not generate: ERROR {error}')
 		return dumps({"phrase": "failed"})
