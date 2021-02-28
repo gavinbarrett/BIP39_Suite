@@ -12,7 +12,7 @@ export const SideBar = () => {
 
 	return (<div id="sidebar">
 	<Router.Link to={"/"}>
-		<Button icon={key} title={"BIP Suite"}/>
+		<Button icon={key} title={"biptools"}/>
 	</Router.Link>
 	<Router.Link to={"/generate"}>
 		<Button icon={generate} title={"Generate Wallet"}/>

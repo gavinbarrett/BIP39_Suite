@@ -4,7 +4,7 @@ import './sass/Documentation.scss';
 
 const DocumentationHeader = () => {
 	return (<div className="doc-header">
-		{"BipPy Documentation"}
+		{"biptools Documentation"}
 	</div>);
 }
 
@@ -17,7 +17,7 @@ const CodeBox = ({code_lines}) => {
 }
 
 export const Documentation = () => {
-	const impt = "from bippy import BIP49"
+	const impt = "from biptools import BIP49"
 	const mnemonic = "mnemonic = 'twelve pride tower pass fruit ozone exclude lemon pool wall abandon want answer vapor chunk'"
 	const seed = "seed = '000102030405060708090a0b0c0d0e0f'";
 	const bipseed = "seed = '367d8b708d8b3c0bb23b75456e95b17dff49ab0332d84c8bf6a843a62dc778fb12e3e05cd32873f4eac1ee49fa9a8796ae1c9beb2983942a6dd38b58dbd2f075'"

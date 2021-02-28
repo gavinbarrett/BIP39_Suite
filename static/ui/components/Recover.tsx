@@ -46,11 +46,16 @@ export const Recover = () => {
 	}
 	
 	const update_salt = event => {
+		console.log('updating');
 		updateSalt(event.target.value);
 		if (event.target.value === "" && hidePass !== "password") {
 			updateHidePass("password")
 			updateEyePass("hidden");
 		}
+		if (mnemonics != "") {
+			console.log('Updating info');
+		}
+		// FIXME: if the mnemonic seed is valid, 
 	}
 
 	const update_mnemonic_box = () => {

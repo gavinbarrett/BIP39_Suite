@@ -71,6 +71,10 @@ $blue-highlight: #6385E9;
 	color: white;
 }
 
+.submitbutton:focus {
+	outline: none;
+}
+
 #byteselector {
 	display: flex;
 	height: 12.5vh;

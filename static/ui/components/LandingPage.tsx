@@ -24,7 +24,7 @@ export const LandingPage = () => {
 	</div>
 	<div ref={refer} id="more-info">
 		<div id="info">
-		<div className="info-header">{"Welcome to the BIPPy crypto wallet suite!"}</div>
+		<div className="info-header">{"Welcome to the biptools crypto wallet suite!"}</div>
 		<div className="info-desc">{"You can use this web app to generate new BIP32 compatible wallets or recover your pre-existing wallets. The Generation and Recovery pages offer a simple way to view your mnemonic phrase, master seed, master extended keys, and addresses associated with these keys."}</div>
 		<div className="info-precaution">{"It is highly recommended that you install one of the local clients from the Downloads page. Please understand the risk associated with using this software and refrain from using it if you aren't sure what you're doing. BIPPy is still in early development and will need extensive testing and auditing from security professionals before it can be used in production systems. As such, BIPPy takes no responsibility for any lost funds associated with any of your wallets if you choose to use our webapp or build a system from our core package."}</div>
 		</div>
