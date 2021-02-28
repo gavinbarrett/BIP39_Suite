@@ -56,7 +56,7 @@ def recover():
 		addr = data["addr"]
 		# generate a BIP32 wallet
 		prv, pub = gen_keys(seed, addr)
-		return dumps({"seed": seed.decode(), "m_xprv": prv, "m_xpub": pub})
+		return dumps({"seed": seed.hex(), "m_xprv": prv, "m_xpub": pub})
 	except Exception as error:
 		print(f'Could not decode data.\nERROR: {error}')
 		return dumps({"seed": "null"})
