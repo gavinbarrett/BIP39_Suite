@@ -66,6 +66,10 @@ export const KeyGenerator = () => {
 		console.log(data);
 		if (data["phrase"] === "failed") {
 			console.log('failed');
+			updatePhrase(null);
+			updateSeed(null);
+			updateMxprv(null);
+			updateMxpub(null);
 			return;
 		}
 		updatePhrase(data["phrase"]);
