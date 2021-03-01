@@ -19,6 +19,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Elliptic Curve Arithmetic
       run: |
+        pip install -r requirements.txt
         cd tests
         python ellipticadd.test.py
         python ellipticdouble.test.py
