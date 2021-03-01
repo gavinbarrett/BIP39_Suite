@@ -12,6 +12,16 @@ This repository presents a library for generating and managing hierarchical dete
 
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP32%20Path%20Derivation/badge.svg)
 
+
+## Installation
+
+Install the ```bip-tools``` package in order to use this project programmatically.
+
+```bash
+pip install bip-tools
+```
+
+
 ## Usage
 
 ```python
