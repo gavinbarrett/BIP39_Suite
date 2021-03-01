@@ -5,22 +5,13 @@ import struct
 from sys import byteorder, exit
 from binascii import hexlify, unhexlify
 from hashlib import pbkdf2_hmac, sha256, sha512
-from src.bip39 import bip39, generate_rootseed
-from src.secp256k1 import secp256k1, CurvePoint
+from biptools.bip39 import BIP39
+from biptools.secp256k1 import secp256k1, CurvePoint
 from base58 import b58encode, b58encode_check, b58decode, b58decode_check
-
-# zprivate key version
-z_prvkey_v = b'\x04\xb2\x43\x0c'
-# zpublic key version
-z_pubkey_v = b'\x04\xb2\x47\x46'
-
-# set byte endianness
-endianness = 'big'
 
 class BIP32_Account:
 	# FIXME: 	ideally we should be passing in a custom class to prevent people from using this construtor to
 	#			creating brain wallets
-
 	def __init__(self, seed, fromseed=False, salt=''):
 		# Generate BIP 32 master keys
 		if fromseed:
@@ -28,9 +19,10 @@ class BIP32_Account:
 			self.rootseed = unhexlify(seed)
 		else:
 			# constructing from an ascii BIP39 mnemonic phrase
-			self.rootseed = generate_rootseed(seed, salt)
+			self.rootseed = BIP39().generate_rootseed(seed, salt)
 		self.rootnode = self.generate_rootkey(self.rootseed)
 		self.master_prv, self.master_chain = self.split_rootkey(self.rootnode)
+		self.endianness = 'big'
 
 	# FIXME: create valid_key/on_curve function
 	def generate_rootkey(self, seed):
@@ -43,14 +35,14 @@ class BIP32_Account:
 	
 	def point(self, prv_key):
 		# compute the public key: K = k*G
-		private = int.from_bytes(prv_key, endianness)
+		private = int.from_bytes(prv_key, self.endianness)
 		return secp256k1().generate_pubkey(private)
 	
 	def compress_pubkey(self, pubkey):
 		# return the compressed public key
 		if pubkey.y & 1:
-			return b'\x03' + pubkey.x.to_bytes(32, endianness)
-		return b'\x02' + pubkey.x.to_bytes(32, endianness)
+			return b'\x03' + pubkey.x.to_bytes(32, self.endianness)
+		return b'\x02' + pubkey.x.to_bytes(32, self.endianness)
 
 	def extract_prv(self, prv):
 		''' Extracts a private key and the chain code from an extended private key '''
@@ -124,7 +116,7 @@ class BIP32_Account:
 			CKDpriv:
 			((k_par, c_par), i) -> (k_i, c_i)
 		'''
-		if int.from_bytes(index, endianness) >= 0x80000000:
+		if int.from_bytes(index, self.endianness) >= 0x80000000:
 			# child is a hardened key
 			key = b'\x00' + prv + index
 		else:

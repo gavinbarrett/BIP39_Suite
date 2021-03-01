@@ -9,6 +9,6 @@ python ellipticadd.test.py
 python ellipticdouble.test.py
 python ellipticmult.test.py
 
-# Test deriving the base58-encoded master key pair
-python xprv.test.py
-python xpub.test.py
+# Test BIP32 documentation vectors
+python bip32path.test.py
+python legacyaddr.test.py

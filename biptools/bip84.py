@@ -2,8 +2,8 @@ import sys
 import struct
 from binascii import unhexlify
 from base58 import b58encode_check
-from src.bip32 import BIP32_Account
-from src.secp256k1 import secp256k1, CurvePoint
+from biptools.bip32 import BIP32_Account
+from biptools.secp256k1 import secp256k1, CurvePoint
 
 def bech32_polymod(values):
   GEN = [0x3b6a57b2, 0x26508e6d, 0x1ea119fa, 0x3d4233dd, 0x2a1462b3]
@@ -25,9 +25,6 @@ def bech32_create_checksum(hrp, data):
 	values = bech32_hrp_expand(hrp) + data
 	polymod = bech32_polymod(values + [0,0,0,0,0,0]) ^ 1
 	return [(polymod >> 5 * (5 - i)) & 31 for i in range(6)]
-
-# set byte endianness
-endianness = 'big'
 
 class BIP84(BIP32_Account):
 	def __init__(self, seed, fromseed=False, salt=""):
@@ -114,7 +111,7 @@ class BIP84(BIP32_Account):
 		# generate child private key
 		child_prv = (int(child_prv, 16) + int(prv.hex(), 16)) % secp256k1().n
 		#FIXME: check if derived key is valid
-		child_zprv = self.prv_version + depth + fingerprint + index + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(32, endianness)
+		child_zprv = self.prv_version + depth + fingerprint + index + unhexlify(child_chain) +  b'\x00' + child_prv.to_bytes(32, self.endianness)
 		return b58encode_check(child_zprv).decode()
 
 	def derive_child_pubkey(self, child_prv, parent_pub, depth, index):
@@ -164,7 +161,7 @@ class BIP84(BIP32_Account):
 					if not (0x00 <= index <= 0xffffffff):
 						raise ValueError(f'Invalid key index {index}')
 					# Generate a child extended key pair
-					zprv, zpub = self.derive_child_keys(zprv, zpub, depth.to_bytes(1, endianness), index)
+					zprv, zpub = self.derive_child_keys(zprv, zpub, depth.to_bytes(1, self.endianness), index)
 				except ValueError as err:
 					print(f'Error deriving child key: {err}.')
 					return None
@@ -200,7 +197,7 @@ class BIP84(BIP32_Account):
 		keys = keypairs[-1]
 		# extract keys
 		m_zprv, m_zpub = keys["prv"], keys["pub"]
-		depth = int(5).to_bytes(1, endianness)
+		depth = int(5).to_bytes(1, self.endianness)
 		addresses = []
 		offset = 2**31 if hardened else 0
 		for i in range(rnge):

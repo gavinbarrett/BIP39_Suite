@@ -1,0 +1,13 @@
+exclude background/
+exclude node_modules/
+exclude static/
+exclude templates/
+exclude venv
+exclude tsconfig.json
+exclude webpack.config.js
+exclude package.json
+exclude package-lock.json
+exclude script.py
+exclude server.py
+exclude requirements.txt
+exclude TODO

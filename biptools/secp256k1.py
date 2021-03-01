@@ -1,17 +1,3 @@
-def egcd(a, b):
-    if a == 0:
-        return (b, 0, 1)
-    else:
-        g, y, x = egcd(b % a, a)
-        return (g, x - (b // a) * y, y)
-
-def modinv(a, m):
-    g, x, y = egcd(a, m)
-    if g != 1:
-        raise Exception('modular inverse does not exist')
-    else:
-        return x % m
-
 class CurvePoint:
 	''' This class defines a point (x, y) over the curve secp256k1 '''	
 	def __init__(self, x, y):
@@ -68,7 +54,6 @@ class CurvePoint:
 
 
 class secp256k1():
-
 	# This class represents the secp256k1 elliptic curve: y^2 = x^3 + b (mod p)
 	# Parameters sourced from https://en.bitcoin.it/wiki/Secp256k1
 	def __init__(self):

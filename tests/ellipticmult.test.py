@@ -1,7 +1,7 @@
 import unittest
 from sys import path
-path.append('../src/')
-from secp256k1 import secp256k1, CurvePoint
+path.append('../')
+from biptools.secp256k1 import secp256k1, CurvePoint
 
 s = secp256k1()
 

@@ -2,7 +2,7 @@ import json
 import unittest
 from sys import path
 path.append('../')
-from src.bip44 import BIP44
+from biptools.bip44 import BIP44
 
 def load_data():
 	f = open('test_vectors/legacy_vectors.json', 'r')

@@ -1,8 +1,8 @@
 import unittest
 from sys import path
-path.append('../src/')
+path.append('../')
 from json import loads
-from secp256k1 import secp256k1, CurvePoint
+from biptools.secp256k1 import secp256k1, CurvePoint
 
 f = open('./test_vectors/ellipticvectors.json', 'r')
 vects = loads(f.read())

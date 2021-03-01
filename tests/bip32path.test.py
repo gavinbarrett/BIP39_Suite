@@ -3,7 +3,7 @@ import unittest
 path.append('../')
 from json import loads
 from binascii import unhexlify
-from src.bip44 import BIP44
+from biptools.bip44 import BIP44
 
 f = open('test_vectors/bip32chain.json', 'r')
 data = loads(f.read())

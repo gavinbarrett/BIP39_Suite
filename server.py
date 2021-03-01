@@ -1,11 +1,10 @@
 from binascii import hexlify
 from json import loads, dumps
 from flask import Flask, request, render_template
-from src.bip39 import bip39, generate_rootseed
-from src.bip32 import BIP32_Account
-from src.bip44 import BIP44
-from src.bip49 import BIP49
-from src.bip84 import BIP84
+from biptools.bip39 import BIP39
+from biptools.bip44 import BIP44
+from biptools.bip49 import BIP49
+from biptools.bip84 import BIP84
 
 app = Flask(__name__)
 
@@ -31,12 +30,13 @@ def generate():
 	data = request.data.decode('UTF-8')
 	data = loads(data)
 	try:
+		bip39 = BIP39()
 		# generate mnemonic passphrase
-		mnemonics = bip39(data['bytes'])
+		mnemonics = bip39.bip39(data['bytes'])
 		# extract address type
 		addr = data['addr']
 		# generate BIP32 root seed
-		seed = generate_rootseed(mnemonics, data['passphrase'])
+		seed = bip39.generate_rootseed(mnemonics, data['passphrase'])
 		prv, pub = gen_keys(seed, addr)
 		if (prv, pub) == (None, None):
 			return dumps({"phrase": "failed"})
@@ -50,7 +50,8 @@ def recover():
 	data = request.data.decode('UTF-8')
 	data = loads(data)
 	try:
-		seed = generate_rootseed(data['mnemonics'], data['salt'])
+		bip39 = BIP39()
+		seed = bip39.generate_rootseed(data['mnemonics'], data['salt'])
 		# FIXME: fix decoding error
 		# extract address type
 		addr = data["addr"]
