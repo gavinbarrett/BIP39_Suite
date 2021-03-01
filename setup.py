@@ -7,7 +7,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
 	name="bip-tools", 
-	version="1.0.2", 
+	version="1.0.4", 
 	description="Manage BIP32 based HD wallets.",
 	long_description=README,
 	long_description_content_type="text/markdown",

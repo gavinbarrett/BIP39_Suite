@@ -9,7 +9,7 @@ class BIP39:
 		# map desired mnemonic phrase length with bytes of entropy
 		self.mnemonic_bytemap = {'12': 16, '15': 20, '18': 24, '21': 28, '24': 32}
 		self.entropy = Entropy()
-		self.words = Seeds().gather_words()
+		self.words = Seeds().extract_words()
 
 	def generate_entropy(self, size, entropy):
 		# generate entropy
