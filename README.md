@@ -12,21 +12,11 @@ This repository presents a library for generating and managing hierarchical dete
 
 ![](https://github.com/gavinbarrett/BIP39_Suite/workflows/BIP32%20Path%20Derivation/badge.svg)
 
-## Testing
-
-You can test all of the BIP32/39 modules by running:
-``./tests/run_tests.sh``
-or run an individual test in the ``test`` directory. 
-
-Running the last five test scripts in this file test requires having Python 3.8+ installed.
-
-This will test 1) the generation of bits of entropy and a corresponding mnemonic recovery phrase for crypto wallets as well as a derived root seed used for deriving the BIP32 main node of the crypto wallet, 2) the correctness of secp256k1 elliptic curve arithmetic module, and 3) the derivation of a [base58check-encoded](https://en.bitcoin.it/wiki/Base58Check_encoding) master key pairs.
-
-## Example
+## Usage
 
 ```python
-from bipsuite import BIP44
-seed = '000102030405060708090a0b0c0d0e0f'
-wallet = BIP44(seed)
+from biptools.bip44 import BIP44
+phrase = 'cactus fringe crater danger leave pill endorse night clown change apology issue'
+wallet = BIP44(phrase)
 xprv, xpub = wallet.get_master_keys()
 ```
