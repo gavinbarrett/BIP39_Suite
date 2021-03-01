@@ -27,11 +27,11 @@ export const Download = () => {
 				<div className="download-desc">{"Extend your crypto project"}</div>
 				<div className="pip-install">
 					<p className="download-comment">{"# Install the biptools package"}</p>
-					<p className="download-command">{"$ pip install biptools"}</p>
+					<p className="download-command">{"$ pip install bip-tools"}</p>
 					<p className="download-comment">{"# Start the Python shell"}</p>
 					<p className="download-command">{"$ python"}</p>
 					<p className="download-comment">{"# Import a BIP32 subclass"}</p>
-					<p className="download-command">{">>> from biptools import BIP44"}</p>
+					<p className="download-command">{">>> from biptools.bip44 import BIP44"}</p>
 					<p className="download-comment">{"# Generate a BIP32 compatible wallet"}</p>
 					<p className="download-command">{">>> wallet = BIP44('twelve pride tower pass fruit ozone exclude lemon pool wall abandon want answer vapor chunk')"}</p>
 					<p className="download-comment">{"# Generate master extended keys"}</p>
