@@ -15,6 +15,10 @@ export const Download = () => {
 					<p className="download-command">{"$ git clone https://github.com/gavinbarrett/biptools"}</p>
 					<p className="download-comment">{"# Enter the directory"}</p>
 					<p className="download-command">{"$ cd biptools"}</p>
+					<p className="download-comment">{"# Create a Python virtual env"}</p>
+					<p className="download-command">{"$ python -m venv venv"}</p>
+					<p className="download-comment">{"# Activate the virtual environment"}</p>
+					<p className="download-command">{"$ source venv/bin/activate"}</p>
 					<p className="download-comment">{"# Install the dependencies"}</p>
 					<p className="download-command">{"$ npm install && pip install -r requirements.txt"}</p>
 					<p className="download-comment">{"# Start the local server"}</p>
@@ -36,6 +40,11 @@ export const Download = () => {
 					<p className="download-command">{">>> wallet = BIP44('twelve pride tower pass fruit ozone exclude lemon pool wall abandon want answer vapor chunk')"}</p>
 					<p className="download-comment">{"# Generate master extended keys"}</p>
 					<p className="download-command">{">>> xprv, xpub = wallet.get_master_keys()"}</p>
+					<p className="download-comment">{"# Pick an appropriate BIP path"}</p>
+					<p className="download-command">{">>> path = \"m/44'/0'/0'/0\""}</p>
+					<p className="download-comment">{"# Generate the first ten hardened addresses"}</p>
+					<p className="download-command">{"addrs = wallet.gen_addr_range(path, 10, True)"}</p>
+				
 				</div>
 			</div>
 		</div>

@@ -77,7 +77,7 @@ class BIP84(BIP32_Account):
 		'''
 		path_indices = self.decode_path(path)
 		try:
-			if len(path_indices) < 5:
+			if len(path_indices) < 3:
 				raise ValueError('BIP 44 path `{path_indices}` is not valid')
 			if path_indices[1] != 0x8000002C:
 				raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
@@ -133,7 +133,7 @@ class BIP84(BIP32_Account):
 		'''
 		path_indices = self.decode_path(path)
 		try:
-			if len(path_indices) < 5:
+			if len(path_indices) < 3:
 				raise ValueError('BIP 44 path `{path_indices}` is not valid')
 			#if path_indices[1] != 0x8000002C:
 			#	raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
@@ -161,6 +161,7 @@ class BIP84(BIP32_Account):
 					if not (0x00 <= index <= 0xffffffff):
 						raise ValueError(f'Invalid key index {index}')
 					# Generate a child extended key pair
+					print(f'Depth: {depth}')
 					zprv, zpub = self.derive_child_keys(zprv, zpub, depth.to_bytes(1, self.endianness), index)
 				except ValueError as err:
 					print(f'Error deriving child key: {err}.')

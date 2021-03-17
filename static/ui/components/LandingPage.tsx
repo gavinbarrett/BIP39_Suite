@@ -1,6 +1,13 @@
 import * as React from 'react';
+import * as Router from 'react-router-dom';
 import { SideBar } from './SideBar';
 import './sass/LandingPage.scss';
+
+const Summary = () => {
+	return (<div className="spacer">
+		{"An open source, extensible package dedicated to the future of crypto dev."}
+	</div>);
+}
 
 export const LandingPage = () => {
 	const refer = React.createRef();
@@ -22,11 +29,28 @@ export const LandingPage = () => {
 		</div>
 	</div>
 	</div>
+	<Summary/>
 	<div ref={refer} id="more-info">
 		<div id="info">
 		<div className="info-header">{"Welcome to the biptools crypto wallet suite!"}</div>
-		<div className="info-desc">{"You can use this web app to generate new BIP32 compatible wallets or recover your pre-existing wallets. The Generation and Recovery pages offer a simple way to view your mnemonic phrase, master seed, master extended keys, and addresses associated with these keys."}</div>
-		<div className="info-precaution">{"It is highly recommended that you install one of the local clients from the Downloads page. Please understand the risk associated with using this software and refrain from using it if you aren't sure what you're doing. BIPPy is still in early development and will need extensive testing and auditing from security professionals before it can be used in production systems. As such, BIPPy takes no responsibility for any lost funds associated with any of your wallets if you choose to use our webapp or build a system from our core package."}</div>
+		<div className="info-desc-wrapper">
+			<div className="info-desc">{"You can use this web app to generate new BIP32 compatible wallets or recover your pre-existing wallets. The Generation and Recovery pages offer a simple way to view your mnemonic phrase, master seed, master extended keys, and addresses associated with these keys."}</div>
+			<div className="landing-link">
+				<Router.Link to="/recover">Recover Wallet</Router.Link>
+			</div>
+			<div className="landing-link">
+				<Router.Link to="/generate">Generate Wallet</Router.Link>
+			</div>
+		</div>
+		<div className="info-precaution-wrapper">
+			<div className="info-precaution">{"It is highly recommended that you install one of the local clients from the Download Client page. Please understand the risks associated before using this software; biptools is still in early development and requires testing and auditing from security professionals before it can be used in production systems."}</div>
+			<div className="landing-link">
+				<Router.Link to="/documentation">Documentation</Router.Link>
+			</div>
+			<div className="landing-link">
+				<Router.Link to="/download">Download Client</Router.Link>
+			</div>
+		</div>
 		</div>
 	</div></>);
 }

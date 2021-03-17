@@ -85,7 +85,7 @@ class BIP44(BIP32_Account):
 		'''
 		path_indices = self.decode_path(path)
 		try:
-			if len(path_indices) < 4:
+			if len(path_indices) < 3:
 				raise ValueError('BIP 44 path `{path_indices}` is not valid')
 			#if path_indices[1] != 0x8000002C:
 			#	raise ValueError('BIP 44 purpose `{path_indices[1]}` is not valid')
