@@ -17,6 +17,10 @@ footer {
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: flex-end;
+	@media (max-width: 625px) {
+		width: 30vw;
+	}
+
 }
 
 .footer-field {
@@ -27,6 +31,9 @@ footer {
 	font-weight: bold;
 	font-family: 'Quicksand', sans-serif;
 	transition: all 0.2s ease-in-out;
+	@media (max-width: 625px) {
+		font-size: 0.7rem;
+	}
 }
 
 .footer-link {

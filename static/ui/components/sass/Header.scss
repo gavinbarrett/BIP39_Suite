@@ -25,13 +25,16 @@ nav > a {
 	width: 20%;
 	height: 100%;
 	display: flex;
-	font-size: 0.8rem;
+	font-size: 0.65rem;
 	justify-content: center;
 	align-items: center;
 	text-decoration: none;
 	cursor: default;
 	color: #ffffff;
 	transition: all 0.125s ease-in-out;
+	@media (min-width: 625px) {
+		font-size: 1rem;
+	}
 	@media (min-width: 1080px) {
 		font-size: 1.5rem;
 	}

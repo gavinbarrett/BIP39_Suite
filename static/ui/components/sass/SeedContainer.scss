@@ -99,8 +99,8 @@
 .expose-button {
 	width: 10vw;
 	height: 8vh;
-	background-color: transparent;
-	color: red;
+	background-color: #ff0000;
+	color: #ffffff;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -122,8 +122,8 @@
 }
 
 .active-field {
-	background-color: red;
-	color: white;
+	background-color: #ffffff;
+	color: #ff0000;
 }
 
 .active-field:focus {
