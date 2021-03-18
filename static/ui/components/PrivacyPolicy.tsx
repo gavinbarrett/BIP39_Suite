@@ -4,7 +4,6 @@ import './sass/PrivacyPolicy.scss';
 
 export const PrivacyPolicy = () => {
 	return (<div className="privacy-app">
-	<SideBar/>
 	<div className="privacy-policy">
 		<div className="privacy-header">{"Data Collection"}</div>
 		<div className="privacy-text">{"BIPPy does not collect any information on its users and stores no stateful server-side information, such as your mnemonic phrases."}</div>

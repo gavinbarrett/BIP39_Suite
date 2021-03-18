@@ -81,7 +81,6 @@ export const Recover = () => {
 	}
 
 	return (<div className="recovery-app">
-	<SideBar/>
 	<div className="recovery-box">
 	<div className="recovery-input">
 		<div className="recovery-line">

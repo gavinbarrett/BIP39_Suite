@@ -2,10 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&display=swap');
 $main-background: #36454F;
 
-html, body {
-	width: 100vw;
+* {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	width: 100vw;
 	overflow-x: hidden;
 	scrollbar-width: thin;
 }

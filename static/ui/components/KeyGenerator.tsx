@@ -92,7 +92,6 @@ export const KeyGenerator = () => {
 	}
 
 	return (<div className="generator-app">
-	<SideBar/>
 	<div className="generator">
 		<div className='selector-box'>
 		<ByteSelector selected={selected} updateSelected={updateSelected}/>

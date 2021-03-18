@@ -2,12 +2,6 @@ import * as React from 'react';
 import { SideBar } from './SideBar';
 import './sass/Documentation.scss';
 
-const DocumentationHeader = () => {
-	return (<div className="doc-header">
-		{"biptools Documentation"}
-	</div>);
-}
-
 const CodeBox = ({code_lines}) => {
 	return (<div className="code-box">
 		{code_lines.map((elem, index) => {
@@ -26,9 +20,8 @@ export const Documentation = () => {
 	const ykeys = "yprv, ypub = wallet_49.get_master_keys()";
 	const path = "m/44'/0'/0'/0";
 	const bippath = "keypairs = wallet.gen_bip44_path.(path)";
-	return (<div className="app"><SideBar/>
+	return (<div className="app">
 	<div className="documentation">
-		<DocumentationHeader/>
 		<div id="tutorial" className="doc-title">{"Setting up a wallet"}</div>
 			<div className="doc">
 				<div className="doc-text">

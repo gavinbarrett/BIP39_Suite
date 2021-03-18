@@ -4,7 +4,6 @@ import './sass/Download.scss';
 
 export const Download = () => {
 	return (<div className="download-app">
-	<SideBar/>
 	<div className="download-wrapper">
 		<div className="download-options">
 			<div className="local-webclient">
