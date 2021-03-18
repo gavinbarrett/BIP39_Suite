@@ -2,11 +2,14 @@ header {
 	width: 100vw;
 	height: 15vh;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 	font-family: 'Baloo 2', cursive;
 	background: #000000;
 	color: white;
+	@media (min-width: 1000px) {
+		justify-content: space-between;
+	}
 }
 
 nav {
@@ -22,13 +25,16 @@ nav > a {
 	width: 20%;
 	height: 100%;
 	display: flex;
-	font-size: 1.5rem;
+	font-size: 0.8rem;
 	justify-content: center;
 	align-items: center;
 	text-decoration: none;
 	cursor: default;
 	color: #ffffff;
 	transition: all 0.125s ease-in-out;
+	@media (min-width: 1080px) {
+		font-size: 1.5rem;
+	}
 }
 
 nav > a:hover, a:active {
@@ -37,7 +43,11 @@ nav > a:hover, a:active {
 }
 
 #header-text {
+	display: none;
 	font-size: 3rem;
 	margin-left: 3vw;
 	cursor: default;
+	@media (min-width: 1000px) {
+		display: block;
+	}
 }

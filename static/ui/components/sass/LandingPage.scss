@@ -13,6 +13,10 @@ $landing-color: linear-gradient(#6585E8, #1976D3);
 	background-blend-mode: screen;
 	width: 100vw;
 	display: flex;
+	flex-direction: column;
+	@media (min-width: 1000px) {
+		flex-direction: row;
+	}
 }
 
 .landing-box {
@@ -26,10 +30,15 @@ $landing-color: linear-gradient(#6585E8, #1976D3);
 	width: 60vw;
 	height: 100vh;
 	color: white;
-	font-size: 5.5rem;
+	font-size: 3.5rem;
 	font-family: 'Baloo 2', cursive;
 	margin-top: 5vh;
 	padding-left: 3%;
+	display: flex;
+	justify-content: center;
+	@media (min-width: 1000px) {
+		font-size: 5.5rem;
+	}
 }
 
 .learn-more {
@@ -132,7 +141,7 @@ $landing-color: linear-gradient(#6585E8, #1976D3);
 
 .info-desc-wrapper {
 	width: 80vw;
-	height: 25vh;
+	height: 35vh;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -150,7 +159,7 @@ $landing-color: linear-gradient(#6585E8, #1976D3);
 
 .info-precaution-wrapper {
 	width: 80vw;
-	height: 25vh;
+	height: 35vh;
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
@@ -209,7 +218,7 @@ p#summary-text {
 	justify-content: space-evenly;
 	align-items: center;
 	flex-direction: column;
-	@media (min-width: 1080px) {
+	@media (min-width: 1000px) {
 		flex-direction: row;
 	}
 }
