@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
-$dl_option_color: #2b2d2f;
-$blue-highlight: #6385E9;
+//$dl_option_color: #2b2d2f;
+$dl_option_color: #000000;
+$highlight: #EF9501;
 $background: #ffffff;
 
 .download-app {
@@ -26,38 +27,38 @@ $background: #ffffff;
 	width: 100vw;
 	//height: 140vh;
 	display: flex;
+	flex-direction: column;
 	background: $background;
 }
 
 .local-webclient {
-	width: 48vw;
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
-	//justify-content: space-evenly;
 	align-items: center;
 	background: $background;
 	transition: all 0.35s ease-in-out;
 	font-family: 'Quicksand', sans-serif;
 	border-radius: 35px;
 	word-break: all;
+	margin: 1rem;
 }
 
 .local-installs {
-	width: 42vw;
-	//height: 110vh;
+	width: 70vw;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	color: black;
 	background-color: $dl-option-color;
-	font-size: 1.5vw;
+	font-size: 1.25rem;
 	padding: 4%;
 	border-radius: 30px;
 	font-family: 'Source Code Pro', monospace;
 }
 
 .cli-client {
-	width: 48vw;
+	width: 100vw;
 	background: $background;
 	display: flex;
 	flex-direction: column;
@@ -66,6 +67,7 @@ $background: #ffffff;
 	transition: all 0.35s ease-in-out;
 	border-radius: 35px;
 	font-family: 'Quicksand', sans-serif;
+	margin: 1rem;
 }
 
 .local-webclient:hover {
@@ -77,14 +79,13 @@ $background: #ffffff;
 }
 
 .pip-install {
-	width: 42vw;
-	//height: 110vh;
+	width: 70vw;
 	background: $dl_option_color;
 	display: flex;
 	align-items: flex-start;
 	flex-direction: column;
 	color: black;
-	font-size: 1.5vw;
+	font-size: 1.25rem;
 	padding: 4%;
 	border-radius: 30px;
 	font-family: 'Source Code Pro', monospace;
@@ -92,27 +93,31 @@ $background: #ffffff;
 }
 
 .download-title {
-	font-size: 2.5vw;
+	font-size: 2.5rem;
+	font-weight: bold;
 	color: black;
 }
 
 .download-desc {
-	font-size: 2vw;
+	width: 70vw;
+	font-size: 1.75rem;
 	font-weight: bold;
-	color: $blue-highlight;
+	color: $highlight;
+	text-align: center;
 }
 
 .download-comment {
-	padding: 0;
-	color: white;
+	padding: 1rem;
+	color: #3d3d3d;
 	filter: brightness(120%);
 	cursor: default;
 }
 
 .download-command {
-	padding: 0;
-	color: cyan;
+	padding: 1rem;
+	color: #EF9501;
 	word-break: break-word;
+	font-size: bold;
 	filter: brightness(120%);
 	cursor: default;
 }

@@ -7,8 +7,8 @@ export const Download = () => {
 	<div className="download-wrapper">
 		<div className="download-options">
 			<div className="local-webclient">
-				<div className="download-title">{"Install the local clients"}</div>
-				<div className="download-desc">{"Install the Web and CLI clients"}</div>
+				<div className="download-title">{"Local Clients"}</div>
+				<div className="download-desc">{"Install private Web and CLI clients"}</div>
 				<div className="local-installs">
 					<p className="download-comment">{"# Clone the repository"}</p>
 					<p className="download-command">{"$ git clone https://github.com/gavinbarrett/biptools"}</p>
@@ -26,8 +26,8 @@ export const Download = () => {
 				</div>
 			</div>
 			<div className="cli-client">
-				<div className="download-title">{"Install the Python package"}</div>
-				<div className="download-desc">{"Extend your crypto project"}</div>
+				<div className="download-title">{"Python package"}</div>
+				<div className="download-desc">{"Extend your project with the biptools package!"}</div>
 				<div className="pip-install">
 					<p className="download-comment">{"# Install the biptools package"}</p>
 					<p className="download-command">{"$ pip install bip-tools"}</p>

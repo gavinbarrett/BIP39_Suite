@@ -1,20 +1,21 @@
 import * as React from 'react';
 import * as Router from 'react-router-dom';
+import { AboutPage } from './AboutPage';
 import { SideBar } from './SideBar';
 import './sass/LandingPage.scss';
 
 const LandingSummary = () => {
 	return (<div id="landing-summary">
-		<p id="summary-text">{"An open source, extensible package dedicated to the future of crypto dev."}</p>
+		<p id="summary-text">{"An open source, extensible module dedicated to the future of cryptocurrency development."}</p>
 	</div>);
 }
 
 export const LandingPage = () => {
-	const refer = React.createRef();
+	const reference = React.createRef();
 	const scrollToInfo = event => {
 		event.preventDefault();
 		// scroll to the more info section
-		refer.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
+		reference.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
 	}
 	return (<><div className="landing-app">
 	<div className="landing-page">
@@ -26,8 +27,9 @@ export const LandingPage = () => {
 		</div>
 	</div>
 	</div>
+	<AboutPage reference={reference}/>
 	<LandingSummary/>
-	<div ref={refer} id="more-info">
+	<div id="more-info">
 		<div id="info">
 		<div className="info-header">{"Welcome to the biptools crypto wallet suite!"}</div>
 		<div className="info-desc-wrapper">
