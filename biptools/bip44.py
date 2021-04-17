@@ -1,9 +1,9 @@
 import struct
 from binascii import unhexlify
 from base58 import b58encode_check
+from Crypto.Hash import keccak
 from biptools.secp256k1 import secp256k1, CurvePoint
 from biptools.bip32 import BIP32_Account
-
 
 class BIP44(BIP32_Account):
 	def __init__(self, seed, fromseed=False):
@@ -120,12 +120,19 @@ class BIP44(BIP32_Account):
 			keypairs.append({"prv": xprv, "pub": xpub})
 		return keypairs
 
-	def derive_address(self, xpub):
+	def derive_address(self, pub):
 		''' Generate a legacy Bitcoin address '''
 		# hash the public key with sha256 and then ripemd160; prepend it with 0x00
-		pubkey_hash = b'\x00' + self.hash160(xpub)
+		pubkey_hash = b'\x00' + self.hash160(pub)
 		# encode the hash
 		return b58encode_check(pubkey_hash).decode()
+	
+	def derive_eth_address(self, prv):
+		public = self.point(prv)
+		buffer = public.x.to_bytes(32, self.endianness) + public.y.to_bytes(32, self.endianness)
+		k = keccak.new(digest_bits=256)
+		k.update(buffer)
+		return '0x' + k.hexdigest()[24:]
 
 	def gen_addr_range(self, path, rnge, hardened=False):
 		# generate the BIP 44 path down to the 4th level
@@ -141,4 +148,21 @@ class BIP44(BIP32_Account):
 			xprv, xpub = self.derive_child_keys(m_xprv, m_xpub, depth, i + offset)
 			#
 			addrs.append(self.derive_address(self.extract_pub(xpub)))
+		return addrs
+
+	def gen_eth_addr_range(self, path, rnge, hardened=False):
+		# generate the BIP 44 path down to the 4th level
+		keypairs = self.derive_path(path)
+		keys = keypairs[-1]
+		# extract keys
+		m_xprv, m_xpub = keys["prv"], keys["pub"]
+		depth = int(5).to_bytes(1, self.endianness)
+		addrs = []
+		offset = 2**31 if hardened else 0
+		for i in range(rnge):
+			#
+			xprv, xpub = self.derive_child_keys(m_xprv, m_xpub, depth, i + offset)
+			prv, chain = self.extract_prv(xprv)
+			#
+			addrs.append(self.derive_eth_address(prv))
 		return addrs
