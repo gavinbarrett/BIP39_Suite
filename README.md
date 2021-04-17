@@ -24,6 +24,8 @@ pip install bip-tools
 
 ## Usage
 
+# Deriving Ethereum addresses
+
 ```python
 >>> from biptools.bip44 import BIP44
 
