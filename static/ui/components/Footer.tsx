@@ -29,7 +29,7 @@ export const Footer = () => {
 				<Router.Link className="footer-link" to="/privacy">Privacy Policy</Router.Link>
 			</div>
 			<div className="footer-field">
-				BipSuite &copy; 2021
+				Biptools &copy; 2021
 			</div>
 		</div>
 	</footer>);
